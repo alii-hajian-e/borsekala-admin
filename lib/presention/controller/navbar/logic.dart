@@ -8,7 +8,6 @@ import 'package:go_router/go_router.dart';
 import '../../../dataurl/constants/app_url.dart';
 import '../../../dataurl/data/model/chat-model.dart';
 import '../../../dataurl/data/network/api/app_api_panel.dart';
-import '../../../dataurl/data/network/service/api_service.dart';
 import '../../component/alert/alert.dart';
 import '../../component/dialog_component/dialog_action/dialod_action.dart';
 import '../../resources/assets_manager.dart';

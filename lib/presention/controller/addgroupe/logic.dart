@@ -13,7 +13,6 @@ import '../../../dataurl/data/model/sub-group-model.dart';
 import '../../../dataurl/data/model/trading-hall-model.dart';
 import '../../../dataurl/data/model/user-list-model.dart';
 import '../../../dataurl/data/network/api/app_api_panel.dart';
-import '../../../dataurl/data/network/service/api_service.dart';
 import '../../component/alert/alert.dart';
 import '../../component/button_component/circle-btn/circle_btn.dart';
 import '../../component/dialog_component/dialog-list/dialog_list.dart';
