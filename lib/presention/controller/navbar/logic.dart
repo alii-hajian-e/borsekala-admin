@@ -59,7 +59,7 @@ class NavbarLogic extends GetxController {
   Future<void> listChatUser (context) async{
     try{
       final response = await apiService.get(AppUrl.chatList, options: Options(headers:  {
-        "content-Type": "application/json",
+        'Content-Type': 'application/x-www-form-urlencoded',
         "authorization": "Bearer ${MyPreferences.getToken()}",
       }));
       if(response.statusCode == 200){
@@ -83,7 +83,7 @@ class NavbarLogic extends GetxController {
   Future<void> send (context,{Map<String, dynamic>? data}) async{
     try{
       final response = await apiService.post(AppUrl.chatList,data: data , options: Options(headers: {
-        "content-Type": "application/json",
+        'Content-Type': 'application/x-www-form-urlencoded',
         "authorization": "Bearer ${MyPreferences.getToken()}"}));
       if(response.statusCode == 201){
         txtChat.clear();

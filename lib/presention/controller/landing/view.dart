@@ -2,7 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'dart:js' as js;
+import 'package:go_router/go_router.dart';
 
 import '../../component/item_landing_component/item_landing_component.dart';
 import '../../resources/assets_manager.dart';
@@ -77,9 +77,9 @@ class LandingPage extends StatelessWidget {
               ItemLanding(img: ImageAssets.sms, txt: 'پنل پیامکی',onTap: (){
                 logic.homeLogic.getPanelRoom(context);
                 logic.addMemberLogic.getUserList(context);
-                js.context.callMethod('open', ['http://webapp.ibrokers.ir/navbarPage']);
-                // GoRouter.of(context).go('/navbarPage');
-                // Get.toNamed(Routes.navbarPage);
+                // js.context.callMethod('open', ['http://webapp.ibrokers.ir/navbarPage']);
+                GoRouter.of(context).go('/navbarPage');
+                // Get.toNamed(Routes.navbarPage);SS
               })
             ],
           ),

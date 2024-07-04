@@ -109,7 +109,7 @@ class AddGroupLogic extends GetxController {
     try {
       final response = await apiService.delete(
           '${AppUrl.addUserGroup}$id',data: data, options: Options(headers: {
-        "content-Type": "application/json",
+        'Content-Type': 'application/x-www-form-urlencoded',
         "authorization": "Bearer ${MyPreferences.getToken()}",
       }));
       if (response.statusCode == 201) {
@@ -153,7 +153,7 @@ class AddGroupLogic extends GetxController {
     try {
       final response = await apiService.post(
           AppUrl.panelRoom,data: data, options: Options(headers:{
-        "content-Type": "application/json",
+        'Content-Type': 'application/x-www-form-urlencoded',
         "authorization": "Bearer ${MyPreferences.getToken()}",
       }));
       if (response.statusCode == 201) {
@@ -193,7 +193,7 @@ class AddGroupLogic extends GetxController {
     try {
       final response = await apiService.patch(
           '${AppUrl.panelRoom}$id/', data: data,  options: Options(headers:{
-        "content-Type": "application/json",
+        'Content-Type': 'application/x-www-form-urlencoded',
         "authorization": "Bearer ${MyPreferences.getToken()}",
       }));
       if (response.statusCode == 200) {
@@ -219,6 +219,7 @@ class AddGroupLogic extends GetxController {
     try {
       final response = await apiService.delete(
           '${AppUrl.panelRoom}$id/',data: null,  options: Options(headers:{
+        'Content-Type': 'application/x-www-form-urlencoded',
         "authorization": "Bearer ${MyPreferences.getToken()}",
       }));
       if (response.statusCode == 204) {

@@ -32,6 +32,7 @@ class HomeLogic extends GetxController with StateMixin<dynamic>{
   void getPanelRoom(context) async {
     try{
       final response = await apiService.get(AppUrl.panelRoom,options: Options(headers: {
+        'Content-Type': 'application/x-www-form-urlencoded',
         "authorization": "Bearer ${MyPreferences.getToken()}",
       }));
       if(response.statusCode == 200){
@@ -49,7 +50,7 @@ class HomeLogic extends GetxController with StateMixin<dynamic>{
   void sendSMS(id,context) async {
     try{
       final response = await apiService.get('${AppUrl.sendSms}$id', options: Options(headers: {
-        // "content-Type": "application/json",
+        'Content-Type': 'application/x-www-form-urlencoded',
         "authorization": "Bearer ${MyPreferences.getToken()}",
       }));
       if(response.statusCode == 204){
@@ -90,7 +91,7 @@ class HomeLogic extends GetxController with StateMixin<dynamic>{
   Future<void> listUser (id,context) async{
     try{
       final response = await apiService.get('${AppUrl.userGroupList}?room=$id', options: Options(headers: {
-        "content-Type": "application/json",
+        'Content-Type': 'application/x-www-form-urlencoded',
         "authorization": "Bearer ${MyPreferences.getToken()}"
       }));
       if(response.statusCode == 200){

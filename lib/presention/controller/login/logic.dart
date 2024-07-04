@@ -20,6 +20,8 @@ class LoginLogic extends GetxController with StateMixin<List<VerifyModel>>{
   final loading = false.obs;
   final eye = true.obs;
   final FocusNode focusNode = FocusNode();
+  final pageManufacturer = 1.obs;
+  final manufacturerList = [].obs;
 
   @override
   void dispose() {
@@ -44,7 +46,7 @@ class LoginLogic extends GetxController with StateMixin<List<VerifyModel>>{
   Future<void> login ({Map<String, dynamic>? data, context}) async{
     try{
       final response = await apiService.post(AppUrl.login,data: data ,
-          options: Options(headers:{"content-Type": "application/json"}));
+          options: Options(headers:{'Content-Type': 'application/x-www-form-urlencoded'}));
       if(response.statusCode == 200){
         final dataVerify = VerifyModel.fromJson(response.data);
           MyPreferences.setToken(dataVerify.access!);
@@ -69,7 +71,7 @@ class LoginLogic extends GetxController with StateMixin<List<VerifyModel>>{
   Future<void> group(context) async {
     try {
       final response = await apiService.get(AppUrlDB.group, options: Options(headers: {
-        "content-Type": "application/json",
+        'Content-Type': 'application/x-www-form-urlencoded',
       }));
       if (response.statusCode == 200) {
         MyPreferences.setGroup(response.data);
@@ -81,7 +83,7 @@ class LoginLogic extends GetxController with StateMixin<List<VerifyModel>>{
   Future<void> mainGroup(context) async {
     try{
       final response = await apiService.get(AppUrlDB.mainGroup,options: Options(headers: {
-        'Content-type': 'application/json',
+        'Content-Type': 'application/x-www-form-urlencoded',
       }));
       if(response.statusCode == 200){
         MyPreferences.setMainGroup(response.data);
@@ -93,7 +95,7 @@ class LoginLogic extends GetxController with StateMixin<List<VerifyModel>>{
   Future<void> subGroup(context) async {
     try{
       final response = await apiService.get(AppUrlDB.subGroup, options: Options(headers:{
-        'Content-type': 'application/json',
+        'Content-Type': 'application/x-www-form-urlencoded',
       }));
       if(response.statusCode == 200){
         MyPreferences.setSubGroup(response.data);
@@ -105,7 +107,7 @@ class LoginLogic extends GetxController with StateMixin<List<VerifyModel>>{
   Future<void> tradingHall(context) async {
     try{
       final response = await apiService.get(AppUrlDB.tradingHallMenuSubGroup, options: Options(headers: {
-        'Content-type': 'application/json',
+        'Content-Type': 'application/x-www-form-urlencoded',
       }));
       if(response.statusCode == 200){
         // String jsonString = jsonEncode(response.data);
@@ -118,11 +120,19 @@ class LoginLogic extends GetxController with StateMixin<List<VerifyModel>>{
   }
   Future<void> fetchManufacturerList(context) async {
     try {
-      final response = await apiService.get(AppUrlDB.manufacturerUrl, options: Options(headers:  {
-        'Content-type': 'application/json',
+      final response = await apiService.get('${AppUrlDB.manufacturerUrl}?page=${pageManufacturer.value}', options: Options(headers:  {
+        'Content-Type': 'application/x-www-form-urlencoded',
       }));
       if(response.statusCode == 200){
-        MyPreferences.setCompany(response.data['results']);
+        var next = response.data['next'];
+        if (next == null) {
+          MyPreferences.setCompany(response.data['results']);
+          return;
+        } else {
+          pageManufacturer.value ++;
+          manufacturerList.addAll(response.data['results']);
+          fetchManufacturerList(context);
+        }
       }
     } on DioException catch (e) {
       Alert(txt: 'اطلاعات دریافت نشد', color: ColorManager.white, backgroundColor: ColorManager.red).showSnackBar(context);

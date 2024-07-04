@@ -41,7 +41,7 @@ class AddMemberLogic extends GetxController {
   void getUserList(context) async {
     try{
       final response = await apiService.get(AppUrl.userList, options: Options(headers: {
-        "content-Type": "application/json",
+        'Content-Type': 'application/x-www-form-urlencoded',
         "authorization": "Bearer ${MyPreferences.getToken()}",
       }));
       if(response.statusCode == 200){
@@ -57,6 +57,7 @@ class AddMemberLogic extends GetxController {
   void deleteUserList(id,context) async {
     try{
       final response = await apiService.delete('${AppUrl.userList}$id/',data: null,options: Options(headers: {
+        'Content-Type': 'application/x-www-form-urlencoded',
         "authorization": "Bearer ${MyPreferences.getToken()}",
       }));
       if(response.statusCode == 204){
@@ -76,8 +77,9 @@ class AddMemberLogic extends GetxController {
   }
   Future<void> addUser (context,{Map<String, dynamic>? data}) async{
     try{
-      final response = await apiService.post(AppUrl.userList, data: data ,options: Options(headers: {"content-Type": "application/json",
-            "authorization": "Bearer ${MyPreferences.getToken()}",
+      final response = await apiService.post(AppUrl.userList, data: data ,options: Options(headers: {
+        'Content-Type': 'application/x-www-form-urlencoded',
+        "authorization": "Bearer ${MyPreferences.getToken()}",
           }));
       if(response.statusCode == 201){
         GoRouter.of(context).pop();
@@ -103,7 +105,7 @@ class AddMemberLogic extends GetxController {
     try{
       final response = await apiService.patch('${AppUrl.userList}$id/', data: data ,options:
           Options(headers: {
-            // "content-Type": "application/json",
+            'Content-Type': 'application/x-www-form-urlencoded',
             "authorization": "Bearer ${MyPreferences.getToken()}",
           }));
       if(response.statusCode == 200){
