@@ -37,11 +37,11 @@
 
 import 'package:dio/dio.dart';
 
-import '../../../constants/app_url_DB.dart';
+import '../../../constants/app_url.dart';
 
-class ApiService {
+class ApiServicePanel {
   static final _options = BaseOptions(
-    baseUrl: AppUrlDB.baseUrl,
+    baseUrl: AppUrl.baseUrl,
     // connectTimeout: AppUrl.connectionTimeout ,
     // receiveTimeout: AppUrl.receiveTimeout ,
     responseType: ResponseType.json,
@@ -126,6 +126,33 @@ class ApiService {
 
   // PATCH request
   Future<Response> patch(
+      String url, {
+        dynamic data,
+        Map<String, dynamic>? queryParameters,
+        Options? options,
+        CancelToken? cancelToken,
+        ProgressCallback? onSendProgress,
+        ProgressCallback? onReceiveProgress,
+      }) async {
+    try {
+      final Response response = await _dio.patch(
+        url,
+        data: data,
+        queryParameters: queryParameters,
+        options: options,
+        cancelToken: cancelToken,
+        onSendProgress: onSendProgress,
+        onReceiveProgress: onReceiveProgress,
+      );
+      return response;
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+
+  // PATCH request
+  Future<Response> patchRequest(
       String url, {
         dynamic data,
         Map<String, dynamic>? queryParameters,

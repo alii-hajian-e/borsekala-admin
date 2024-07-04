@@ -8,7 +8,7 @@ import 'package:get/get.dart';
 import '../../../dataurl/constants/app_url.dart';
 import '../../../dataurl/data/model/grouplistmodel.dart';
 import '../../../dataurl/data/model/user-model-group.dart';
-import '../../../dataurl/data/network/service/api_service.dart';
+import '../../../dataurl/data/network/api/app_api_panel.dart';
 import '../../component/alert/alert.dart';
 import '../../resources/color_manager.dart';
 import '../../resources/shared_manager.dart';
@@ -19,7 +19,7 @@ class HomeLogic extends GetxController with StateMixin<dynamic>{
   final groupListSearch = <GroupList>[].obs;
   final txtSearch = TextEditingController();
   final txtSearchUser = TextEditingController();
-  ApiService apiService = ApiService();
+  final AppApiPanel apiServicePanel = AppApiPanel();
   var isCheckedList = <Model>[].obs;
   var isCheckedListSearch = <Model>[].obs;
 
@@ -31,7 +31,7 @@ class HomeLogic extends GetxController with StateMixin<dynamic>{
 
   void getPanelRoom(context) async {
     try{
-      final response = await apiService.get(AppUrl.panelRoom,options: Options(headers: {
+      final response = await apiServicePanel.get(AppUrl.panelRoom, Options(headers: {
         'Content-Type': 'application/x-www-form-urlencoded',
         "authorization": "Bearer ${MyPreferences.getToken()}",
       }));
@@ -49,7 +49,7 @@ class HomeLogic extends GetxController with StateMixin<dynamic>{
   }
   void sendSMS(id,context) async {
     try{
-      final response = await apiService.get('${AppUrl.sendSms}$id', options: Options(headers: {
+      final response = await apiServicePanel.get('${AppUrl.sendSms}$id', Options(headers: {
         'Content-Type': 'application/x-www-form-urlencoded',
         "authorization": "Bearer ${MyPreferences.getToken()}",
       }));
@@ -90,7 +90,7 @@ class HomeLogic extends GetxController with StateMixin<dynamic>{
   }
   Future<void> listUser (id,context) async{
     try{
-      final response = await apiService.get('${AppUrl.userGroupList}?room=$id', options: Options(headers: {
+      final response = await apiServicePanel.get('${AppUrl.userGroupList}?room=$id', Options(headers: {
         'Content-Type': 'application/x-www-form-urlencoded',
         "authorization": "Bearer ${MyPreferences.getToken()}"
       }));

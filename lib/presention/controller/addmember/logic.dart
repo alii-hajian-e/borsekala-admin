@@ -10,7 +10,7 @@ import 'package:go_router/go_router.dart';
 
 import '../../../dataurl/constants/app_url.dart';
 import '../../../dataurl/data/model/user-list-model.dart';
-import '../../../dataurl/data/network/service/api_service.dart';
+import '../../../dataurl/data/network/api/app_api_panel.dart';
 import '../../component/alert/alert.dart';
 import '../../component/dialog_component/dialog_action/dialod_action.dart';
 import '../../component/dialog_component/dialog_add_delete_user/dialog_add_delete_user.dart';
@@ -30,7 +30,7 @@ class AddMemberLogic extends GetxController {
   final txtFamilyUser = TextEditingController();
   final txtPhoneUser = TextEditingController();
 
-  ApiService apiService = ApiService();
+  final AppApiPanel apiServicePanel = AppApiPanel();
 
   @override
   void onInit() {
@@ -40,7 +40,7 @@ class AddMemberLogic extends GetxController {
 
   void getUserList(context) async {
     try{
-      final response = await apiService.get(AppUrl.userList, options: Options(headers: {
+      final response = await apiServicePanel.get(AppUrl.userList, Options(headers: {
         'Content-Type': 'application/x-www-form-urlencoded',
         "authorization": "Bearer ${MyPreferences.getToken()}",
       }));
@@ -56,7 +56,7 @@ class AddMemberLogic extends GetxController {
   }
   void deleteUserList(id,context) async {
     try{
-      final response = await apiService.delete('${AppUrl.userList}$id/',data: null,options: Options(headers: {
+      final response = await apiServicePanel.delete('${AppUrl.userList}$id/', Options(headers: {
         'Content-Type': 'application/x-www-form-urlencoded',
         "authorization": "Bearer ${MyPreferences.getToken()}",
       }));
@@ -77,7 +77,7 @@ class AddMemberLogic extends GetxController {
   }
   Future<void> addUser (context,{Map<String, dynamic>? data}) async{
     try{
-      final response = await apiService.post(AppUrl.userList, data: data ,options: Options(headers: {
+      final response = await apiServicePanel.post(url: AppUrl.userList, data: data ,options: Options(headers: {
         'Content-Type': 'application/x-www-form-urlencoded',
         "authorization": "Bearer ${MyPreferences.getToken()}",
           }));
@@ -103,7 +103,7 @@ class AddMemberLogic extends GetxController {
   }
   Future<void> updateUser (id, context,{Map<String, dynamic>? data}) async{
     try{
-      final response = await apiService.patch('${AppUrl.userList}$id/', data: data ,options:
+      final response = await apiServicePanel.patch(url: '${AppUrl.userList}$id/', data: data ,options:
           Options(headers: {
             'Content-Type': 'application/x-www-form-urlencoded',
             "authorization": "Bearer ${MyPreferences.getToken()}",

@@ -7,6 +7,7 @@ import 'package:go_router/go_router.dart';
 
 import '../../../dataurl/constants/app_url.dart';
 import '../../../dataurl/data/model/chat-model.dart';
+import '../../../dataurl/data/network/api/app_api_panel.dart';
 import '../../../dataurl/data/network/service/api_service.dart';
 import '../../component/alert/alert.dart';
 import '../../component/dialog_component/dialog_action/dialod_action.dart';
@@ -24,7 +25,7 @@ class NavbarLogic extends GetxController {
   final selectedIndex2 = false.obs;
   final selectedIndex3 = false.obs;
   final txtChat = TextEditingController();
-  ApiService apiService = ApiService();
+  final AppApiPanel apiServicePanel = AppApiPanel();
   ScrollController scrollController = ScrollController();
 
   final listChat = <Message>[].obs;
@@ -58,7 +59,7 @@ class NavbarLogic extends GetxController {
 
   Future<void> listChatUser (context) async{
     try{
-      final response = await apiService.get(AppUrl.chatList, options: Options(headers:  {
+      final response = await apiServicePanel.get(AppUrl.chatList, Options(headers:  {
         'Content-Type': 'application/x-www-form-urlencoded',
         "authorization": "Bearer ${MyPreferences.getToken()}",
       }));
@@ -82,7 +83,7 @@ class NavbarLogic extends GetxController {
   }
   Future<void> send (context,{Map<String, dynamic>? data}) async{
     try{
-      final response = await apiService.post(AppUrl.chatList,data: data , options: Options(headers: {
+      final response = await apiServicePanel.post(url: AppUrl.chatList ,data: data , options: Options(headers: {
         'Content-Type': 'application/x-www-form-urlencoded',
         "authorization": "Bearer ${MyPreferences.getToken()}"}));
       if(response.statusCode == 201){

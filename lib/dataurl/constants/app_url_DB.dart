@@ -12,11 +12,11 @@ class AppUrlDB {
   static const int connectionTimeout = 15000;
 
 
-  static const String group = '$baseUrl/bourse/group/group';
-  static const String mainGroup = '$baseUrl/bourse/group/main-group';
-  static const String subGroup = '$baseUrl/bourse/group/sub-group';
-  static const String tradingHallMenuSubGroup = '$baseUrl/bourse/trading-hall/menu-sub-group';
-  static const String manufacturerUrl = '$baseUrl/bourse/manufacturers/';
+  static const String group = '/bourse/group/group';
+  static const String mainGroup = '/bourse/group/main-group';
+  static const String subGroup = '/bourse/group/sub-group';
+  static const String tradingHallMenuSubGroup = '/bourse/trading-hall/menu-sub-group';
+  static const String manufacturerUrl = '/bourse/manufacturers/';
 
 
 }

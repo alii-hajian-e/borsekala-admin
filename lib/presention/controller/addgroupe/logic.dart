@@ -12,6 +12,7 @@ import '../../../dataurl/data/model/main-group-model.dart';
 import '../../../dataurl/data/model/sub-group-model.dart';
 import '../../../dataurl/data/model/trading-hall-model.dart';
 import '../../../dataurl/data/model/user-list-model.dart';
+import '../../../dataurl/data/network/api/app_api_panel.dart';
 import '../../../dataurl/data/network/service/api_service.dart';
 import '../../component/alert/alert.dart';
 import '../../component/button_component/circle-btn/circle_btn.dart';
@@ -33,7 +34,7 @@ class AddGroupLogic extends GetxController {
   final homeLogic = Get.put(HomeLogic());
   final addMemberLogic = Get.put(AddMemberLogic());
   final navbarLogic = Get.put(NavbarLogic());
-  ApiService apiService = ApiService();
+  final AppApiPanel apiServicePanel = AppApiPanel();
   final txtNameUser = TextEditingController();
 
   final mainCategoryList = <MainGroup>[].obs;
@@ -107,8 +108,8 @@ class AddGroupLogic extends GetxController {
   }
   Future<void> deleteUserGroup(context, {Map<String, dynamic>? data, id}) async {
     try {
-      final response = await apiService.delete(
-          '${AppUrl.addUserGroup}$id',data: data, options: Options(headers: {
+      final response = await apiServicePanel.delete(
+          '${AppUrl.addUserGroup}$id',data: data, Options(headers: {
         'Content-Type': 'application/x-www-form-urlencoded',
         "authorization": "Bearer ${MyPreferences.getToken()}",
       }));
@@ -151,8 +152,8 @@ class AddGroupLogic extends GetxController {
   }
   Future<void> groupRequest(context, {Map<String, dynamic>? data}) async {
     try {
-      final response = await apiService.post(
-          AppUrl.panelRoom,data: data, options: Options(headers:{
+      final response = await apiServicePanel.post(
+          url: AppUrl.panelRoom,data: data, options: Options(headers:{
         'Content-Type': 'application/x-www-form-urlencoded',
         "authorization": "Bearer ${MyPreferences.getToken()}",
       }));
@@ -191,8 +192,8 @@ class AddGroupLogic extends GetxController {
   }
   Future<void> editGroup(context, {Map<String, dynamic>? data, id}) async {
     try {
-      final response = await apiService.patch(
-          '${AppUrl.panelRoom}$id/', data: data,  options: Options(headers:{
+      final response = await apiServicePanel.patch(
+          url: '${AppUrl.panelRoom}$id/', data: data,  options: Options(headers:{
         'Content-Type': 'application/x-www-form-urlencoded',
         "authorization": "Bearer ${MyPreferences.getToken()}",
       }));
@@ -217,8 +218,8 @@ class AddGroupLogic extends GetxController {
 
   void deleteGroupList(id, context) async {
     try {
-      final response = await apiService.delete(
-          '${AppUrl.panelRoom}$id/',data: null,  options: Options(headers:{
+      final response = await apiServicePanel.delete(
+          '${AppUrl.panelRoom}$id/',data: null, Options(headers:{
         'Content-Type': 'application/x-www-form-urlencoded',
         "authorization": "Bearer ${MyPreferences.getToken()}",
       }));
@@ -900,8 +901,8 @@ class AddGroupLogic extends GetxController {
   }
   Future<void> addUserGroup(context, {Map<String, dynamic>? data, id}) async {
     try {
-      final response = await apiService.post(
-          '${AppUrl.addUserGroup}$id', data: data, options: Options(headers: {
+      final response = await apiServicePanel.post(
+          url: '${AppUrl.addUserGroup}$id' , data: data, options: Options(headers: {
         "content-Type": "application/json",
         "authorization": "Bearer ${MyPreferences.getToken()}",
       }));

@@ -1,4 +1,5 @@
 
+import 'package:bors_web_admin_sms/dataurl/data/network/api/app_api_panel.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -7,14 +8,15 @@ import 'package:go_router/go_router.dart';
 import '../../../dataurl/constants/app_url.dart';
 import '../../../dataurl/constants/app_url_DB.dart';
 import '../../../dataurl/data/model/login-model.dart';
-import '../../../dataurl/data/network/service/api_service.dart';
+import '../../../dataurl/data/network/api/app_api.dart';
 import '../../component/alert/alert.dart';
 import '../../resources/color_manager.dart';
 import '../../resources/shared_manager.dart';
 import '../../resources/string_manager.dart';
 
 class LoginLogic extends GetxController with StateMixin<List<VerifyModel>>{
-  ApiService apiService = ApiService();
+  final AppApi apiService = AppApi();
+  final AppApiPanel apiServicePanel = AppApiPanel();
   final txtUserName = TextEditingController();
   final txtPassword = TextEditingController();
   final loading = false.obs;
@@ -45,7 +47,7 @@ class LoginLogic extends GetxController with StateMixin<List<VerifyModel>>{
   }
   Future<void> login ({Map<String, dynamic>? data, context}) async{
     try{
-      final response = await apiService.post(AppUrl.login,data: data ,
+      final response = await apiServicePanel.post(url: AppUrl.login,data: data ,
           options: Options(headers:{'Content-Type': 'application/x-www-form-urlencoded'}));
       if(response.statusCode == 200){
         final dataVerify = VerifyModel.fromJson(response.data);
@@ -70,7 +72,7 @@ class LoginLogic extends GetxController with StateMixin<List<VerifyModel>>{
   }
   Future<void> group(context) async {
     try {
-      final response = await apiService.get(AppUrlDB.group, options: Options(headers: {
+      final response = await apiService.get(AppUrlDB.group, Options(headers: {
         'Content-Type': 'application/x-www-form-urlencoded',
       }));
       if (response.statusCode == 200) {
@@ -82,7 +84,7 @@ class LoginLogic extends GetxController with StateMixin<List<VerifyModel>>{
   }
   Future<void> mainGroup(context) async {
     try{
-      final response = await apiService.get(AppUrlDB.mainGroup,options: Options(headers: {
+      final response = await apiService.get(AppUrlDB.mainGroup, Options(headers: {
         'Content-Type': 'application/x-www-form-urlencoded',
       }));
       if(response.statusCode == 200){
@@ -94,7 +96,7 @@ class LoginLogic extends GetxController with StateMixin<List<VerifyModel>>{
   }
   Future<void> subGroup(context) async {
     try{
-      final response = await apiService.get(AppUrlDB.subGroup, options: Options(headers:{
+      final response = await apiService.get(AppUrlDB.subGroup, Options(headers:{
         'Content-Type': 'application/x-www-form-urlencoded',
       }));
       if(response.statusCode == 200){
@@ -106,7 +108,7 @@ class LoginLogic extends GetxController with StateMixin<List<VerifyModel>>{
   }
   Future<void> tradingHall(context) async {
     try{
-      final response = await apiService.get(AppUrlDB.tradingHallMenuSubGroup, options: Options(headers: {
+      final response = await apiService.get(AppUrlDB.tradingHallMenuSubGroup, Options(headers: {
         'Content-Type': 'application/x-www-form-urlencoded',
       }));
       if(response.statusCode == 200){
@@ -120,7 +122,7 @@ class LoginLogic extends GetxController with StateMixin<List<VerifyModel>>{
   }
   Future<void> fetchManufacturerList(context) async {
     try {
-      final response = await apiService.get('${AppUrlDB.manufacturerUrl}?page=${pageManufacturer.value}', options: Options(headers:  {
+      final response = await apiService.get('${AppUrlDB.manufacturerUrl}?page=${pageManufacturer.value}', Options(headers:  {
         'Content-Type': 'application/x-www-form-urlencoded',
       }));
       if(response.statusCode == 200){
