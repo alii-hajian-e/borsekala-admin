@@ -1,4 +1,6 @@
 
+import 'dart:js';
+
 import 'package:bors_web_admin_sms/dataurl/data/network/api/app_api_panel.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
@@ -24,6 +26,14 @@ class LoginLogic extends GetxController with StateMixin<List<VerifyModel>>{
   final FocusNode focusNode = FocusNode();
   final pageManufacturer = 1.obs;
   final manufacturerList = [].obs;
+  final loadingPanel = false.obs;
+
+  @override
+  void onInit() async{
+    super.onInit();
+    loadingPanel.value = true;
+    await uploadDate(context);
+  }
 
   @override
   void dispose() {
@@ -43,7 +53,6 @@ class LoginLogic extends GetxController with StateMixin<List<VerifyModel>>{
       loading.value = false;
       Alert(txt: AppString.errorField, color: ColorManager.white, backgroundColor: ColorManager.red).showSnackBar(context);
     }
-    await uploadDate(context);
   }
   Future<void> login ({Map<String, dynamic>? data, context}) async{
     try{
@@ -128,6 +137,7 @@ class LoginLogic extends GetxController with StateMixin<List<VerifyModel>>{
       if(response.statusCode == 200){
         var next = response.data['next'];
         if (next == null) {
+          loadingPanel.value = false;
           MyPreferences.setCompany(response.data['results']);
           return;
         } else {
