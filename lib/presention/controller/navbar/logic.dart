@@ -14,6 +14,7 @@ import '../../resources/assets_manager.dart';
 import '../../resources/color_manager.dart';
 import '../../resources/shared_manager.dart';
 import '../../resources/value_manager.dart';
+import '../login/logic.dart';
 
 class NavbarLogic extends GetxController {
 
@@ -26,6 +27,7 @@ class NavbarLogic extends GetxController {
   final txtChat = TextEditingController();
   final AppApiPanel apiServicePanel = AppApiPanel();
   ScrollController scrollController = ScrollController();
+  final loginLogic = Get.put(LoginLogic());
 
   final listChat = <Message>[].obs;
 
@@ -44,6 +46,7 @@ class NavbarLogic extends GetxController {
           txtBtn: 'خروج',
           onPress: () {
             MyPreferences.clearDataSaving();
+            loginLogic.onInit();
             // GoRouter.of(context).go('/');
             GoRouter.of(context).pushReplacement('/');
           },

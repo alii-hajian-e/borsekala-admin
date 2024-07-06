@@ -78,8 +78,8 @@ class AddMemberPage extends StatelessWidget {
                             hintTextName: logic.listUser[index].name,
                             hintTextPhone: logic.listUser[index].phone,
                             txtAlert: 'ویرایش کاربر',
-                            txtBtn1: 'ذخیره',
-                            txtBtn: 'انصراف',
+                            txtBtn1: 'انصراف' ,
+                            txtBtn: 'ذخیره',
                           );
                         },
                       );
