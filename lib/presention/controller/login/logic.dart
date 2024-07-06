@@ -1,4 +1,6 @@
 
+// ignore_for_file: avoid_web_libraries_in_flutter
+
 import 'dart:js';
 
 import 'package:bors_web_admin_sms/dataurl/data/network/api/app_api_panel.dart';
