@@ -113,16 +113,16 @@ class GridViewPage extends StatelessWidget {
                   fetchDataCompanyEdite(fetchGroupList.manufacturer);
                   homeLogic.listUser(fetchGroupList.id.toString() , context);
                   dialogEducation(
-                    context,
-                    fetchGroupList.name.toString(),
-                    group.persianName.toString(),
-                    mainGroup.persianName.toString(),
-                    findTradingHallById.persianName.toString(),
-                    int.parse(fetchGroupList.userCount.toString()),
-                    addGroupLogic.nameSubCategoryListString.value,
-                    addGroupLogic.nameCompanyListString.value,
-                    false,
-                    null,
+                    context: context,
+                    name: fetchGroupList.name.toString(),
+                    grouping: group.persianName.toString(),
+                    company: addGroupLogic.nameCompanyListString.value,
+                    mainCategory: mainGroup.persianName.toString(),
+                    nameGroup: findTradingHallById.persianName.toString(),
+                    number: int.parse(fetchGroupList.userCount.toString()),
+                    subset: addGroupLogic.nameSubCategoryListString.value,
+                    visibleBtnUser: false,
+                    onPressAddUser: null,
                   );
                 }else{
                   null;
@@ -139,16 +139,16 @@ class GridViewPage extends StatelessWidget {
                 fetchDataCompanyEdite(fetchGroupList.manufacturer);
 
                 dialogEducation(
-                  context,
-                  fetchGroupList.name.toString(),
-                  group.persianName.toString(),
-                  mainGroup.persianName.toString(),
-                  findTradingHallById.persianName.toString(),
-                  int.parse(fetchGroupList.userCount.toString()),
-                  addGroupLogic.nameSubCategoryListString.value,
-                  addGroupLogic.nameCompanyListString.value,
-                  true,
-                  (){
+                  context: context,
+                  name: fetchGroupList.name.toString(),
+                  grouping: group.persianName.toString(),
+                  company: addGroupLogic.nameCompanyListString.value,
+                  mainCategory: mainGroup.persianName.toString(),
+                  nameGroup: findTradingHallById.persianName.toString(),
+                  number: int.parse(fetchGroupList.userCount.toString()),
+                  subset: addGroupLogic.nameSubCategoryListString.value,
+                  visibleBtnUser: true,
+                  onPressAddUser: (){
                     // addMemberLogic.getUserList(context);
                     addGroupLogic.dialogAddListUser(fetchGroupList.id.toString(),context);
                     addGroupLogic.sortListUser();
@@ -197,7 +197,8 @@ class GridViewPage extends StatelessWidget {
         return addGroupLogic.fetchCompanyEdit(fetchGroupList);
     }
   }
-  void dialogEducation(context,String name,String grouping,String mainCategory,String nameGroup,int num,String subset,String company,visibleBtnUser,onPressAddUser){
+  void dialogEducation(
+      {context, name, grouping, mainCategory, nameGroup, number, subset, company, visibleBtnUser, onPressAddUser}){
     showDialog(
       context: context,
       builder: (context) {
@@ -209,7 +210,7 @@ class GridViewPage extends StatelessWidget {
           grouping: grouping,
           mainCategory: mainCategory,
           nameGroup: nameGroup,
-          num: num,
+          num: number,
           subset: subset,
           company: company,
 
