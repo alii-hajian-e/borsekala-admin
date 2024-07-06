@@ -19,7 +19,7 @@ import '../../resources/color_manager.dart';
 import '../../resources/shared_manager.dart';
 import '../home/logic.dart';
 
-class AddMemberLogic extends GetxController {
+class AddMemberLogic extends GetxController  with StateMixin<List<dynamic>>{
 
   final listUser = <ModelUser>[].obs;
   final listUserSearch = <ModelUser>[].obs;
@@ -87,11 +87,13 @@ class AddMemberLogic extends GetxController {
         txtFamilyUser.clear();
         txtPhoneUser.clear();
         getUserList(context);
-      }else if(response.statusCode == 400){
-        Alert(txt: 'کاربر تکراری است', color: ColorManager.white, backgroundColor: ColorManager.red).showSnackBar(context);
       }
     } on DioException catch (e){
-      Alert(txt: 'خطا در اطلاعات دربافتی', color: ColorManager.white, backgroundColor: ColorManager.red).showSnackBar(context);
+      if(e.response?.statusCode == 400) {
+        Alert(txt: 'کاربر تکراری است', color: ColorManager.white, backgroundColor: ColorManager.red).showSnackBar(context);
+      }else{
+        Alert(txt: 'خطا در اطلاعات دربافتی', color: ColorManager.white, backgroundColor: ColorManager.red).showSnackBar(context);
+      }
     }
   }
   void updateUserRequest({id, name, family, phone, context}){
@@ -125,7 +127,9 @@ class AddMemberLogic extends GetxController {
     if (input.isNotEmpty) {
       final suggestions = listUserSearch.where((all) {
         final name = all.name.toLowerCase();
-        return name.contains(input);
+        final family = all.family.toLowerCase();
+        final phone = all.phone.toLowerCase();
+        return name.contains(input) || family.contains(input) || phone.contains(input);
       }).toList();
       listUser.clear();
       listUser.addAll(suggestions);

@@ -80,7 +80,7 @@ class GridViewPage extends StatelessWidget {
                 addGroupLogic.fetchGroupEdit(fetchGroupList.group);
                 addGroupLogic.fetchSubCategoryEdit(fetchGroupList.subGroup);
                 addGroupLogic.fetchTradingHallEdit(fetchGroupList.hallId);
-                addGroupLogic.fetchCompanyEdit(fetchGroupList.manufacturer);
+                fetchDataCompanyEdite(fetchGroupList.manufacturer);
                 addGroupLogic.txtNameUser.text = fetchGroupList.name.toString();
                 int index = addGroupLogic.getIndexById(addGroupLogic.subTradingList, addGroupLogic. idTradingList.value);
                 addGroupLogic.idSelectList.value = index;
@@ -110,7 +110,7 @@ class GridViewPage extends StatelessWidget {
                 addGroupLogic.idSubCategoryList.clear();
                 if(navbarLogic.selected.value == 0){
                   addGroupLogic.fetchSubCategoryEdit(fetchGroupList.subGroup);
-                  addGroupLogic.fetchCompanyEdit(fetchGroupList.manufacturer);
+                  fetchDataCompanyEdite(fetchGroupList.manufacturer);
                   homeLogic.listUser(fetchGroupList.id.toString() , context);
                   dialogEducation(
                     context,
@@ -136,6 +136,7 @@ class GridViewPage extends StatelessWidget {
                 addGroupLogic.id.value = fetchGroupList.id.toString();
                 addGroupLogic.fetchSubCategoryEdit(fetchGroupList.subGroup);
                 homeLogic.listUser(fetchGroupList.id.toString() , context);
+                fetchDataCompanyEdite(fetchGroupList.manufacturer);
 
                 dialogEducation(
                   context,
@@ -168,7 +169,7 @@ class GridViewPage extends StatelessWidget {
               mainCategory: mainGroup.persianName.toString(),
               grouping: group.persianName.toString(),
               subset: addGroupLogic.fetchSubCategoryEditGroup(fetchGroupList.subGroup),
-              manufacturer: addGroupLogic.fetchCompanyEditGroup(fetchGroupList.manufacturer),
+              manufacturer: fetchDataCompany(fetchGroupList.manufacturer),
               nameGroup: findTradingHallById.persianName.toString(),
               time: '${jalaliDate.year}/${jalaliDate.month}/${jalaliDate.day}',
             );
@@ -176,6 +177,25 @@ class GridViewPage extends StatelessWidget {
         );
       }),
     );
+  }
+
+  String fetchDataCompany(fetchGroupList){
+    switch(fetchGroupList) {
+      case '0':
+      case '':
+        return 'ندارد';
+      default:
+        return addGroupLogic.fetchCompanyEditGroup(fetchGroupList);
+    }
+  }
+  fetchDataCompanyEdite(fetchGroupList){
+    switch(fetchGroupList) {
+      case "0":
+      case '':
+        return addGroupLogic.nameCompanyListString.value = 'ندارد';
+      default:
+        return addGroupLogic.fetchCompanyEdit(fetchGroupList);
+    }
   }
   void dialogEducation(context,String name,String grouping,String mainCategory,String nameGroup,int num,String subset,String company,visibleBtnUser,onPressAddUser){
     showDialog(

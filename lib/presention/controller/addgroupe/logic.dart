@@ -177,17 +177,23 @@ class AddGroupLogic extends GetxController {
   }
 
   void editGroupRequest(id, context) {
-    String idSubCategoryListString = idSubCategoryList.join(', ');
-    String idCompanyListString = idCompanyList.join(', ');
-    editGroup(context, id: id, data: {
-      'name': txtNameUser.text,
-      'main_group': idMainCategoryList.value,
-      'group': idCategoryList.value,
-      'sub_group': idSubCategoryListString,
-      'manufacturer': idCompanyListString,
-      'hall_id': idTradingList.value,
+    if (txtNameUser.text.isNotEmpty && idSelectList.value != 100 && idMainCategoryList.value != 0 && idCategoryList.value != 0 && idSubCategoryList.isNotEmpty) {
+      String idSubCategoryListString = idSubCategoryList.join(', ');
+      String idCompanyListString = idCompanyList.join(', ');
+      editGroup(context, id: id, data: {
+        'name': txtNameUser.text,
+        'main_group': idMainCategoryList.value,
+        'group': idCategoryList.value,
+        'sub_group': idSubCategoryListString,
+        'manufacturer': idCompanyListString,
+        'hall_id': idTradingList.value,
 
-    });
+      });
+    } else {
+      Alert(txt: 'اطلاعات تکمیل نیس',
+          color: ColorManager.white,
+          backgroundColor: ColorManager.red).showSnackBar(context);
+    }
   }
   Future<void> editGroup(context, {Map<String, dynamic>? data, id}) async {
     try {
@@ -767,13 +773,9 @@ class AddGroupLogic extends GetxController {
     // subCategoryList.add(SubGroup(description: '', id: 0, persianName: AppString.all, parentId: 0));
     companyList.sort((a, b) => a.id.compareTo(b.id));
 
-    // SubGroup? foundItem = subCategoryList.firstWhere((item) => item.id == id);
-    // nameSubCategoryList.value = [foundItem.persianName.toString()];
-    // idSubCategoryList.value = [foundItem.id];
-
     var companyGroup = id.split(', ');
     nameCompanyList.clear();
-    for (var i = 0; i < companyGroup!.length; i++) {
+    for (var i = 0; i < companyGroup.length; i++) {
       var subGroupList = GetDateGroupApi().findCompanyById(companyGroup[i]);
       nameCompanyList.add(subGroupList.persianName);
     }
