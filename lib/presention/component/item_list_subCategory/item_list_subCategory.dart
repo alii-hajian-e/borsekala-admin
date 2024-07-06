@@ -46,7 +46,9 @@ class ItemListSubCategury extends StatelessWidget {
             ),
           ),
           const SizedBox(width: AppSize.s16),
-          Text(name,style: getMediumStyle(color: ColorManager.black,fontSize: AppSize.s14))
+          Expanded(
+            child: Text(name,style: getMediumStyle(color: ColorManager.black,fontSize: AppSize.s14),maxLines: 1,overflow: TextOverflow.ellipsis,),
+          ),
         ],
       ),
     );

@@ -140,7 +140,7 @@ class LoginLogic extends GetxController with StateMixin<List<VerifyModel>>{
         var next = response.data['next'];
         if (next == null) {
           loadingPanel.value = false;
-          MyPreferences.setCompany(response.data['results']);
+          MyPreferences.setCompany(manufacturerList);
           return;
         } else {
           pageManufacturer.value ++;

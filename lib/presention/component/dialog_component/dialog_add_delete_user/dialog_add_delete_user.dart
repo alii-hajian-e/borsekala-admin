@@ -3,6 +3,7 @@
 import 'package:bors_web_admin_sms/presention/component/button_component/btn/_btn.dart';
 import 'package:bors_web_admin_sms/presention/resources/styles_manager.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 import '../../../resources/color_manager.dart';
 import '../../../resources/value_manager.dart';
@@ -128,8 +129,11 @@ class DialogAdd_DeleteUser extends StatelessWidget {
             SizedBox(
               height: AppSize.s48,
               child: DefaultTextField(
+                inputFormattersTxt: [
+                  FilteringTextInputFormatter.digitsOnly,
+                  LengthLimitingTextInputFormatter(11),
+                ],
                 obscureText: false,
-
                 textFieldColor: ColorManager.white,
                 textInputType: TextInputType.text,
                 borderSideWidth: AppSize.s2,

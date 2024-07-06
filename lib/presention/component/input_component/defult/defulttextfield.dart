@@ -14,6 +14,7 @@ class DefaultTextField extends BaseInput {
   final hintStyle;
   final String hintText;
   final dynamic obscureText;
+  final dynamic inputFormattersTxt;
 
 
   DefaultTextField({
@@ -30,6 +31,7 @@ class DefaultTextField extends BaseInput {
     required this.hintText,
     required this.obscureText,
     required super.textFieldActive,
+    this.inputFormattersTxt,
   });
 
   @override
@@ -39,6 +41,7 @@ class DefaultTextField extends BaseInput {
         borderRadius: BorderRadius.circular(AppSize.s12),
       ),
       child: TextFormField(
+        inputFormatters: inputFormattersTxt,
         obscureText: obscureText,
         obscuringCharacter: '*',
         controller: textFieldController,
