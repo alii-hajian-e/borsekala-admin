@@ -44,6 +44,7 @@ class AppApiPanel {
     try {
       final Response response = await _apiService.delete(
           url,
+          data: data,
           options: options
       );
       return response;

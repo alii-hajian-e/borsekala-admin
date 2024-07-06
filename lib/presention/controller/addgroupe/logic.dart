@@ -109,9 +109,9 @@ class AddGroupLogic extends GetxController {
     try {
       final response = await apiServicePanel.delete(
           '${AppUrl.addUserGroup}$id',data: data, Options(headers: {
-        'Content-Type': 'application/x-www-form-urlencoded',
+       // 'Content-Type': 'application/x-www-form-urlencoded',
         "authorization": "Bearer ${MyPreferences.getToken()}",
-      }));
+      },));
       if (response.statusCode == 201) {
         homeLogic.getPanelRoom(context);
         homeLogic.listUser(id , context);
