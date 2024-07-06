@@ -60,7 +60,7 @@ class DefaultTextField extends BaseInput {
               borderRadius: BorderRadius.circular(AppSize.s12),
             ),
         ),
-        style: getMediumStyle(color: ColorManager.black,fontSize: AppSize.s18),
+        style: getMediumStyle(color: ColorManager.black,fontSize: AppSize.s16),
       ),
     );
   }

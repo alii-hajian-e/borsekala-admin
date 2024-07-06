@@ -97,11 +97,15 @@ class AddMemberLogic extends GetxController  with StateMixin<List<dynamic>>{
     }
   }
   void updateUserRequest({id, name, family, phone, context}){
-    updateUser(id,context, data: {
-      'name': txtNameUser.text.isEmpty ? name : txtNameUser.text,
-      'family': txtFamilyUser.text.isEmpty ? family : txtFamilyUser.text,
-      'phone': txtPhoneUser.text.isEmpty ? phone : txtPhoneUser.text,
-    });
+    if(txtNameUser.text.isNotEmpty && txtFamilyUser.text.isNotEmpty && txtPhoneUser.text.isNotEmpty){
+      updateUser(id,context, data: {
+        'name': txtNameUser.text.isEmpty ? name : txtNameUser.text,
+        'family': txtFamilyUser.text.isEmpty ? family : txtFamilyUser.text,
+        'phone': txtPhoneUser.text.isEmpty ? phone : txtPhoneUser.text,
+      });
+    } else {
+      Alert(txt: 'اطلاعات وارد شده اشتباه یا خالی است', color: ColorManager.white, backgroundColor: ColorManager.red).showSnackBar(context);
+    }
   }
   Future<void> updateUser (id, context,{Map<String, dynamic>? data}) async{
     try{
@@ -118,8 +122,11 @@ class AddMemberLogic extends GetxController  with StateMixin<List<dynamic>>{
         GoRouter.of(context).pop();
       }
     } on DioException catch (e){
-      Alert(txt: 'خطا در اطلاعات دربافتی', color: ColorManager.white, backgroundColor: ColorManager.red).showSnackBar(context);
-    }
+      if(e.response?.statusCode == 400) {
+        Alert(txt: 'کاربر تکراری است', color: ColorManager.white, backgroundColor: ColorManager.red).showSnackBar(context);
+      }else{
+        Alert(txt: 'خطا در اطلاعات دربافتی', color: ColorManager.white, backgroundColor: ColorManager.red).showSnackBar(context);
+      }    }
   }
 
   void searchUser(String query) {

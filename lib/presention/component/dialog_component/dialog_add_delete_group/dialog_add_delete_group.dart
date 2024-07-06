@@ -109,7 +109,7 @@ class DialogAdd_DeleteGroup extends StatelessWidget {
                       borderSideWidth: AppSize.s2,
                       borderSideColor: ColorManager.gray1,
                       hintStyle: getMediumStyle(
-                          color: ColorManager.black.withOpacity(0.7),
+                          color: ColorManager.black,
                           fontSize: AppSize.s14),
                       hintText: hintText,
                       textFieldActive: false,
@@ -130,13 +130,12 @@ class DialogAdd_DeleteGroup extends StatelessWidget {
                       borderSideColor: ColorManager.gray1,
                       borderRadius: AppSize.s8,
                       height: AppSize.s48,
-                      colorText: ColorManager.black.withOpacity(0.7),
+                      colorText: ColorManager.black,
                       icon: Icon(
                           Icons.arrow_drop_down_outlined, color: ColorManager.black),
                       backgroundColor: ColorManager.gray,
                       visible: true,
                       appPadding: AppPadding.p0,
-
                     );
                   }),
                 ),
@@ -181,7 +180,7 @@ class DialogAdd_DeleteGroup extends StatelessWidget {
                       borderColor: ColorManager.gray1,
                       radius: AppSize.s8,
                       heightBtn: AppSize.s48,
-                      colorTextSelect: ColorManager.black.withOpacity(0.7),
+                      colorTextSelect: ColorManager.black,
                       iconSelect: Icon(Icons.arrow_drop_down_outlined,
                           color: ColorManager.black),
                       backgroundColorSelect: ColorManager.gray,
@@ -201,7 +200,7 @@ class DialogAdd_DeleteGroup extends StatelessWidget {
                       borderColor: ColorManager.gray1,
                       radius: AppSize.s8,
                       heightBtn: AppSize.s48,
-                      colorTextSelect: ColorManager.black.withOpacity(0.7),
+                      colorTextSelect: ColorManager.black,
                       iconSelect: Icon(Icons.arrow_drop_down_outlined,
                           color: ColorManager.black),
                       backgroundColorSelect: ColorManager.gray,
@@ -229,7 +228,7 @@ class DialogAdd_DeleteGroup extends StatelessWidget {
                 borderSideColor: ColorManager.gray1,
                 borderRadius: AppSize.s8,
                 height: AppSize.s48,
-                colorText: ColorManager.black.withOpacity(0.7),
+                colorText: ColorManager.black,
                 icon: Icon(
                     Icons.arrow_drop_down_outlined, color: ColorManager.black),
                 backgroundColor: ColorManager.gray,
