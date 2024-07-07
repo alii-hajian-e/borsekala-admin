@@ -161,7 +161,7 @@ class GridViewPage extends StatelessWidget {
                   Alert(txt: 'لطفا صبر کنید', color: ColorManager.black, backgroundColor: ColorManager.yellow).showSnackBar(context);
                   homeLogic.sendSMS(fetchGroupList.id,context);
                 }else{
-                  Alert(txt: 'گروه خالی است', color: ColorManager.white, backgroundColor: ColorManager.red).showSnackBar(context);
+                  Alert(txt: 'هیچ کاربری به گروه اضافه نشده است', color: ColorManager.white, backgroundColor: ColorManager.red).showSnackBar(context);
                 }
               },
               name: fetchGroupList.name.toString(),

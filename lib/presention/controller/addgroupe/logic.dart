@@ -675,6 +675,7 @@ class AddGroupLogic extends GetxController {
     // idSubCategoryList.value = [foundItem.id];
 
     var splitSubGroup = id.split(', ');
+    nameCompanyList.clear();
     for (var i = 0; i < splitSubGroup!.length; i++) {
       var subGroupList = GetDateGroupApi().findCompanyById(splitSubGroup[i]);
       nameCompanyList.add(subGroupList.persianName);
