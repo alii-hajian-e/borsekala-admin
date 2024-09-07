@@ -86,7 +86,7 @@ class LandingPage extends StatelessWidget {
                       logic.homeLogic.getPanelRoom(context);
                       logic.addMemberLogic.getUserList(context);
                       js.context.callMethod(
-                          'open', ['http://webapp.ibrokers.ir/navbarPage']);
+                          'open', ['https://panel.ibrokers.ir/navbarPage']);
                       // GoRouter.of(context).go('/navbarPage');
                       // Get.toNamed(Routes.navbarPage);
                     }) :
