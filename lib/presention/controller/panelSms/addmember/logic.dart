@@ -8,15 +8,15 @@ import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:go_router/go_router.dart';
 
-import '../../../dataurl/constants/app_url.dart';
-import '../../../dataurl/data/model/user-list-model.dart';
-import '../../../dataurl/data/network/api/app_api_panel.dart';
-import '../../component/alert/alert.dart';
-import '../../component/dialog_component/dialog_action/dialod_action.dart';
-import '../../component/dialog_component/dialog_add_delete_user/dialog_add_delete_user.dart';
-import '../../resources/assets_manager.dart';
-import '../../resources/color_manager.dart';
-import '../../resources/shared_manager.dart';
+import '../../../../dataurl/constants/app_url.dart';
+import '../../../../dataurl/data/model/user-list-model.dart';
+import '../../../../dataurl/data/network/api/app_api_panel.dart';
+import '../../../component/alert/alert.dart';
+import '../../../component/dialog_component/dialog_action/dialod_action.dart';
+import '../../../component/dialog_component/dialog_add_delete_user/dialog_add_delete_user.dart';
+import '../../../resources/assets_manager.dart';
+import '../../../resources/color_manager.dart';
+import '../../../resources/shared_manager.dart';
 import '../home/logic.dart';
 
 class AddMemberLogic extends GetxController  with StateMixin<List<dynamic>>{
@@ -97,15 +97,15 @@ class AddMemberLogic extends GetxController  with StateMixin<List<dynamic>>{
     }
   }
   void updateUserRequest({id, name, family, phone, context}){
-    if(txtNameUser.text.isNotEmpty && txtFamilyUser.text.isNotEmpty && txtPhoneUser.text.isNotEmpty){
+    // if(txtNameUser.text.isNotEmpty && txtFamilyUser.text.isNotEmpty && txtPhoneUser.text.isNotEmpty){
       updateUser(id,context, data: {
         'name': txtNameUser.text.isEmpty ? name : txtNameUser.text,
         'family': txtFamilyUser.text.isEmpty ? family : txtFamilyUser.text,
         'phone': txtPhoneUser.text.isEmpty ? phone : txtPhoneUser.text,
       });
-    } else {
-      Alert(txt: 'اطلاعات وارد شده اشتباه یا خالی است', color: ColorManager.white, backgroundColor: ColorManager.red).showSnackBar(context);
-    }
+    // } else {
+    //   Alert(txt: 'اطلاعات وارد شده اشتباه یا خالی است', color: ColorManager.white, backgroundColor: ColorManager.red).showSnackBar(context);
+    // }
   }
   Future<void> updateUser (id, context,{Map<String, dynamic>? data}) async{
     try{
@@ -150,7 +150,7 @@ class AddMemberLogic extends GetxController  with StateMixin<List<dynamic>>{
       context: context,
       builder: (context) {
         return WidgetDialogAction(
-          icons: SvgPicture.asset(fit: BoxFit.scaleDown,ImageAssets.trash),
+          icons: SvgPicture.asset(fit: BoxFit.scaleDown, ImageAssets.trash),
           txtAlert: 'این کاربر حذف شود ؟',
           txtBtn1: 'خیر',
           txtBtn: 'بله',

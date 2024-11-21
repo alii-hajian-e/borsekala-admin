@@ -8,10 +8,10 @@ import '../../../dataurl/data/model/group-model.dart';
 import '../../../dataurl/data/model/grouplistmodel.dart';
 import '../../../dataurl/data/model/main-group-model.dart';
 import '../../../dataurl/data/model/trading-hall-model.dart';
-import '../../controller/addgroupe/logic.dart';
-import '../../controller/addmember/logic.dart';
-import '../../controller/home/logic.dart';
-import '../../controller/navbar/logic.dart';
+import '../../controller/panelSms/addgroupe/logic.dart';
+import '../../controller/panelSms/addmember/logic.dart';
+import '../../controller/panelSms/home/logic.dart';
+import '../../controller/panelSms/navbarPanel/logic.dart';
 import '../../resources/color_manager.dart';
 import '../../resources/value_manager.dart';
 import '../button_component/btn/_btn.dart';
@@ -105,7 +105,7 @@ class GridViewPage extends StatelessWidget {
                 );
               },
               onTapGroup: (){
-                final navbarLogic = Get.put(NavbarLogic());
+                final navbarLogic = Get.put(NavbarPanelLogic());
                 addGroupLogic.nameSubCategoryList.clear();
                 addGroupLogic.idSubCategoryList.clear();
                 if(navbarLogic.selected.value == 0){

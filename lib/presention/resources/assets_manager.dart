@@ -17,4 +17,5 @@ class ImageAssets{
   static const String send = "$IMAGE_PATH/send-2.svg";
   static const String sms = "$IMAGE_PATH/sms.svg";
   static const String headerImage = "$IMAGE_PATH/header_image.jpeg";
+  static const String setting = "$IMAGE_PATH/setting.svg";
 }

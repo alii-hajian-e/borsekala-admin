@@ -9,11 +9,12 @@ class AppUrl {
   // connectTimeout
   static const int connectionTimeout = 15000;
 
-  static const String panelRoom = '$baseUrl/api/panel/rooms/';
-  static const String login = '$baseUrl/api/account/login/';
-  static const String userGroupList = '$baseUrl/api/panel/user-groups/';
-  static const String addUserGroup = '$baseUrl/api/panel/gorups/';
-  static const String userList = '$baseUrl/api/panel/users/';
-  static const String chatList = '$baseUrl/api/chat/';
-  static const String sendSms = '$baseUrl/api/panel/test/';
+  static const String panelRoom = '$baseUrl/panel/api/v1/rooms';
+  static const String userGroupList = '$baseUrl/panel/api/v1/user-groups';
+  static const String addUserGroup = '$baseUrl/panel/api/v1/groups';
+
+  static const String login = '$baseUrl/account/api/login/';
+  static const String userList = '$baseUrl/panel/api/v1/users/';
+  static const String sendSms = '$baseUrl/panel/api/v1/test/';
+  static const String chatList = '$baseUrl/chat/api/v1/';
 }

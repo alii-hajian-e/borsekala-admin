@@ -2,12 +2,12 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../component/gridview_component/gridview.dart';
-import '../../component/header_component/header_component.dart';
-import '../../component/item_list_user/item_list_user.dart';
-import '../../resources/color_manager.dart';
-import '../../resources/styles_manager.dart';
-import '../../resources/value_manager.dart';
+import '../../../component/gridview_component/gridview.dart';
+import '../../../component/header_component/header_component.dart';
+import '../../../component/item_list_user/item_list_user.dart';
+import '../../../resources/color_manager.dart';
+import '../../../resources/styles_manager.dart';
+import '../../../resources/value_manager.dart';
 import 'logic.dart';
 
 class HomePage extends StatelessWidget {

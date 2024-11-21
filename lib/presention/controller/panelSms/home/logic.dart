@@ -5,13 +5,14 @@ import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../../dataurl/constants/app_url.dart';
-import '../../../dataurl/data/model/grouplistmodel.dart';
-import '../../../dataurl/data/model/user-model-group.dart';
-import '../../../dataurl/data/network/api/app_api_panel.dart';
-import '../../component/alert/alert.dart';
-import '../../resources/color_manager.dart';
-import '../../resources/shared_manager.dart';
+import '../../../../dataurl/constants/app_url.dart';
+import '../../../../dataurl/data/model/grouplistmodel.dart';
+import '../../../../dataurl/data/model/user-model-group.dart';
+import '../../../../dataurl/data/network/api/app_api_panel.dart';
+import '../../../component/alert/alert.dart';
+import '../../../resources/color_manager.dart';
+import '../../../resources/shared_manager.dart';
+
 
 class HomeLogic extends GetxController with StateMixin<dynamic>{
 

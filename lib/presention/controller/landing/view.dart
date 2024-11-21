@@ -1,8 +1,8 @@
 // ignore_for_file: avoid_web_libraries_in_flutter
-import 'dart:js' as js;
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:go_router/go_router.dart';
 import '../../component/item_landing_component/item_landing_component.dart';
 import '../../resources/assets_manager.dart';
 import '../../resources/color_manager.dart';
@@ -78,33 +78,45 @@ class LandingPage extends StatelessWidget {
                         height: AppSize.s2, color: ColorManager.gray1),
                   ),
                   const SizedBox(height: AppSize.s24),
-
-                  Obx(() {
-                    return logic.loginLogic.loadingPanel.value == false ?
-                    ItemLanding(
-                        img: ImageAssets.sms, txt: 'پنل پیامکی', onTap: () {
-                      logic.homeLogic.getPanelRoom(context);
-                      logic.addMemberLogic.getUserList(context);
-                      js.context.callMethod(
-                          'open', ['https://panel.ibrokers.ir/navbarPage']);
-                      // GoRouter.of(context).go('/navbarPage');
-                      // Get.toNamed(Routes.navbarPage);
-                    }) :
-                    SizedBox(
-                      width: AppSize.s200,
-                      height: AppSize.s200,
-                      child: Center(
-                        child: SizedBox(
-                          width: AppSize.s40,
-                          height: AppSize.s40,
-                          child: CircularProgressIndicator(
-                            color: ColorManager.black, //<-- SEE HERE
-                          ),
-                        ),
-                      )
-                    );
-                  })
-
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Obx(() {
+                        return logic.loginLogic.loadingPanel.value == false ?
+                        ItemLanding(
+                            img: ImageAssets.sms, txt: 'پنل پیامکی', onTap: () {
+                          logic.homeLogic.getPanelRoom(context);
+                          logic.addMemberLogic.getUserList(context);
+                          // js.context.callMethod(
+                          //     'open', ['https://panel.ibrokers.ir/NavbarPanelPage']);
+                          GoRouter.of(context).go('/navbarPanelPage');
+                          // Get.toNamed(Routes.navbarPage);
+                        }) :
+                        SizedBox(
+                            width: AppSize.s200,
+                            height: AppSize.s200,
+                            child: Center(
+                              child: SizedBox(
+                                width: AppSize.s40,
+                                height: AppSize.s40,
+                                child: CircularProgressIndicator(
+                                  color: ColorManager.black, //<-- SEE HERE
+                                ),
+                              ),
+                            )
+                        );
+                      }),
+                      const SizedBox(width: AppSize.s24),
+                      ItemLanding(
+                          img: ImageAssets.setting, txt: 'تنظیمات', onTap: () {
+                        // js.context.callMethod(
+                        //     'open', ['https://panel.ibrokers.ir/NavbarSettingPage']);
+                        GoRouter.of(context).go('/navbarSettingPage');
+                        // Get.toNamed(Routes.navbarPage);
+                      })
+                    ],
+                  ),
                 ],
               ),
             )

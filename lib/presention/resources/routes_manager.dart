@@ -1,9 +1,10 @@
+import 'package:bors_web_admin_sms/presention/controller/panelSetting/navbarSetting/view.dart';
 import 'package:go_router/go_router.dart';
 
 import '../controller/errorePage.dart';
 import '../controller/landing/view.dart';
 import '../controller/login/view.dart';
-import '../controller/navbar/view.dart';
+import '../controller/panelSms/navbarPanel/view.dart';
 
 
 class RouteGenerator {
@@ -18,37 +19,17 @@ class RouteGenerator {
           builder : (context, state) => LandingPage()
       ),
       GoRoute(
-          path: '/navbarPage',
-          builder : (context, state) => NavbarPage()
+          path: '/navbarPanelPage',
+          builder : (context, state) => NavbarPanelPage()
+      ),
+      GoRoute(
+          path: '/navbarSettingPage',
+          builder : (context, state) => NavbarSettingPage()
       ),
     ],
     errorBuilder: (context, state) => const ErrorPage()
   );
 }
-//   static Route<dynamic> getRoute(RouteSettings routeSettings){
-//     switch(routeSettings.name){
-//       case Routes.navbarPage :
-//         return MaterialPageRoute(builder: (_) =>  NavbarPage());
-//       case Routes.loginPage :
-//         return MaterialPageRoute(builder: (_) =>  LoginPage());
-//       case Routes.landingPage :
-//         return MaterialPageRoute(builder: (_) =>  LandingPage());
-//       default:
-//         return unDefinedRout();
-//     }
-//   }
-//   static Route<dynamic> unDefinedRout(){
-//     return MaterialPageRoute(builder: (_) => Scaffold(
-//       appBar: AppBar(
-//         title: const Text(AppString.noRouteFound),
-//       ),
-//       body: const Center(
-//         child: Text(AppString.noRouteFound),
-//       ),
-//     ));
-//   }
-// }
-
 
 
 

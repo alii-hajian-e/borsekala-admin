@@ -1,24 +1,20 @@
 
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
-import 'package:go_router/go_router.dart';
 
-import '../../../dataurl/constants/app_url.dart';
-import '../../../dataurl/data/model/chat-model.dart';
-import '../../../dataurl/data/network/api/app_api_panel.dart';
-import '../../component/alert/alert.dart';
-import '../../component/dialog_component/dialog_action/dialod_action.dart';
-import '../../resources/assets_manager.dart';
-import '../../resources/color_manager.dart';
-import '../../resources/shared_manager.dart';
-import '../../resources/value_manager.dart';
-import '../login/logic.dart';
+import '../../../../dataurl/constants/app_url.dart';
+import '../../../../dataurl/data/model/chat-model.dart';
+import '../../../../dataurl/data/network/api/app_api_panel.dart';
+import '../../../component/alert/alert.dart';
+import '../../../resources/color_manager.dart';
+import '../../../resources/shared_manager.dart';
+import '../../login/logic.dart';
 
-class NavbarLogic extends GetxController {
 
-  final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
+class NavbarPanelLogic extends GetxController {
+
+  final GlobalKey<ScaffoldState> scaffoldPanelKey = GlobalKey<ScaffoldState>();
   final selected = 0.obs;
   final selectedIndex = true.obs;
   final selectedIndex1 = false.obs;
@@ -34,29 +30,6 @@ class NavbarLogic extends GetxController {
 
   void changeIndex(int index){
     selected.value = index;
-  }
-  void dialogEducation(context){
-    showDialog(
-      context: context,
-      builder: (context) {
-        return WidgetDialogAction(
-          icons: SvgPicture.asset(fit: BoxFit.scaleDown,ImageAssets.exit,width: AppSize.s24,height: AppSize.s24),
-          txtAlert: 'آیا از خروج از حساب مطمئن هستید؟',
-          txtBtn1: 'انصراف',
-          txtBtn: 'خروج',
-          onPress: () {
-            MyPreferences.clearDataSaving();
-            loginLogic.onInit();
-            // GoRouter.of(context).go('/');
-            GoRouter.of(context).pushReplacement('/');
-          },
-          onPress1: (){
-            // Get.back();
-            GoRouter.of(context).pop();
-          },
-        );
-      },
-    );
   }
 
   Future<void> listChatUser (context) async{
