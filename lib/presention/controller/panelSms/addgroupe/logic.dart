@@ -853,6 +853,7 @@ class AddGroupLogic extends GetxController {
                         isAddSelected.value = item.id != item.id;
                         return Obx(() {
                           return ItemListUser(
+                            btnActive: false,
                             activeCheckBox: true,
                             itemsActive: isAddSelected.value,
                             activeEditItem: false,

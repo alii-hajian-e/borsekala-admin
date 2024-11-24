@@ -53,29 +53,29 @@ class ListViewUser extends StatelessWidget {
                 ),
               ) :
               Text("#", style: getMediumStyle(
-                  color: ColorManager.gray1, fontSize: AppSize.s14)),
+                  color: ColorManager.black.withOpacity(0.5), fontSize: AppSize.s14)),
               const SizedBox(width: AppSize.s64),
               SizedBox(
                 width: AppSize.s180,
                 child: Text('نام', style: getMediumStyle(
-                    color: ColorManager.gray1, fontSize: AppSize.s14)),
+                    color: ColorManager.black.withOpacity(0.5), fontSize: AppSize.s14)),
               ),
               SizedBox(
                 width: AppSize.s220,
                 child: Text('نام خانوادگی', style: getMediumStyle(
-                    color: ColorManager.gray1, fontSize: AppSize.s14)),
+                    color: ColorManager.black.withOpacity(0.5), fontSize: AppSize.s14)),
               ),
               SizedBox(
                 width: AppSize.s220,
-                child: Text('شماره همراه', style: getMediumStyle(
-                    color: ColorManager.gray1, fontSize: AppSize.s14)),
+                child: Text('ایمیل', style: getMediumStyle(
+                    color: ColorManager.black.withOpacity(0.5), fontSize: AppSize.s14)),
               ),
               Expanded(child: Container()),
               childBtnDelete
             ],
           ),
           const SizedBox(height: AppSize.s8),
-          Divider(color: ColorManager.gray1, height: AppSize.s2),
+          Divider(color: ColorManager.black.withOpacity(0.5), height: AppSize.s2),
           child
         ],
       ),

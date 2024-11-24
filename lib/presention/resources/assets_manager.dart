@@ -18,4 +18,9 @@ class ImageAssets{
   static const String sms = "$IMAGE_PATH/sms.svg";
   static const String headerImage = "$IMAGE_PATH/header_image.jpeg";
   static const String setting = "$IMAGE_PATH/setting.svg";
+  static const String danger = "$IMAGE_PATH/Danger Circle.svg";
+  static const String wallet = "$IMAGE_PATH/Wallet.svg";
+  static const String paper = "$IMAGE_PATH/Paper.svg";
+  static const String password = "$IMAGE_PATH/Password.svg";
+  static const String engin = "$IMAGE_PATH/engin.svg";
 }

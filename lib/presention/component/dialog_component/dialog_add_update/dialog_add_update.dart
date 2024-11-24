@@ -10,7 +10,7 @@ import '../../../resources/value_manager.dart';
 import '../../input_component/defult/defulttextfield.dart';
 
 
-class DialogAdd_DeleteUser extends StatelessWidget {
+class DialogAdd_UpdateAdmin extends StatelessWidget {
 
   final String txtAlert;
   final String txtName;
@@ -31,8 +31,9 @@ class DialogAdd_DeleteUser extends StatelessWidget {
   final Color buttonColorBtn;
   final Color buttonColorBtn1;
 
-  const DialogAdd_DeleteUser({
-    super.key,required this.textFieldControllerName, required this.textFieldControllerFamily,required this.textFieldControllerPhone, required this.txtAlert, required this.txtBtn, required this.txtBtn1, this.onPress, this.onPress1, required this.buttonColorBtn, required this.buttonColorBtn1, required this.hintTextName, required this.hintTextFamily, required this.hintTextPhone, required this.txtName, required this.txtFamily, required this.txtPhoneEmail,
+  final dynamic child;
+  const DialogAdd_UpdateAdmin({
+    super.key,required this.textFieldControllerName, required this.textFieldControllerFamily,required this.textFieldControllerPhone, required this.txtAlert, required this.txtBtn, required this.txtBtn1, this.onPress, this.onPress1, required this.buttonColorBtn, required this.buttonColorBtn1, required this.hintTextName, required this.hintTextFamily, required this.hintTextPhone, this.child, required this.txtName, required this.txtFamily, required this.txtPhoneEmail,
   });
 
   @override
@@ -105,7 +106,7 @@ class DialogAdd_DeleteUser extends StatelessWidget {
                             child: DefaultTextField(
                               obscureText: false,
                               textFieldColor: ColorManager.white,
-                              textInputType: TextInputType.number,
+                              textInputType: TextInputType.text,
                               borderSideWidth: AppSize.s2,
                               borderSideColor: ColorManager.gray1,
                               hintStyle: getMediumStyle(
@@ -135,10 +136,6 @@ class DialogAdd_DeleteUser extends StatelessWidget {
                 SizedBox(
                   height: AppSize.s48,
                   child: DefaultTextField(
-                    inputFormattersTxt: [
-                      FilteringTextInputFormatter.digitsOnly,
-                      LengthLimitingTextInputFormatter(11),
-                    ],
                     obscureText: false,
                     textFieldColor: ColorManager.white,
                     textInputType: TextInputType.text,
@@ -151,6 +148,7 @@ class DialogAdd_DeleteUser extends StatelessWidget {
                     textAlign: TextAlign.left,
                   ),
                 ),
+                child,
                 const SizedBox(height: AppSize.s24),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,

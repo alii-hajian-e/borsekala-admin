@@ -64,6 +64,7 @@ class AddMemberPage extends StatelessWidget {
                         itemsUserFamily: logic.listUser[index].family,
                         itemsUserPhone: logic.listUser[index].phone,
                         itemsIndex: index,
+                        btnActive: false,
                         onPressDeleteItem: (){
                           logic.dialogDeleteItem(context,index);
                         },

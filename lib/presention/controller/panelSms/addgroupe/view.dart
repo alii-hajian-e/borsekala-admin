@@ -92,7 +92,7 @@ class AddGroupPage extends StatelessWidget {
             ),
             const SizedBox(height: AppSize.s24),
             GridViewPage(
-                childAspectRatio: 1.45,
+                childAspectRatio: 0.95,
                 visibleEdit: true,
                 visibleBtnSms: false,
                 visibleBtn: true,
@@ -127,6 +127,7 @@ class AddGroupPage extends StatelessWidget {
                       itemCount: logic.homeLogic.isCheckedList.length,
                       itemBuilder: (context, index) {
                         return ItemListUser(
+                          btnActive: false,
                           activeCheckBox: false,
                           itemsActive: false,
                           activeEditItem: false,
@@ -152,6 +153,7 @@ class AddGroupPage extends StatelessWidget {
                         isSelected.value = item.user.id != item.user.id;
                         return Obx(() {
                           return ItemListUser(
+                            btnActive: false,
                             activeCheckBox: true,
                             itemsActive: isSelected.value,
                             activeEditItem: false,

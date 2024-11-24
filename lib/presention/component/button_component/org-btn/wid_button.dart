@@ -51,7 +51,7 @@ class WidgetButton extends StatelessWidget {
           ),
           onPressed: buttonOnPressed,
           child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: AppPadding.p24),
+            padding: const EdgeInsets.symmetric(horizontal: AppPadding.p0),
             child: Center(
               child: Text(
                 buttonText,

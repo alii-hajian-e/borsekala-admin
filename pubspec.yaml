@@ -82,6 +82,11 @@ flutter:
     - assets/image/sms.svg
     - assets/image/header_image.jpeg
     - assets/image/setting.svg
+    - assets/image/Danger Circle.svg
+    - assets/image/Wallet.svg
+    - assets/image/Paper.svg
+    - assets/image/Password.svg
+    - assets/image/engin.svg
 
   fonts:
     - family: IranSans

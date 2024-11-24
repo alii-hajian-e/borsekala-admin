@@ -2,11 +2,13 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:get/get.dart';
 import 'package:go_router/go_router.dart';
 
 import '../presention/component/button_component/avatar-btn/avatar_btn.dart';
 import '../presention/component/dialog_component/dialog_action/dialod_action.dart';
 import '../presention/component/item_drow_component/iteme-drow-component.dart';
+import '../presention/controller/login/logic.dart';
 import '../presention/resources/assets_manager.dart';
 import '../presention/resources/color_manager.dart';
 import '../presention/resources/shared_manager.dart';
@@ -82,8 +84,8 @@ class PanelMenu extends StatelessWidget {
           txtBtn: 'خروج',
           onPress: () {
             MyPreferences.clearDataSaving();
-            // final loginLogic = Get.put(LoginLogic());
-            // loginLogic.onInit();
+            final loginLogic = Get.put(LoginLogic());
+            loginLogic.onInit();
             // GoRouter.of(context).go('/');
             GoRouter.of(context).pushReplacement('/');
           },

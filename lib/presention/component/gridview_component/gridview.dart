@@ -49,7 +49,7 @@ class GridViewPage extends StatelessWidget {
       child: Obx(() {
         return GridView.builder(
           gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: 2,
+            crossAxisCount: 3,
             crossAxisSpacing: AppSize.s16,
             mainAxisSpacing: AppSize.s16,
             childAspectRatio: childAspectRatio,

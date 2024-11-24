@@ -40,7 +40,7 @@ class HomePage extends StatelessWidget {
           ),
           const SizedBox(height: AppSize.s24),
           GridViewPage(
-            childAspectRatio: 1.45,
+            childAspectRatio: 0.95,
             visibleBtn: false,
             visibleBtnSms : true,
             visibleEdit: false,
@@ -66,6 +66,7 @@ class HomePage extends StatelessWidget {
                       itemsUserFamily: logic.isCheckedList[index].user.family,
                       itemsUserPhone: logic.isCheckedList[index].user.phone,
                       itemsIndex: index,
+                      btnActive: false,
                     );
                   },
                 );

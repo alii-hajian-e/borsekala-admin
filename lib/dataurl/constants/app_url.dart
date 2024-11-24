@@ -17,4 +17,5 @@ class AppUrl {
   static const String userList = '$baseUrl/panel/api/v1/users/';
   static const String sendSms = '$baseUrl/panel/api/v1/test/';
   static const String chatList = '$baseUrl/chat/api/v1/';
+  static const String adminList = '$baseUrl/account/api/users/';
 }

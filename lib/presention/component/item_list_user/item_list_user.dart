@@ -1,3 +1,4 @@
+import 'package:bors_web_admin_sms/presention/component/button_component/btn/_btn.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
@@ -11,15 +12,20 @@ class ItemListUser extends StatelessWidget {
   final bool activeCheckBox;
   final bool activeEditItem;
   final bool itemsActive;
-  final dynamic onTap;
-  final dynamic onPressEditeItem;
-  final dynamic onPressDeleteItem;
+  final bool btnActive;
+  final VoidCallback? onTap;
+  final VoidCallback? onPressEditeItem;
+  final VoidCallback? onPressDeleteItem;
+  final VoidCallback? onPressBtnActiveAdmin;
   final String itemsUserName;
   final String itemsUserFamily;
   final String itemsUserPhone;
+  final String? txtActiveBtnAdmin;
+  final Color? colorBtnActiveAdmin;
+  final Color? colorTextBtnActiveAdmin;
   final int itemsIndex;
 
-  const ItemListUser({super.key, required this.activeCheckBox, this.onTap, required this.itemsActive, required this.activeEditItem, required this.itemsUserName, required this.itemsUserFamily, required this.itemsUserPhone, required this.itemsIndex, this.onPressEditeItem, this.onPressDeleteItem});
+  const ItemListUser({super.key, required this.activeCheckBox, this.onTap, required this.itemsActive, required this.activeEditItem, required this.itemsUserName, required this.itemsUserFamily, required this.itemsUserPhone, required this.itemsIndex, this.onPressEditeItem, this.onPressDeleteItem, required this.btnActive, this.txtActiveBtnAdmin, this.onPressBtnActiveAdmin, this.colorBtnActiveAdmin, this.colorTextBtnActiveAdmin});
 
   @override
   Widget build(BuildContext context) {
@@ -66,8 +72,7 @@ class ItemListUser extends StatelessWidget {
                 width: AppSize.s220,
                 child: Text(itemsUserFamily,style: getMediumStyle(color: ColorManager.black,fontSize: AppSize.s14)),
               ),
-              SizedBox(
-                width: AppSize.s100,
+              Expanded(
                 child: Text(itemsUserPhone,style: getMediumStyle(color: ColorManager.black,fontSize: AppSize.s14)),
               ),
               Expanded(child: Container()),
@@ -105,7 +110,23 @@ class ItemListUser extends StatelessWidget {
                   ),
                 ],
               ) :
+              Container(),
+              const SizedBox(width: AppSize.s64),
+              btnActive ?
+              SizedBox(
+                width: MediaQuery.of(context).size.width / 15,
+                child: Btn(
+                  buttonColorBtn: colorBtnActiveAdmin ?? ColorManager.black,
+                  onPress: onPressBtnActiveAdmin,
+                  text: txtActiveBtnAdmin ?? '',
+                  heightBtn: AppSize.s48,
+                  borderRadiusBtn: AppSize.s8,
+                  buttonTextColorBtn: colorTextBtnActiveAdmin ?? ColorManager.black,
+                  borderSideColorBtn: ColorManager.black.withOpacity(0),
+                ),
+              ) :
               Container()
+
             ],
           ),
         ),
