@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../../../widget/scrollBar.dart';
 import '../../../component/gridview_component/gridview.dart';
 import '../../../component/header_component/header_component.dart';
 import '../../../component/item_list_user/item_list_user.dart';
@@ -40,6 +41,7 @@ class HomePage extends StatelessWidget {
           ),
           const SizedBox(height: AppSize.s24),
           GridViewPage(
+            controllerGridView: logic.scrollController,
             childAspectRatio: 0.95,
             visibleBtn: false,
             visibleBtnSms : true,
@@ -55,20 +57,24 @@ class HomePage extends StatelessWidget {
             childBtnDelete: Container(),
             child: Expanded(
               child: Obx(() {
-                return ListView.builder(
-                  itemCount: logic.isCheckedList.length,
-                  itemBuilder: (context, index) {
-                    return ItemListUser(
-                      activeCheckBox: false,
-                      itemsActive: false,
-                      activeEditItem: false,
-                      itemsUserName: logic.isCheckedList[index].user.name,
-                      itemsUserFamily: logic.isCheckedList[index].user.family,
-                      itemsUserPhone: logic.isCheckedList[index].user.phone,
-                      itemsIndex: index,
-                      btnActive: false,
-                    );
-                  },
+                return ScrollBarWidget(
+                  controllerScrollBar: logic.scrollControllerListView,
+                  childUi: ListView.builder(
+                    controller: logic.scrollControllerListView,
+                    itemCount: logic.isCheckedList.length,
+                    itemBuilder: (context, index) {
+                      return ItemListUser(
+                        activeCheckBox: false,
+                        itemsActive: false,
+                        activeEditItem: false,
+                        itemsUserName: logic.isCheckedList[index].user.name,
+                        itemsUserFamily: logic.isCheckedList[index].user.family,
+                        itemsUserPhone: logic.isCheckedList[index].user.phone,
+                        itemsIndex: index,
+                        btnActive: false,
+                      );
+                    },
+                  ),
                 );
               }),
             ),

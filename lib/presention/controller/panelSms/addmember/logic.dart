@@ -29,6 +29,7 @@ class AddMemberLogic extends GetxController  with StateMixin<List<dynamic>>{
   final txtNameUser= TextEditingController();
   final txtFamilyUser = TextEditingController();
   final txtPhoneUser = TextEditingController();
+  final ScrollController scrollController = ScrollController();
 
   final AppApiPanel apiServicePanel = AppApiPanel();
 
@@ -38,6 +39,11 @@ class AddMemberLogic extends GetxController  with StateMixin<List<dynamic>>{
     getUserList(context);
   }
 
+  @override
+  void onClose() {
+    scrollController.dispose();
+    super.onClose();
+  }
   void getUserList(context) async {
     try{
       final response = await apiServicePanel.get(AppUrl.userList, Options(headers: {
@@ -151,7 +157,7 @@ class AddMemberLogic extends GetxController  with StateMixin<List<dynamic>>{
       builder: (context) {
         return WidgetDialogAction(
           icons: SvgPicture.asset(fit: BoxFit.scaleDown, ImageAssets.trash),
-          txtAlert: 'این کاربر حذف شود ؟',
+          txtAlert: 'در صورت حذف کاربر از تمام گروه ها حذف خواهد شد',
           txtBtn1: 'خیر',
           txtBtn: 'بله',
           onPress: () {

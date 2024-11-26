@@ -35,6 +35,9 @@ class AddGroupLogic extends GetxController {
   final navbarLogic = Get.put(NavbarPanelLogic());
   final AppApiPanel apiServicePanel = AppApiPanel();
   final txtNameUser = TextEditingController();
+  final ScrollController scrollController = ScrollController();
+  final ScrollController scrollControllerListView = ScrollController();
+  final ScrollController scrollControllerListView2 = ScrollController();
 
   final mainCategoryList = <MainGroup>[].obs;
   final categoryList = <Group>[].obs;
@@ -65,6 +68,15 @@ class AddGroupLogic extends GetxController {
   final addIdUser = [].obs;
 
   final id = ''.obs;
+
+
+  @override
+  void onClose() {
+    scrollController.dispose();
+    scrollControllerListView.dispose();
+    scrollControllerListView2.dispose();
+    super.onClose();
+  }
 
   void sortListUser (){
     var ids = [];

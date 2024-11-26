@@ -20,6 +20,8 @@ class HomeLogic extends GetxController with StateMixin<dynamic>{
   final groupListSearch = <GroupList>[].obs;
   final txtSearch = TextEditingController();
   final txtSearchUser = TextEditingController();
+  final ScrollController scrollController = ScrollController();
+  final ScrollController scrollControllerListView = ScrollController();
   final AppApiPanel apiServicePanel = AppApiPanel();
   var isCheckedList = <Model>[].obs;
   var isCheckedListSearch = <Model>[].obs;
@@ -30,6 +32,12 @@ class HomeLogic extends GetxController with StateMixin<dynamic>{
     getPanelRoom(context);
   }
 
+  @override
+  void onClose() {
+    scrollController.dispose();
+    scrollControllerListView.dispose();
+    super.onClose();
+  }
   void getPanelRoom(context) async {
     try{
       final response = await apiServicePanel.get(AppUrl.panelRoom, Options(headers: {

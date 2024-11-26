@@ -25,7 +25,7 @@ class HomeSettingPage extends StatelessWidget {
                 horizontal: AppSize.s56, vertical: AppPadding.p32),
             child: Column(
               children: [
-                Header(txtHeader: '${logic.adminList.first.name ?? ''} ${logic.adminList.first.family ?? ''}'),
+                Header(txtHeader: '${logic.adminList.first.name} ${logic.adminList.first.family}'),
                 const SizedBox(height: AppSize.s24),
                 // Row(
                 //   children: [

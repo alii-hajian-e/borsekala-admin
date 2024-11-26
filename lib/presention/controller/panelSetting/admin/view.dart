@@ -1,4 +1,3 @@
-import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -28,7 +27,7 @@ class AdminPage extends StatelessWidget {
             ),
             child: Column(
               children: [
-                Header(txtHeader: '${logic.homeSettingLogic.adminList.first.name ?? ''} ${logic.homeSettingLogic.adminList.first.family ?? ''}'),
+                Header(txtHeader: '${logic.homeSettingLogic.adminList.first.name} ${logic.homeSettingLogic.adminList.first.family }'),
                 const SizedBox(height: AppSize.s24),
                 Expanded(
                   child: ListViewUser(

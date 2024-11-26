@@ -264,7 +264,7 @@ class ItemListCategory extends StatelessWidget {
                   visibleSelect: false,
                   iconSelect: Icon(Icons.sms_outlined,color: ColorManager.black,size: AppSize.s18),
                   onPress: onPressBtnSms,
-                  text: 'ارسال پیامک تستی',
+                  text: 'ارسال پیامک دستی',
                   borderColor: ColorManager.gray1,
                   radius: AppSize.s8,
                   heightBtn: AppSize.s48,

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../../../widget/scrollBar.dart';
 import '../../../component/header_component/header_component.dart';
 import '../../../component/item_list_user/item_list_user.dart';
 import '../../../component/list_user/listUser.dart';
@@ -53,38 +54,42 @@ class AddMemberPage extends StatelessWidget {
               childBtnDelete: Container(),
               child: Expanded(
                 child: Obx(() {
-                  return ListView.builder(
-                    itemCount: logic.listUser.length,
-                    itemBuilder: (context, index) {
-                      return ItemListUser(
-                        activeCheckBox: false,
-                        itemsActive: true,
-                        activeEditItem: true,
-                        itemsUserName: logic.listUser[index].name,
-                        itemsUserFamily: logic.listUser[index].family,
-                        itemsUserPhone: logic.listUser[index].phone,
-                        itemsIndex: index,
-                        btnActive: false,
-                        onPressDeleteItem: (){
-                          logic.dialogDeleteItem(context,index);
-                        },
-                        onPressEditeItem: (){
-                          logic.dialogEditeUser(
-                            phone: logic.listUser[index].phone,
-                            name: logic.listUser[index].name,
-                            family: logic.listUser[index].family,
-                            id: logic.listUser[index].id,
-                            context: context,
-                            hintTextFamily: logic.listUser[index].family,
-                            hintTextName: logic.listUser[index].name,
-                            hintTextPhone: logic.listUser[index].phone,
-                            txtAlert: 'ویرایش کاربر',
-                            txtBtn1: 'انصراف' ,
-                            txtBtn: 'ذخیره',
-                          );
-                        },
-                      );
-                    },
+                  return ScrollBarWidget(
+                    controllerScrollBar: logic.scrollController,
+                    childUi: ListView.builder(
+                      controller: logic.scrollController,
+                      itemCount: logic.listUser.length,
+                      itemBuilder: (context, index) {
+                        return ItemListUser(
+                          activeCheckBox: false,
+                          itemsActive: true,
+                          activeEditItem: true,
+                          itemsUserName: logic.listUser[index].name,
+                          itemsUserFamily: logic.listUser[index].family,
+                          itemsUserPhone: logic.listUser[index].phone,
+                          itemsIndex: index,
+                          btnActive: false,
+                          onPressDeleteItem: (){
+                            logic.dialogDeleteItem(context,index);
+                          },
+                          onPressEditeItem: (){
+                            logic.dialogEditeUser(
+                              phone: logic.listUser[index].phone,
+                              name: logic.listUser[index].name,
+                              family: logic.listUser[index].family,
+                              id: logic.listUser[index].id,
+                              context: context,
+                              hintTextFamily: logic.listUser[index].family,
+                              hintTextName: logic.listUser[index].name,
+                              hintTextPhone: logic.listUser[index].phone,
+                              txtAlert: 'ویرایش کاربر',
+                              txtBtn1: 'انصراف' ,
+                              txtBtn: 'ذخیره',
+                            );
+                          },
+                        );
+                      },
+                    ),
                   );
                 }),
               ),

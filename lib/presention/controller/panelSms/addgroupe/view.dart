@@ -1,4 +1,5 @@
 import 'package:bors_web_admin_sms/presention/component/button_component/white-btn/white_btn.dart';
+import 'package:bors_web_admin_sms/widget/scrollBar.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -92,6 +93,7 @@ class AddGroupPage extends StatelessWidget {
             ),
             const SizedBox(height: AppSize.s24),
             GridViewPage(
+                controllerGridView: logic.scrollController,
                 childAspectRatio: 0.95,
                 visibleEdit: true,
                 visibleBtnSms: false,
@@ -123,57 +125,65 @@ class AddGroupPage extends StatelessWidget {
                 child: logic.navbarLogic.selected.value != 0 ?
                 Expanded(
                   child: Obx(() {
-                    return ListView.builder(
-                      itemCount: logic.homeLogic.isCheckedList.length,
-                      itemBuilder: (context, index) {
-                        return ItemListUser(
-                          btnActive: false,
-                          activeCheckBox: false,
-                          itemsActive: false,
-                          activeEditItem: false,
-                          itemsUserName: logic.addMemberLogic.listUser[index]
-                              .name,
-                          itemsUserFamily: logic.addMemberLogic.listUser[index]
-                              .family,
-                          itemsUserPhone: logic.addMemberLogic.listUser[index]
-                              .phone,
-                          itemsIndex: index,
-                        );
-                      },
+                    return ScrollBarWidget(
+                      controllerScrollBar: logic.scrollControllerListView,
+                      childUi: ListView.builder(
+                        controller: logic.scrollControllerListView,
+                        itemCount: logic.homeLogic.isCheckedList.length,
+                        itemBuilder: (context, index) {
+                          return ItemListUser(
+                            btnActive: false,
+                            activeCheckBox: false,
+                            itemsActive: false,
+                            activeEditItem: false,
+                            itemsUserName: logic.addMemberLogic.listUser[index]
+                                .name,
+                            itemsUserFamily: logic.addMemberLogic.listUser[index]
+                                .family,
+                            itemsUserPhone: logic.addMemberLogic.listUser[index]
+                                .phone,
+                            itemsIndex: index,
+                          );
+                        },
+                      ),
                     );
                   }),
                 ) :
                 Expanded(
                   child: Obx(() {
-                    return ListView.builder(
-                      itemCount: logic.homeLogic.isCheckedList.length,
-                      itemBuilder: (context, index) {
-                        final isSelected = false.obs;
-                        Model item = logic.homeLogic.isCheckedList[index];
-                        isSelected.value = item.user.id != item.user.id;
-                        return Obx(() {
-                          return ItemListUser(
-                            btnActive: false,
-                            activeCheckBox: true,
-                            itemsActive: isSelected.value,
-                            activeEditItem: false,
-                            itemsUserName: logic.homeLogic.isCheckedList[index].user.name,
-                            itemsUserFamily: logic.homeLogic.isCheckedList[index].user.family,
-                            itemsUserPhone: logic.homeLogic.isCheckedList[index].user.phone,
-                            itemsIndex: index,
-                            onTap: () {
-                              // idTradingList.value = item.id;
-                              isSelected.value = !isSelected.value;
-                              if (isSelected.value == true) {
-                                logic.idUser.add(item.user.id);
-                              } else {
-                                logic.idUser.remove(item.user.id);
-                              }
-                              logic.idUser.isEmpty == true ? logic.visibleDeleteUserGroup.value = false : logic.visibleDeleteUserGroup.value = true;
-                            },
-                          );
-                        });
-                      },
+                    return ScrollBarWidget(
+                      controllerScrollBar: logic.scrollControllerListView2,
+                      childUi: ListView.builder(
+                        controller: logic.scrollControllerListView2,
+                        itemCount: logic.homeLogic.isCheckedList.length,
+                        itemBuilder: (context, index) {
+                          final isSelected = false.obs;
+                          Model item = logic.homeLogic.isCheckedList[index];
+                          isSelected.value = item.user.id != item.user.id;
+                          return Obx(() {
+                            return ItemListUser(
+                              btnActive: false,
+                              activeCheckBox: true,
+                              itemsActive: isSelected.value,
+                              activeEditItem: false,
+                              itemsUserName: logic.homeLogic.isCheckedList[index].user.name,
+                              itemsUserFamily: logic.homeLogic.isCheckedList[index].user.family,
+                              itemsUserPhone: logic.homeLogic.isCheckedList[index].user.phone,
+                              itemsIndex: index,
+                              onTap: () {
+                                // idTradingList.value = item.id;
+                                isSelected.value = !isSelected.value;
+                                if (isSelected.value == true) {
+                                  logic.idUser.add(item.user.id);
+                                } else {
+                                  logic.idUser.remove(item.user.id);
+                                }
+                                logic.idUser.isEmpty == true ? logic.visibleDeleteUserGroup.value = false : logic.visibleDeleteUserGroup.value = true;
+                              },
+                            );
+                          });
+                        },
+                      ),
                     );
                   }),
                 )
