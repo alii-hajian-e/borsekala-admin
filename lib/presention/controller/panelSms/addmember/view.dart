@@ -48,6 +48,7 @@ class AddMemberPage extends StatelessWidget {
           const SizedBox(height: AppSize.s24),
           Expanded(
             child: ListViewUser(
+              emailTxt: 'شماره موبایل',
               activeCheckBox: false,
               isCheckedAll: false,
               onTapCheckBoxAll: (){},

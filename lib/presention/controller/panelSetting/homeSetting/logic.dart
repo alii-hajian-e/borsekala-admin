@@ -14,7 +14,7 @@ import '../../panelSms/home/logic.dart';
 class HomeSettingLogic extends GetxController {
 
   final adminList = <AdminModel>[].obs;
-  final activeUserAdmin = true.obs;
+  final activeUserAdmin = false.obs;
   final AppApiPanel apiServicePanelSetting = AppApiPanel();
   final homeLogic = Get.put(HomeLogic());
 
@@ -43,7 +43,7 @@ class HomeSettingLogic extends GetxController {
   void addAdminRequest(context){
     if(txtEmail.text.isNotEmpty && txtFamily.text.isNotEmpty && txtName.text.isNotEmpty && txtPassword.text.isNotEmpty){
       addAdmin(context,data: {
-        'username': txtEmail.text.toString(),
+        // 'username': txtEmail.text.toString(),
         'password': txtPassword.text.toString(),
         'email': txtEmail.text.toString(),
         'family': txtFamily.text.toString(),
@@ -83,7 +83,7 @@ class HomeSettingLogic extends GetxController {
     //   'is_active': active,
     // });
     updateUserAdmin(id,context, data: {
-      'username': txtEmail.text.isEmpty ? email : txtEmail.text,
+      // 'username': txtEmail.text.isEmpty ? email : txtEmail.text,
       'email': txtEmail.text.isEmpty ? email : txtEmail.text,
       'family': txtFamily.text.isEmpty ? family : txtFamily.text,
       'name': txtName.text.isEmpty ? name : txtName.text,
@@ -98,7 +98,6 @@ class HomeSettingLogic extends GetxController {
         "authorization": "Bearer ${MyPreferences.getToken()}",
       }));
       if(response.statusCode == 200){
-        GoRouter.of(context).pop();
         txtEmail.clear();
         txtFamily.clear();
         txtName.clear();

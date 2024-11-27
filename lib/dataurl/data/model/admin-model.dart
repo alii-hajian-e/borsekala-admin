@@ -1,10 +1,10 @@
 // ignore_for_file: file_names
 
 class AdminModel {
-  final int id;
-  final String email;
-  final String family;
-  final String name;
+  final int? id;
+  final String? email;
+  final String? family;
+  final String? name;
   final bool isActive;
 
   AdminModel({

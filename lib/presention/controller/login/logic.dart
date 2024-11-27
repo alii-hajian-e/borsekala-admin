@@ -18,6 +18,8 @@ import '../../resources/color_manager.dart';
 import '../../resources/shared_manager.dart';
 import '../../resources/string_manager.dart';
 
+final isAdmin = false.obs;
+
 class LoginLogic extends GetxController with StateMixin<List<VerifyModel>>{
   final AppApi apiService = AppApi();
   final AppApiPanel apiServicePanel = AppApiPanel();
@@ -63,6 +65,7 @@ class LoginLogic extends GetxController with StateMixin<List<VerifyModel>>{
       if(response.statusCode == 200){
         final dataVerify = VerifyModel.fromJson(response.data);
           MyPreferences.setToken(dataVerify.access!);
+          isAdmin.value = dataVerify.isAdmin ?? false;
           loading.value = false;
           GoRouter.of(context).pushReplacement('/landingPage');
       }else{

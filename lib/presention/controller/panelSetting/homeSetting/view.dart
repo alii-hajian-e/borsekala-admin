@@ -25,7 +25,7 @@ class HomeSettingPage extends StatelessWidget {
                 horizontal: AppSize.s56, vertical: AppPadding.p32),
             child: Column(
               children: [
-                Header(txtHeader: '${logic.adminList.first.name} ${logic.adminList.first.family}'),
+                Header(txtHeader: '${logic.adminList.first.name  ?? ''} ${logic.adminList.first.family  ?? ''}'),
                 const SizedBox(height: AppSize.s24),
                 // Row(
                 //   children: [
@@ -99,6 +99,7 @@ class HomeSettingPage extends StatelessWidget {
                 const SizedBox(height: AppSize.s24),
                 Expanded(
                   child: ListViewUser(
+                    emailTxt: 'ایمیل',
                     activeCheckBox: false,
                     isCheckedAll: false,
                     onTapCheckBoxAll: () {},
@@ -113,9 +114,9 @@ class HomeSettingPage extends StatelessWidget {
                                 activeCheckBox: false,
                                 itemsActive: false,
                                 activeEditItem: false,
-                                itemsUserName: logic.adminList[index].name,
-                                itemsUserFamily: logic.adminList[index].family,
-                                itemsUserPhone: logic.adminList[index].email,
+                                itemsUserName: logic.adminList[index].name  ?? '',
+                                itemsUserFamily: logic.adminList[index].family  ?? '',
+                                itemsUserPhone: logic.adminList[index].email  ?? '',
                                 itemsIndex: index,
                                 btnActive: true,
                                 colorBtnActiveAdmin: !logic.adminList[index]

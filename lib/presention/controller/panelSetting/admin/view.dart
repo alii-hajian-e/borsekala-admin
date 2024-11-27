@@ -27,10 +27,11 @@ class AdminPage extends StatelessWidget {
             ),
             child: Column(
               children: [
-                Header(txtHeader: '${logic.homeSettingLogic.adminList.first.name} ${logic.homeSettingLogic.adminList.first.family }'),
+                Header(txtHeader: '${logic.homeSettingLogic.adminList.first.name ?? ''} ${logic.homeSettingLogic.adminList.first.family ?? ''}'),
                 const SizedBox(height: AppSize.s24),
                 Expanded(
                   child: ListViewUser(
+                    emailTxt: 'ایمیل',
                     activeCheckBox: false,
                     isCheckedAll: false,
                     childBtnDelete: SelectBtn(
@@ -60,9 +61,9 @@ class AdminPage extends StatelessWidget {
                                 activeCheckBox: false,
                                 itemsActive: true,
                                 activeEditItem: true,
-                                itemsUserName: logic.homeSettingLogic.adminList[index].name,
-                                itemsUserFamily: logic.homeSettingLogic.adminList[index].family,
-                                itemsUserPhone: logic.homeSettingLogic.adminList[index].email,
+                                itemsUserName: logic.homeSettingLogic.adminList[index].name ?? '',
+                                itemsUserFamily: logic.homeSettingLogic.adminList[index].family ?? '',
+                                itemsUserPhone: logic.homeSettingLogic.adminList[index].email ?? '',
                                 itemsIndex: index,
                                 btnActive: true,
                                 colorBtnActiveAdmin: !logic.homeSettingLogic.adminList[index].isActive

@@ -26,7 +26,7 @@ class TransactionPage extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Header(txtHeader: '${logic.homeSettingLogic.adminList.first.name} ${logic.homeSettingLogic.adminList.first.family}'),
+              Header(txtHeader: '${logic.homeSettingLogic.adminList.first.name  ?? ''} ${logic.homeSettingLogic.adminList.first.family  ?? ''}'),
               const SizedBox(height: AppSize.s40),
               SvgPicture.asset(fit: BoxFit.scaleDown,
                   ImageAssets.engin,

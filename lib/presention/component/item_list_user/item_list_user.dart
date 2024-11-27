@@ -62,7 +62,7 @@ class ItemListUser extends StatelessWidget {
                   null,
                 ),
               ) :
-              Text('$itemsIndex',style: getMediumStyle(color: ColorManager.black,fontSize: AppSize.s14)),
+              Text('${itemsIndex + 1}',style: getMediumStyle(color: ColorManager.black,fontSize: AppSize.s14)),
               const SizedBox(width: AppSize.s64),
               SizedBox(
                 width: AppSize.s180,

@@ -145,6 +145,7 @@ class WidgetDialog extends StatelessWidget {
             const SizedBox(height: AppSize.s24),
             Expanded(
               child: ListViewUser(
+                emailTxt: 'شماره موبایل',
                 childBtnDelete: childBtnDelete,
                 activeCheckBox: activeCheckBox,
                 isCheckedAll: true,

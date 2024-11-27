@@ -7,6 +7,7 @@ import '../../component/item_landing_component/item_landing_component.dart';
 import '../../resources/assets_manager.dart';
 import '../../resources/color_manager.dart';
 import '../../resources/value_manager.dart';
+import '../login/logic.dart';
 import 'logic.dart';
 
 class LandingPage extends StatelessWidget {
@@ -108,13 +109,14 @@ class LandingPage extends StatelessWidget {
                         );
                       }),
                       const SizedBox(width: AppSize.s24),
+                      Obx(() => isAdmin.value ?
                       ItemLanding(
                           img: ImageAssets.setting, txt: 'تنظیمات', onTap: () {
                         // js.context.callMethod(
                         //     'open', ['https://panel.ibrokers.ir/NavbarSettingPage']);
                         GoRouter.of(context).go('/navbarSettingPage');
                         // Get.toNamed(Routes.navbarPage);
-                      })
+                      }) : Container()),
                     ],
                   ),
                 ],

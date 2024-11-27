@@ -20,8 +20,8 @@ class AdminLogic extends GetxController {
       context: context,
       builder: (context) {
         return DialogAdd_UpdateAdmin(
-          txtFamily: 'نام',
-          txtName: 'نام خانوادگی',
+          txtFamily: 'نام خانوادگی',
+          txtName: 'نام',
           txtPhoneEmail: 'ایمیل',
           hintTextFamily: 'نام خانوادگی را وارد کنید',
           hintTextName: 'نام را وارد کنید',
@@ -82,8 +82,8 @@ class AdminLogic extends GetxController {
       context: context,
       builder: (context) {
         return DialogAdd_UpdateAdmin(
-          txtFamily: 'نام',
-          txtName: 'نام خانوادگی',
+          txtFamily: 'نام خانوادگی',
+          txtName: 'نام',
           txtPhoneEmail: 'ایمیل',
           hintTextFamily: family,
           hintTextName: name,
@@ -98,11 +98,12 @@ class AdminLogic extends GetxController {
           txtBtn: txtBtn,
           onPress: () {
             homeSettingLogic.updateUserAdmin(id,context, data: {
-              'username': homeSettingLogic.txtEmail.text.isEmpty ? email : homeSettingLogic.txtEmail.text,
+              // 'username': homeSettingLogic.txtEmail.text.isEmpty ? email : homeSettingLogic.txtEmail.text,
               'email': homeSettingLogic.txtEmail.text.isEmpty ? email : homeSettingLogic.txtEmail.text,
               'family': homeSettingLogic.txtFamily.text.isEmpty ? family : homeSettingLogic.txtFamily.text,
               'name': homeSettingLogic.txtName.text.isEmpty ? name : homeSettingLogic.txtName.text,
             });
+            GoRouter.of(context).pop();
           },
           onPress1: (){
             homeSettingLogic.txtFamily.clear();

@@ -14,9 +14,10 @@ class ListViewUser extends StatelessWidget {
   final dynamic onTapCheckBoxAll;
   final dynamic child;
   final dynamic childBtnDelete;
+  final String emailTxt;
 
   const ListViewUser(
-      {super.key, required this.activeCheckBox, required this.isCheckedAll, this.onTapCheckBoxAll, this.child, required this.childBtnDelete});
+      {super.key, required this.activeCheckBox, required this.isCheckedAll, this.onTapCheckBoxAll, this.child, required this.childBtnDelete, required this.emailTxt});
 
   @override
   Widget build(BuildContext context) {
@@ -52,9 +53,9 @@ class ListViewUser extends StatelessWidget {
                   null,
                 ),
               ) :
-              Text("#", style: getMediumStyle(
+              Text("ردیف", style: getMediumStyle(
                   color: ColorManager.black.withOpacity(0.5), fontSize: AppSize.s14)),
-              const SizedBox(width: AppSize.s64),
+              const SizedBox(width: AppSize.s40),
               SizedBox(
                 width: AppSize.s180,
                 child: Text('نام', style: getMediumStyle(
@@ -67,7 +68,7 @@ class ListViewUser extends StatelessWidget {
               ),
               SizedBox(
                 width: AppSize.s220,
-                child: Text('ایمیل', style: getMediumStyle(
+                child: Text(emailTxt, style: getMediumStyle(
                     color: ColorManager.black.withOpacity(0.5), fontSize: AppSize.s14)),
               ),
               Expanded(child: Container()),

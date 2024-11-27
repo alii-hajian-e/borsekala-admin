@@ -176,8 +176,8 @@ class AddMemberLogic extends GetxController  with StateMixin<List<dynamic>>{
       context: context,
       builder: (context) {
         return DialogAdd_DeleteUser(
-          txtFamily: 'نام',
-          txtName: 'نام خانوادگی',
+          txtFamily: 'نام خانوادگی',
+          txtName: 'نام',
           txtPhoneEmail: 'شماره موبایل',
           hintTextFamily: 'نام خانوادگی را وارد کنید',
           hintTextName: 'نام را وارد کنید',
@@ -209,8 +209,8 @@ class AddMemberLogic extends GetxController  with StateMixin<List<dynamic>>{
       context: context,
       builder: (context) {
         return DialogAdd_DeleteUser(
-          txtFamily: 'نام',
-          txtName: 'نام خانوادگی',
+          txtFamily: 'نام خانوادگی',
+          txtName: 'نام',
           txtPhoneEmail: 'شماره موبایل',
           hintTextName: hintTextName,
           hintTextFamily: hintTextFamily,
