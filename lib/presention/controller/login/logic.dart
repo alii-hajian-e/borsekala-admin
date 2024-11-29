@@ -17,7 +17,6 @@ import '../../component/alert/alert.dart';
 import '../../resources/color_manager.dart';
 import '../../resources/shared_manager.dart';
 import '../../resources/string_manager.dart';
-import '../panelSetting/navbarSetting/view.dart';
 
 final isAdmin = false.obs;
 

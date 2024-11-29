@@ -7,9 +7,7 @@ import 'package:get/get.dart';
 
 import '../../../../widget/header.dart';
 import '../../../resources/assets_manager.dart';
-import '../../login/logic.dart';
 import '../navbarSetting/logic.dart';
-import '../navbarSetting/view.dart';
 import 'logic.dart';
 
 class TransactionPage extends StatelessWidget {

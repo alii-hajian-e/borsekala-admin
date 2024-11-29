@@ -10,7 +10,6 @@ import '../../../component/alert/alert.dart';
 import '../../../resources/color_manager.dart';
 import '../../../resources/shared_manager.dart';
 import '../../panelSms/home/logic.dart';
-import '../navbarSetting/logic.dart';
 
 class HomeSettingLogic extends GetxController {
 

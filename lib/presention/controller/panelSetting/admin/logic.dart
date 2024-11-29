@@ -11,7 +11,6 @@ import '../../../resources/color_manager.dart';
 import '../../../resources/styles_manager.dart';
 import '../../../resources/value_manager.dart';
 import '../homeSetting/logic.dart';
-import '../navbarSetting/logic.dart';
 
 class AdminLogic extends GetxController {
   final homeSettingLogic = Get.put(HomeSettingLogic());

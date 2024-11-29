@@ -9,7 +9,6 @@ import 'package:get/get.dart';
 
 import '../../../../dataurl/constants/app_url.dart';
 import '../../../../dataurl/data/network/api/app_api_panel.dart';
-import '../../../../main.dart';
 import '../../../component/alert/alert.dart';
 import '../../../resources/color_manager.dart';
 import '../../../resources/shared_manager.dart';
@@ -46,9 +45,6 @@ class NavbarSettingLogic extends GetxController {
       if(response.statusCode == 200){
         nameAdmin.value = response.data['name'];
         familyAdmin.value = response.data['family'];
-        print('SHHHHHHHHHHHH');
-        print(nameAdmin.value);
-        print(nameAdmin.value);
       }
     }on DioException catch (e){
       Alert(txt: 'خطا در اطلاعات دربافتی', color: ColorManager.white, backgroundColor: ColorManager.red).showSnackBar(context);

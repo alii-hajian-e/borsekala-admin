@@ -8,7 +8,6 @@ import '../../resources/assets_manager.dart';
 import '../../resources/color_manager.dart';
 import '../../resources/value_manager.dart';
 import '../login/logic.dart';
-import '../panelSetting/navbarSetting/view.dart';
 import 'logic.dart';
 
 class LandingPage extends StatelessWidget {
