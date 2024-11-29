@@ -75,7 +75,7 @@ class ItemListUser extends StatelessWidget {
               Expanded(
                 child: Text(itemsUserPhone,style: getMediumStyle(color: ColorManager.black,fontSize: AppSize.s14)),
               ),
-              Expanded(child: Container()),
+              // Expanded(child: Container()),
               activeEditItem ?
               Row(
                 children: [

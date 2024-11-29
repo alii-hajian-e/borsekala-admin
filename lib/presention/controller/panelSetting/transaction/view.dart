@@ -7,6 +7,9 @@ import 'package:get/get.dart';
 
 import '../../../../widget/header.dart';
 import '../../../resources/assets_manager.dart';
+import '../../login/logic.dart';
+import '../navbarSetting/logic.dart';
+import '../navbarSetting/view.dart';
 import 'logic.dart';
 
 class TransactionPage extends StatelessWidget {
@@ -26,7 +29,11 @@ class TransactionPage extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Header(txtHeader: '${logic.homeSettingLogic.adminList.first.name  ?? ''} ${logic.homeSettingLogic.adminList.first.family  ?? ''}'),
+              Obx(() {
+                final navbarSettingLogic = Get.put(NavbarSettingLogic());
+                return Header(
+                    txtHeader: '${navbarSettingLogic.nameAdmin.value} ${navbarSettingLogic.familyAdmin.value}');
+              }),
               const SizedBox(height: AppSize.s40),
               SvgPicture.asset(fit: BoxFit.scaleDown,
                   ImageAssets.engin,

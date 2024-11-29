@@ -1,3 +1,4 @@
+
 import 'package:bors_web_admin_sms/presention/component/list_user/listUser.dart';
 import 'package:bors_web_admin_sms/presention/resources/assets_manager.dart';
 import 'package:bors_web_admin_sms/presention/resources/color_manager.dart';
@@ -8,6 +9,7 @@ import 'package:get/get.dart';
 
 import '../../../../widget/card.dart';
 import '../../../component/item_list_user/item_list_user.dart';
+import '../navbarSetting/logic.dart';
 import 'logic.dart';
 
 class HomeSettingPage extends StatelessWidget {
@@ -25,7 +27,11 @@ class HomeSettingPage extends StatelessWidget {
                 horizontal: AppSize.s56, vertical: AppPadding.p32),
             child: Column(
               children: [
-                Header(txtHeader: '${logic.adminList.first.name  ?? ''} ${logic.adminList.first.family  ?? ''}'),
+                Obx(() {
+                  final navbarSettingLogic = Get.put(NavbarSettingLogic());
+                  return Header(
+                      txtHeader: '${navbarSettingLogic.nameAdmin.value} ${navbarSettingLogic.familyAdmin.value}');
+                }),
                 const SizedBox(height: AppSize.s24),
                 // Row(
                 //   children: [
@@ -129,10 +135,10 @@ class HomeSettingPage extends StatelessWidget {
                                 'غیر فعال' :
                                 'فعال',
                                 onPressBtnActiveAdmin: () {
-                                  logic.activeUserAdmin.value =
-                                  !logic.activeUserAdmin.value;
+                                  // logic.activeUserAdmin.value =
+                                  // !logic.activeUserAdmin.value;
                                   logic.updaterAdmin(
-                                    active: logic.activeUserAdmin.value,
+                                    active: !logic.adminList[index].isActive,
                                     context: context,
                                     family: logic.adminList[index].family,
                                     id: logic.adminList[index].id,

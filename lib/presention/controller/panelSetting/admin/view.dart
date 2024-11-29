@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -8,6 +7,7 @@ import '../../../component/item_list_user/item_list_user.dart';
 import '../../../component/list_user/listUser.dart';
 import '../../../resources/color_manager.dart';
 import '../../../resources/value_manager.dart';
+import '../navbarSetting/logic.dart';
 import 'logic.dart';
 
 class AdminPage extends StatelessWidget {
@@ -22,12 +22,16 @@ class AdminPage extends StatelessWidget {
           backgroundColor: ColorManager.white,
           body: Padding(
             padding: const EdgeInsets.symmetric(
-                horizontal: AppSize.s56,
-                vertical: AppPadding.p32,
+              horizontal: AppSize.s56,
+              vertical: AppPadding.p32,
             ),
             child: Column(
               children: [
-                Header(txtHeader: '${logic.homeSettingLogic.adminList.first.name ?? ''} ${logic.homeSettingLogic.adminList.first.family ?? ''}'),
+                Obx(() {
+                  final navbarSettingLogic = Get.put(NavbarSettingLogic());
+                  return Header(
+                      txtHeader: '${navbarSettingLogic.nameAdmin.value} ${navbarSettingLogic.familyAdmin.value}');
+                }),
                 const SizedBox(height: AppSize.s24),
                 Expanded(
                   child: ListViewUser(
@@ -40,9 +44,11 @@ class AdminPage extends StatelessWidget {
                       mainAxisAlignmentSelect: MainAxisAlignment.spaceBetween,
                       visibleSelect: false,
                       iconSelect: Icon(
-                          Icons.person_2_outlined, color: ColorManager.black, size: AppSize.s18),
-                      onPress: (){
-                        logic.dialogAddAdmin(context, 'افزودن ادمین', 'تایید', 'انصراف');
+                          Icons.person_2_outlined, color: ColorManager.black,
+                          size: AppSize.s18),
+                      onPress: () {
+                        logic.dialogAddAdmin(
+                            context, 'افزودن ادمین', 'ذخیره', 'انصراف');
                       },
                       text: 'افزودن امین',
                       borderColor: ColorManager.white.withOpacity(0),
@@ -61,37 +67,46 @@ class AdminPage extends StatelessWidget {
                                 activeCheckBox: false,
                                 itemsActive: true,
                                 activeEditItem: true,
-                                itemsUserName: logic.homeSettingLogic.adminList[index].name ?? '',
-                                itemsUserFamily: logic.homeSettingLogic.adminList[index].family ?? '',
-                                itemsUserPhone: logic.homeSettingLogic.adminList[index].email ?? '',
+                                itemsUserName: logic.homeSettingLogic
+                                    .adminList[index].name ?? '',
+                                itemsUserFamily: logic.homeSettingLogic
+                                    .adminList[index].family ?? '',
+                                itemsUserPhone: logic.homeSettingLogic
+                                    .adminList[index].email ?? '',
                                 itemsIndex: index,
                                 btnActive: true,
-                                colorBtnActiveAdmin: !logic.homeSettingLogic.adminList[index].isActive
+                                colorBtnActiveAdmin: !logic.homeSettingLogic
+                                    .adminList[index].isActive
                                     ? ColorManager.red2
                                     : ColorManager.green,
                                 colorTextBtnActiveAdmin: ColorManager.white,
-                                txtActiveBtnAdmin: !logic.homeSettingLogic.adminList[index].isActive ?
+                                txtActiveBtnAdmin: !logic.homeSettingLogic
+                                    .adminList[index].isActive ?
                                 'غیر فعال' :
                                 'فعال',
-                                onPressDeleteItem: (){
+                                onPressDeleteItem: () {
                                   logic.dialogDeleteAdmin(context, index);
                                 },
-                                onPressEditeItem: (){
+                                onPressEditeItem: () {
                                   logic.dialogUpdateAdmin(
-                                      context,
-                                      'ویرایش ادمین',
-                                      'تایید',
-                                      'انصزاف',
-                                      logic.homeSettingLogic.adminList[index].id,
-                                    logic.homeSettingLogic.adminList[index].email,
-                                    logic.homeSettingLogic.adminList[index].family,
-                                    logic.homeSettingLogic.adminList[index].name,
+                                    context,
+                                    'ویرایش ادمین',
+                                    'ذخیره',
+                                    'انصزاف',
+                                    logic.homeSettingLogic.adminList[index].id,
+                                    logic.homeSettingLogic.adminList[index]
+                                        .email,
+                                    logic.homeSettingLogic.adminList[index]
+                                        .family,
+                                    logic.homeSettingLogic.adminList[index]
+                                        .name,
                                   );
                                 },
                                 onPressBtnActiveAdmin: () {
-                                  logic.homeSettingLogic.activeUserAdmin.value = !logic.homeSettingLogic.activeUserAdmin.value;
+                                  // logic.homeSettingLogic.activeUserAdmin.value =
+                                  // !logic.homeSettingLogic.activeUserAdmin.value;
                                   logic.homeSettingLogic.updaterAdmin(
-                                    active: logic.homeSettingLogic.activeUserAdmin.value,
+                                    active: !logic.homeSettingLogic.adminList[index].isActive,
                                     context: context,
                                     family: logic.homeSettingLogic.adminList[index].family,
                                     id: logic.homeSettingLogic.adminList[index].id,

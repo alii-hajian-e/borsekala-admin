@@ -13,10 +13,11 @@ class AppUrl {
   static const String userGroupList = '$baseUrl/panel/api/v1/user-groups';
   static const String addUserGroup = '$baseUrl/panel/api/v1/groups';
 
-  static const String login = '$baseUrl/account/api/login/';
+  static const String login = '$baseUrl/account/api/v1/login/';
   static const String userList = '$baseUrl/panel/api/v1/users/';
   static const String sendSms = '$baseUrl/panel/api/v1/test/';
   static const String chatList = '$baseUrl/chat/api/v1/';
 
-  static const String adminList = '$baseUrl/account/api/users/';
+  static const String adminList = '$baseUrl/account/api/v1/users/';
+  static const String profileAdmin = '$baseUrl/account/api/v1/profile/';
 }

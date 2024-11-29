@@ -56,10 +56,10 @@ class NavbarSettingPage extends StatelessWidget {
                   return DrawerNavigationItem(
                     colorTxt: ColorManager.black,
                     iconData: SvgPicture.asset(fit: BoxFit.scaleDown,
-                        ImageAssets.people,
+                        ImageAssets.paper,
                         width: AppSize.s24,
                         height: AppSize.s24),
-                    title: "لیست کاربران",
+                    title: "صورت حساب",
                     onTap: () {
                       logic.changeIndex(1);
                       logic.selectedIndex.value = false;
@@ -75,10 +75,10 @@ class NavbarSettingPage extends StatelessWidget {
                   return DrawerNavigationItem(
                     colorTxt: ColorManager.black,
                     iconData: SvgPicture.asset(fit: BoxFit.scaleDown,
-                        ImageAssets.category_2,
+                        ImageAssets.password,
                         width: AppSize.s24,
                         height: AppSize.s24),
-                    title: "دسته بندی ها",
+                    title: "مدیران",
                     onTap: () {
                       logic.changeIndex(2);
                       logic.selectedIndex.value = false;

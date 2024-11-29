@@ -10,11 +10,12 @@ import '../../../component/alert/alert.dart';
 import '../../../resources/color_manager.dart';
 import '../../../resources/shared_manager.dart';
 import '../../panelSms/home/logic.dart';
+import '../navbarSetting/logic.dart';
 
 class HomeSettingLogic extends GetxController {
 
   final adminList = <AdminModel>[].obs;
-  final activeUserAdmin = false.obs;
+  // final activeUserAdmin = false.obs;
   final AppApiPanel apiServicePanelSetting = AppApiPanel();
   final homeLogic = Get.put(HomeLogic());
 

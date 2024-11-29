@@ -17,6 +17,7 @@ import '../../component/alert/alert.dart';
 import '../../resources/color_manager.dart';
 import '../../resources/shared_manager.dart';
 import '../../resources/string_manager.dart';
+import '../panelSetting/navbarSetting/view.dart';
 
 final isAdmin = false.obs;
 
@@ -77,13 +78,14 @@ class LoginLogic extends GetxController with StateMixin<List<VerifyModel>>{
       Alert(txt: 'اطلاعات وارد شده اشتباه است', color: ColorManager.white, backgroundColor: ColorManager.red).showSnackBar(context);
     }
   }
-  Future<void> uploadDate(context)async {
+  Future<void> uploadDate(context) async {
     await group(context);
     await mainGroup(context);
     await subGroup(context);
     await tradingHall(context);
     await fetchManufacturerList(context);
   }
+
   Future<void> group(context) async {
     try {
       final response = await apiService.get(AppUrlDB.group, Options(headers: {
