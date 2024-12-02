@@ -132,16 +132,15 @@ class AddGroupPage extends StatelessWidget {
                         itemCount: logic.homeLogic.isCheckedList.length,
                         itemBuilder: (context, index) {
                           return ItemListUser(
+                            hiddenVerifyUser: false,
+                            verifyUser: false,
                             btnActive: false,
                             activeCheckBox: false,
                             itemsActive: false,
                             activeEditItem: false,
-                            itemsUserName: logic.addMemberLogic.listUser[index]
-                                .name,
-                            itemsUserFamily: logic.addMemberLogic.listUser[index]
-                                .family,
-                            itemsUserPhone: logic.addMemberLogic.listUser[index]
-                                .phone,
+                            itemsUserName: logic.addMemberLogic.listUser[index].name,
+                            itemsUserCompany: logic.addMemberLogic.listUser[index].company ?? '',
+                            itemsUserPhone: logic.addMemberLogic.listUser[index].phone,
                             itemsIndex: index,
                           );
                         },
@@ -162,12 +161,14 @@ class AddGroupPage extends StatelessWidget {
                           isSelected.value = item.user.id != item.user.id;
                           return Obx(() {
                             return ItemListUser(
+                              hiddenVerifyUser: false,
+                              verifyUser: false,
                               btnActive: false,
                               activeCheckBox: true,
                               itemsActive: isSelected.value,
                               activeEditItem: false,
                               itemsUserName: logic.homeLogic.isCheckedList[index].user.name,
-                              itemsUserFamily: logic.homeLogic.isCheckedList[index].user.family,
+                              itemsUserCompany: logic.homeLogic.isCheckedList[index].user.company ?? '',
                               itemsUserPhone: logic.homeLogic.isCheckedList[index].user.phone,
                               itemsIndex: index,
                               onTap: () {

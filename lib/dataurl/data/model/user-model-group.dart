@@ -26,14 +26,14 @@ class Model {
 class User {
   int id;
   String name;
-  String family;
+  String? company;
   String phone;
   DateTime createdAt;
 
   User({
     required this.id,
     required this.name,
-    required this.family,
+    required this.company,
     required this.phone,
     required this.createdAt,
   });
@@ -42,7 +42,7 @@ class User {
     return User(
       id: json['id'],
       name: json['name'],
-      family: json['family'],
+      company: json['company'],
       phone: json['phone'],
       createdAt: DateTime.parse(json['created_at']),
     );

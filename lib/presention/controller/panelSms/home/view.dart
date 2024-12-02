@@ -64,11 +64,13 @@ class HomePage extends StatelessWidget {
                     itemCount: logic.isCheckedList.length,
                     itemBuilder: (context, index) {
                       return ItemListUser(
+                        hiddenVerifyUser: false,
+                        verifyUser: false,
                         activeCheckBox: false,
                         itemsActive: false,
                         activeEditItem: false,
                         itemsUserName: logic.isCheckedList[index].user.name,
-                        itemsUserFamily: logic.isCheckedList[index].user.family,
+                        itemsUserCompany: logic.isCheckedList[index].user.company ?? '',
                         itemsUserPhone: logic.isCheckedList[index].user.phone,
                         itemsIndex: index,
                         btnActive: false,

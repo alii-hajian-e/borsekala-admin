@@ -1,8 +1,8 @@
 // ignore_for_file: avoid_web_libraries_in_flutter
-import 'dart:js' as js;
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:go_router/go_router.dart';
 import '../../component/item_landing_component/item_landing_component.dart';
 import '../../resources/assets_manager.dart';
 import '../../resources/color_manager.dart';
@@ -88,12 +88,12 @@ class LandingPage extends StatelessWidget {
                         ItemLanding(
                             img: ImageAssets.sms, txt: 'پنل پیامکی', onTap: () {
                           logic.homeLogic.getPanelRoom(context);
-                          logic.addMemberLogic.getUserList(context);
-                          js.context.callMethod(
-                              'open', ['https://panel.ibrokers.ir/navbarPanelPage']);
+                          // logic.addMemberLogic.getUserList(context);
+                          // js.context.callMethod(
+                          //     'open', ['https://panel.ibrokers.ir/navbarPanelPage']);
                           // js.context.callMethod(
                           //     'open', ['http://localhost:8080/navbarPanelPage']);
-                          // GoRouter.of(context).go('/navbarPanelPage');
+                          GoRouter.of(context).go('/navbarPanelPage');
                           // Get.toNamed(Routes.navbarPage);
                         }) :
                         SizedBox(
@@ -114,11 +114,11 @@ class LandingPage extends StatelessWidget {
                       Obx(() => isAdmin.value ?
                       ItemLanding(
                           img: ImageAssets.setting, txt: 'تنظیمات', onTap: () {
-                        js.context.callMethod(
-                            'open', ['https://panel.ibrokers.ir/navbarSettingPage']);
+                        // js.context.callMethod(
+                        //     'open', ['https://panel.ibrokers.ir/navbarSettingPage']);
                         // js.context.callMethod(
                         //     'open', ['http://localhost:8080/navbarSettingPage']);
-                        // GoRouter.of(context).go('/navbarSettingPage');
+                        GoRouter.of(context).go('/navbarSettingPage');
                         // Get.toNamed(Routes.navbarPage);
                       }) : Container()),
                     ],

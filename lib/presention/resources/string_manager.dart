@@ -11,6 +11,8 @@ class AppString {
   static const String error501 = 'سرور قادر به پردازش درخواست کاربر نمی‌باشد';
   static const String error502 = 'سرور پاسخ مناسبی دریافت نکرده است';
   static const String all = 'انتخاب کنید';
+  static const String alert = 'لطفاً توجه داشته باشید که در صورت تأیید نبودن کاربر مورد نظر، امکان افزودن او به گروه وجود ندارد.';
+  static const String dialogVerifyUserInCode = 'کد ارسال شده را وارد کنید';
 
 
 }

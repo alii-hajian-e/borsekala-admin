@@ -87,14 +87,16 @@ class WidgetDialog extends StatelessWidget {
                     ],
                   ),),
                   const SizedBox(width: AppSize.s32),
-                  Expanded(child: Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text('تعداد کاربر : $num'.toString(),style: getBoldStyle(color: ColorManager.black,fontSize: AppSize.s14)),
-                      Text('دسته بندی : $grouping',style: getBoldStyle(color: ColorManager.black,fontSize: AppSize.s14)),
-                    ],
-                  ),),
+                  Expanded(
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text('تعداد کاربر : $num'.toString(),style: getBoldStyle(color: ColorManager.black,fontSize: AppSize.s14)),
+                        Text('دسته بندی : $grouping',style: getBoldStyle(color: ColorManager.black,fontSize: AppSize.s14)),
+                      ],
+                    ),
+                  ),
                   const SizedBox(width: AppSize.s32),
                   Column(
                     mainAxisAlignment: MainAxisAlignment.start,

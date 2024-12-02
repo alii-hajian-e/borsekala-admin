@@ -57,13 +57,13 @@ class ListViewUser extends StatelessWidget {
                   color: ColorManager.black.withOpacity(0.5), fontSize: AppSize.s14)),
               const SizedBox(width: AppSize.s40),
               SizedBox(
-                width: AppSize.s180,
-                child: Text('نام', style: getMediumStyle(
+                width: AppSize.s220,
+                child: Text('نام / نام خانوادگی', style: getMediumStyle(
                     color: ColorManager.black.withOpacity(0.5), fontSize: AppSize.s14)),
               ),
               SizedBox(
                 width: AppSize.s220,
-                child: Text('نام خانوادگی', style: getMediumStyle(
+                child: Text('نام شرکت', style: getMediumStyle(
                     color: ColorManager.black.withOpacity(0.5), fontSize: AppSize.s14)),
               ),
               SizedBox(

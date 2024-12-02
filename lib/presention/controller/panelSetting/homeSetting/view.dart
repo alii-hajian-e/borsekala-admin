@@ -117,11 +117,13 @@ class HomeSettingPage extends StatelessWidget {
                           itemBuilder: (context, index) {
                             return Obx(() {
                               return ItemListUser(
+                                hiddenVerifyUser: false,
+                                verifyUser: false,
                                 activeCheckBox: false,
                                 itemsActive: false,
                                 activeEditItem: false,
                                 itemsUserName: logic.adminList[index].name  ?? '',
-                                itemsUserFamily: logic.adminList[index].family  ?? '',
+                                itemsUserCompany: logic.adminList[index].family  ?? '',
                                 itemsUserPhone: logic.adminList[index].email  ?? '',
                                 itemsIndex: index,
                                 btnActive: true,

@@ -14,7 +14,7 @@ class DialogAdd_DeleteUser extends StatelessWidget {
 
   final String txtAlert;
   final String txtName;
-  final String txtFamily;
+  final String txtCompany;
   final String txtPhoneEmail;
   final TextEditingController textFieldControllerName;
   final TextEditingController textFieldControllerFamily;
@@ -23,7 +23,7 @@ class DialogAdd_DeleteUser extends StatelessWidget {
   final String txtBtn;
   final String txtBtn1;
   final String hintTextName;
-  final String hintTextFamily;
+  final String hintTextCompany;
   final String hintTextPhone;
   final dynamic onPress;
   final dynamic onPress1;
@@ -32,7 +32,7 @@ class DialogAdd_DeleteUser extends StatelessWidget {
   final Color buttonColorBtn1;
 
   const DialogAdd_DeleteUser({
-    super.key,required this.textFieldControllerName, required this.textFieldControllerFamily,required this.textFieldControllerPhone, required this.txtAlert, required this.txtBtn, required this.txtBtn1, this.onPress, this.onPress1, required this.buttonColorBtn, required this.buttonColorBtn1, required this.hintTextName, required this.hintTextFamily, required this.hintTextPhone, required this.txtName, required this.txtFamily, required this.txtPhoneEmail,
+    super.key,required this.textFieldControllerName, required this.textFieldControllerFamily,required this.textFieldControllerPhone, required this.txtAlert, required this.txtBtn, required this.txtBtn1, this.onPress, this.onPress1, required this.buttonColorBtn, required this.buttonColorBtn1, required this.hintTextName, required this.hintTextCompany, required this.hintTextPhone, required this.txtName, required this.txtCompany, required this.txtPhoneEmail,
   });
 
   @override
@@ -95,7 +95,7 @@ class DialogAdd_DeleteUser extends StatelessWidget {
                           Align(
                             alignment: Alignment.centerRight,
                             child: Text(
-                              txtFamily,
+                              txtCompany,
                               style: getBoldStyle(color: ColorManager.black, fontSize: AppSize.s14),
                             ),
                           ),
@@ -112,7 +112,7 @@ class DialogAdd_DeleteUser extends StatelessWidget {
                                 color: ColorManager.black,
                                 fontSize: AppSize.s14,
                               ),
-                              hintText: hintTextFamily,
+                              hintText: hintTextCompany,
                               textFieldActive: false,
                               textFieldController: textFieldControllerFamily,
                               textAlign: TextAlign.right,

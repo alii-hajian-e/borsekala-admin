@@ -64,12 +64,14 @@ class AdminPage extends StatelessWidget {
                           itemBuilder: (context, index) {
                             return Obx(() {
                               return ItemListUser(
+                                hiddenVerifyUser: false,
+                                verifyUser: false,
                                 activeCheckBox: false,
                                 itemsActive: true,
                                 activeEditItem: true,
                                 itemsUserName: logic.homeSettingLogic
                                     .adminList[index].name ?? '',
-                                itemsUserFamily: logic.homeSettingLogic
+                                itemsUserCompany: logic.homeSettingLogic
                                     .adminList[index].family ?? '',
                                 itemsUserPhone: logic.homeSettingLogic
                                     .adminList[index].email ?? '',

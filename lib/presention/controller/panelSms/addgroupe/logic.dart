@@ -14,11 +14,13 @@ import '../../../../dataurl/data/model/sub-group-model.dart';
 import '../../../../dataurl/data/model/trading-hall-model.dart';
 import '../../../../dataurl/data/model/user-list-model.dart';
 import '../../../../dataurl/data/network/api/app_api_panel.dart';
+import '../../../../widget/scrollBar.dart';
 import '../../../component/alert/alert.dart';
 import '../../../component/button_component/circle-btn/circle_btn.dart';
 import '../../../component/dialog_component/dialog-list/dialog_list.dart';
 import '../../../component/dialog_component/dialog_action/dialod_action.dart';
 import '../../../component/dialog_component/dialog_add_delete_group/dialog_add_delete_group.dart';
+import '../../../component/input_component/search_bar/search_component.dart';
 import '../../../component/item_list_user/item_list_user.dart';
 import '../../../resources/assets_manager.dart';
 import '../../../resources/color_manager.dart';
@@ -35,9 +37,12 @@ class AddGroupLogic extends GetxController {
   final navbarLogic = Get.put(NavbarPanelLogic());
   final AppApiPanel apiServicePanel = AppApiPanel();
   final txtNameUser = TextEditingController();
+  final txtSearchUser = TextEditingController();
+
   final ScrollController scrollController = ScrollController();
   final ScrollController scrollControllerListView = ScrollController();
   final ScrollController scrollControllerListView2 = ScrollController();
+  final ScrollController scrollControllerUserList = ScrollController();
 
   final mainCategoryList = <MainGroup>[].obs;
   final categoryList = <Group>[].obs;
@@ -808,7 +813,7 @@ class AddGroupLogic extends GetxController {
             height: MediaQuery
                 .of(context)
                 .size
-                .height / 1.5,
+                .height / 1.2,
             column: Column(
               children: [
                 Row(
@@ -855,38 +860,58 @@ class AddGroupLogic extends GetxController {
                   ],
                 ),
                 const SizedBox(height: AppSize.s24),
+                SearchWidget(
+                  textFieldBorderSearch: BorderSide(
+                      width: AppSize.s0, color: ColorManager.white),
+                  textFieldColor: ColorManager.gray1,
+                  textInputType: TextInputType.text,
+                  textFieldActive: false,
+                  prefixIcon: SvgPicture.asset(fit: BoxFit.scaleDown,ImageAssets.search,width: AppSize.s16,height: AppSize.s16,),
+                  textFieldHint: 'جست و جو',
+                  textFieldController: txtSearchUser,
+                  onChanged: (q){
+                    searchUser(q);
+                  },
+                ),
+                const SizedBox(height: AppSize.s24),
                 Expanded(
                   child: Obx(() {
-                    return ListView.builder(
-                      itemCount: addMemberLogic.listUser.length,
-                      itemBuilder: (context, index) {
-                        final isAddSelected = false.obs;
-                        ModelUser item = addMemberLogic.listUser[index];
-                        isAddSelected.value = item.id != item.id;
-                        return Obx(() {
-                          return ItemListUser(
-                            btnActive: false,
-                            activeCheckBox: true,
-                            itemsActive: isAddSelected.value,
-                            activeEditItem: false,
-                            itemsUserName: addMemberLogic.listUser[index].name,
-                            itemsUserFamily: addMemberLogic.listUser[index].family,
-                            itemsUserPhone: addMemberLogic.listUser[index].phone,
-                            itemsIndex: index,
-                            onPressDeleteItem: null,
-                            onPressEditeItem: null,
-                            onTap: () {
-                              // idTradingList.value = item.id;
-                              isAddSelected.value = !isAddSelected.value;
-                              if (isAddSelected.value == true) {
-                                addIdUser.add(item.id);
-                              } else {
-                                addIdUser.remove(item.id);
-                              }
-                            },
-                          );
-                        });
-                      },
+                    return ScrollBarWidget(
+                      controllerScrollBar: scrollControllerUserList,
+                      childUi: ListView.builder(
+                        controller: scrollControllerUserList,
+                        itemCount: addMemberLogic.listUser.length,
+                        itemBuilder: (context, index) {
+                          final isAddSelected = false.obs;
+                          ModelUser item = addMemberLogic.listUser[index];
+                          isAddSelected.value = item.id != item.id;
+                          return Obx(() {
+                            return ItemListUser(
+                              hiddenVerifyUser: false,
+                              verifyUser: false,
+                              btnActive: false,
+                              activeCheckBox: true,
+                              itemsActive: isAddSelected.value,
+                              activeEditItem: false,
+                              itemsUserName: addMemberLogic.listUser[index].name,
+                              itemsUserCompany: addMemberLogic.listUser[index].company ?? '',
+                              itemsUserPhone: addMemberLogic.listUser[index].phone,
+                              itemsIndex: index,
+                              onPressDeleteItem: null,
+                              onPressEditeItem: null,
+                              onTap: () {
+                                // idTradingList.value = item.id;
+                                isAddSelected.value = !isAddSelected.value;
+                                if (isAddSelected.value == true) {
+                                  addIdUser.add(item.id);
+                                } else {
+                                  addIdUser.remove(item.id);
+                                }
+                              },
+                            );
+                          });
+                        },
+                      ),
                     );
                   }),
                 ),
@@ -937,5 +962,20 @@ class AddGroupLogic extends GetxController {
     }
   }
 
+
+  void searchUser(String query) {
+    final input = query.toLowerCase();
+    if (input.isNotEmpty) {
+      final suggestions = addMemberLogic.listUserSearch.where((all) {
+        final name = all.name.toLowerCase();
+        return name.contains(input);
+      }).toList();
+      addMemberLogic.listUser.clear();
+      addMemberLogic.listUser.addAll(suggestions);
+    } else {
+      addMemberLogic.listUser.clear();
+      addMemberLogic.listUser.addAll(addMemberLogic.listUserSearch);
+    }
+  }
 }
 
