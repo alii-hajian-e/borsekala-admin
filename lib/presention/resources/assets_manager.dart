@@ -23,4 +23,5 @@ class ImageAssets{
   static const String paper = "$IMAGE_PATH/Paper.svg";
   static const String password = "$IMAGE_PATH/Password.svg";
   static const String engin = "$IMAGE_PATH/engin.svg";
+  static const String download = "$IMAGE_PATH/Download.svg";
 }

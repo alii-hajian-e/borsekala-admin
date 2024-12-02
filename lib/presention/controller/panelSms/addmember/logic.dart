@@ -96,7 +96,7 @@ class AddMemberLogic extends GetxController  with StateMixin<List<dynamic>>{
   }
   void addUserRequest(context){
     if(txtNameUser.text.isNotEmpty && txtFamilyUser.text.isNotEmpty && txtPhoneUser.text.isNotEmpty){
-      addUser(context,data: {'name': txtNameUser.text.toString(),'family': txtFamilyUser.text.toString(),'phone': txtPhoneUser.text.toString()});
+      addUser(context,data: {'name': txtNameUser.text.toString(),'company': txtFamilyUser.text.toString(),'phone': txtPhoneUser.text.toString()});
     } else {
       Alert(txt: 'اطلاعات وارد شده اشتباه یا خالی است', color: ColorManager.white, backgroundColor: ColorManager.red).showSnackBar(context);
     }
@@ -126,7 +126,7 @@ class AddMemberLogic extends GetxController  with StateMixin<List<dynamic>>{
     // if(txtNameUser.text.isNotEmpty && txtFamilyUser.text.isNotEmpty && txtPhoneUser.text.isNotEmpty){
       updateUser(id,context, data: {
         'name': txtNameUser.text.isEmpty ? name : txtNameUser.text,
-        'family': txtFamilyUser.text.isEmpty ? family : txtFamilyUser.text,
+        'company': txtFamilyUser.text.isEmpty ? family : txtFamilyUser.text,
         'phone': txtPhoneUser.text.isEmpty ? phone : txtPhoneUser.text,
       });
     // } else {

@@ -20,13 +20,14 @@ class ItemListCategory extends StatelessWidget {
   final String grouping;
   final String subset;
   final String manufacturer;
-  final dynamic onPressBtnEdit;
-  final dynamic onPressBtnDelete;
-  final dynamic onPressBtn;
-  final dynamic onPressBtnSms;
-  final dynamic onTapGroup;
+  final VoidCallback onPressBtnEdit;
+  final VoidCallback onPressBtnDelete;
+  final VoidCallback onPressBtn;
+  final VoidCallback onPressBtnSms;
+  final VoidCallback onTapGroup;
+  final VoidCallback onPressDownloadFile;
 
-  const ItemListCategory({super.key, required this.visibleBtn, required this.visibleEdit, required this.name, required this.num, required this.mainCategory, required this.grouping, required this.subset, required this.manufacturer, required this.nameGroup, required this.time, this.onPressBtnEdit, this.onPressBtnDelete, this.onPressBtn, this.onTapGroup, required this.visibleBtnSms, required this.onPressBtnSms});
+  const ItemListCategory({super.key, required this.visibleBtn, required this.visibleEdit, required this.name, required this.num, required this.mainCategory, required this.grouping, required this.subset, required this.manufacturer, required this.nameGroup, required this.time, required this.onPressBtnEdit, required this.onPressBtnDelete,required this.onPressBtn,required this.onTapGroup, required this.visibleBtnSms, required this.onPressBtnSms, required this.onPressDownloadFile});
 
   @override
   Widget build(BuildContext context) {
@@ -67,41 +68,53 @@ class ItemListCategory extends StatelessWidget {
                       Text(time,style: getBoldStyle(color: ColorManager.black.withOpacity(0.4),fontSize: AppSize.s12)),
                     ],
                   ),
-                  Visibility(
-                    visible: visibleEdit,
-                    child: Row(
-                      children: [
-                        SelectBtn(
-                          appPaddingSelect: AppPadding.p0,
-                          appSizeBtn: AppSize.s12,
-                          mainAxisAlignmentSelect: MainAxisAlignment.spaceBetween,
-                          visibleSelect: false,
-                          iconSelect: SvgPicture.asset(ImageAssets.edit,width: AppSize.s24,height: AppSize.s24),
-                          onPress: onPressBtnEdit,
-                          text: 'ویرایش',
-                          borderColor: ColorManager.white.withOpacity(0),
-                          radius: AppSize.s0,
-                          heightBtn: AppSize.s24,
-                          colorTextSelect:  ColorManager.black.withOpacity(0.4),
-                          backgroundColorSelect: ColorManager.white.withOpacity(0),
-                        ),
-                        const SizedBox(width: AppSize.s16),
-                        SelectBtn(
-                          appPaddingSelect: AppPadding.p0,
-                          appSizeBtn: AppSize.s12,
-                          mainAxisAlignmentSelect: MainAxisAlignment.spaceBetween,
-                          visibleSelect: false,
-                          iconSelect: SvgPicture.asset(ImageAssets.trash,width: AppSize.s24,height: AppSize.s24),
-                          onPress: onPressBtnDelete,
-                          text: 'حذف',
-                          borderColor: ColorManager.white.withOpacity(0),
-                          radius: AppSize.s0,
-                          heightBtn: AppSize.s24,
-                          colorTextSelect: ColorManager.red,
-                          backgroundColorSelect: ColorManager.white.withOpacity(0),
-                        ),
-                      ],
-                    ),
+                  visibleEdit ?
+                  Row(
+                    children: [
+                      SelectBtn(
+                        appPaddingSelect: AppPadding.p0,
+                        appSizeBtn: AppSize.s12,
+                        mainAxisAlignmentSelect: MainAxisAlignment.spaceBetween,
+                        visibleSelect: false,
+                        iconSelect: SvgPicture.asset(ImageAssets.edit,width: AppSize.s24,height: AppSize.s24),
+                        onPress: onPressBtnEdit,
+                        text: 'ویرایش',
+                        borderColor: ColorManager.white.withOpacity(0),
+                        radius: AppSize.s0,
+                        heightBtn: AppSize.s24,
+                        colorTextSelect:  ColorManager.black.withOpacity(0.4),
+                        backgroundColorSelect: ColorManager.white.withOpacity(0),
+                      ),
+                      const SizedBox(width: AppSize.s16),
+                      SelectBtn(
+                        appPaddingSelect: AppPadding.p0,
+                        appSizeBtn: AppSize.s12,
+                        mainAxisAlignmentSelect: MainAxisAlignment.spaceBetween,
+                        visibleSelect: false,
+                        iconSelect: SvgPicture.asset(ImageAssets.trash,width: AppSize.s24,height: AppSize.s24),
+                        onPress: onPressBtnDelete,
+                        text: 'حذف',
+                        borderColor: ColorManager.white.withOpacity(0),
+                        radius: AppSize.s0,
+                        heightBtn: AppSize.s24,
+                        colorTextSelect: ColorManager.red,
+                        backgroundColorSelect: ColorManager.white.withOpacity(0),
+                      ),
+                    ],
+                  ) :
+                  SelectBtn(
+                    appPaddingSelect: AppPadding.p0,
+                    appSizeBtn: AppSize.s12,
+                    mainAxisAlignmentSelect: MainAxisAlignment.spaceBetween,
+                    visibleSelect: false,
+                    iconSelect: SvgPicture.asset(ImageAssets.download,width: AppSize.s24,height: AppSize.s24),
+                    onPress: onPressDownloadFile,
+                    text: 'دانلود فایل',
+                    borderColor: ColorManager.white.withOpacity(0),
+                    radius: AppSize.s0,
+                    heightBtn: AppSize.s24,
+                    colorTextSelect:  ColorManager.black,
+                    backgroundColorSelect: ColorManager.white.withOpacity(0),
                   ),
                 ],
               ),

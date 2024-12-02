@@ -71,6 +71,7 @@ class GridViewPage extends StatelessWidget {
                 visibleBtn: visibleBtn,
                 visibleEdit: visibleEdit,
                 visibleBtnSms: visibleBtnSms,
+                onPressDownloadFile: (){print('object');},
                 onPressBtnDelete: (){
                   addGroupLogic.dialogEducation(context, fetchGroupList.id);
                 },
@@ -137,6 +138,7 @@ class GridViewPage extends StatelessWidget {
                   final addMemberLogic = Get.put(AddMemberLogic());
                   addGroupLogic.nameSubCategoryList.clear();
                   addGroupLogic.idSubCategoryList.clear();
+                  addMemberLogic.pageUserGroup.value = 1;
                   addMemberLogic.getUserList(context);
                   addGroupLogic.id.value = fetchGroupList.id.toString();
                   addGroupLogic.fetchSubCategoryEdit(fetchGroupList.subGroup);

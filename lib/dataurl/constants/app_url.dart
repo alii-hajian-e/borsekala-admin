@@ -11,7 +11,7 @@ class AppUrl {
 
   static const String panelRoom = '$baseUrl/panel/api/v1/rooms';
   static const String userGroupList = '$baseUrl/panel/api/v1/user-groups';
-  static const String addUserGroup = '$baseUrl/panel/api/v1/groups';
+  static const String addUserGroup = '$baseUrl/panel/api/v1/gorups';
 
   static const String login = '$baseUrl/account/api/v1/login/';
   static const String userList = '$baseUrl/panel/api/v1/users/';

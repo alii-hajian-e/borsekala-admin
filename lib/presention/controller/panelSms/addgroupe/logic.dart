@@ -125,7 +125,7 @@ class AddGroupLogic extends GetxController {
   Future<void> deleteUserGroup(context, {Map<String, dynamic>? data, id}) async {
     try {
       final response = await apiServicePanel.delete(
-          '${AppUrl.addUserGroup}$id',data: data, Options(headers: {
+          '${AppUrl.addUserGroup}/$id',data: data, Options(headers: {
        // 'Content-Type': 'application/x-www-form-urlencoded',
         "authorization": "Bearer ${MyPreferences.getToken()}",
       },));
@@ -901,11 +901,15 @@ class AddGroupLogic extends GetxController {
                               onPressEditeItem: null,
                               onTap: () {
                                 // idTradingList.value = item.id;
-                                isAddSelected.value = !isAddSelected.value;
-                                if (isAddSelected.value == true) {
-                                  addIdUser.add(item.id);
-                                } else {
-                                  addIdUser.remove(item.id);
+                                if(addMemberLogic.listUser[index].isActive == false){
+                                  showAutoDismissDialog(context);
+                                }else{
+                                  isAddSelected.value = !isAddSelected.value;
+                                  if (isAddSelected.value == true) {
+                                    addIdUser.add(item.id);
+                                  } else {
+                                    addIdUser.remove(item.id);
+                                  }
                                 }
                               },
                             );
@@ -933,7 +937,7 @@ class AddGroupLogic extends GetxController {
       },
     );
   }
-  void addUserGroupRequest(id, context) {
+  void addUserGroupRequest(id, context){
     String result = addIdUser.join(', ');
     addUserGroup(context, id: id, data: {
       'users': result,
@@ -942,8 +946,8 @@ class AddGroupLogic extends GetxController {
   Future<void> addUserGroup(context, {Map<String, dynamic>? data, id}) async {
     try {
       final response = await apiServicePanel.post(
-          url: '${AppUrl.addUserGroup}$id' , data: data, options: Options(headers: {
-        "content-Type": "application/json",
+          url: '${AppUrl.addUserGroup}/$id' , data: data, options: Options(headers: {
+        // "content-Type": "application/json",
         "authorization": "Bearer ${MyPreferences.getToken()}",
       }));
       if (response.statusCode == 201) {
@@ -977,5 +981,36 @@ class AddGroupLogic extends GetxController {
       addMemberLogic.listUser.addAll(addMemberLogic.listUserSearch);
     }
   }
+
+  void showAutoDismissDialog(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (context) {
+        Future.delayed(const Duration(seconds: 2), () {
+          Navigator.of(context).pop();
+        });
+        return WidgetDialogList(
+            width: MediaQuery.of(context).size.width / 4,
+            height: AppSize.s64,
+            column: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                SvgPicture.asset(
+                  fit: BoxFit.scaleDown,
+                  ImageAssets.danger,
+                  width: AppSize.s24,
+                  height: AppSize.s24,
+                  colorFilter: ColorFilter.mode(ColorManager.black, BlendMode.srcIn),
+                ),
+                const SizedBox(width: AppSize.s16),
+                Text('این کاربر تایید مرحله دوم را نگرفته است',style: getBoldStyle(color: ColorManager.black,fontSize: AppSize.s14)),
+              ],
+            )
+        );
+      },
+    );
+  }
 }
+
 
