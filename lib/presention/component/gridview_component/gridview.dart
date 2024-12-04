@@ -2,7 +2,7 @@ import 'package:bors_web_admin_sms/presention/component/alert/alert.dart';
 import 'package:bors_web_admin_sms/widget/scrollBar.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:shamsi_date/shamsi_date.dart';
+import 'package:persian_datetime_picker/persian_datetime_picker.dart';
 
 import '../../../dataurl/data/model/getdatagroupapi.dart';
 import '../../../dataurl/data/model/group-model.dart';
@@ -42,7 +42,7 @@ class GridViewPage extends StatelessWidget {
   final ScrollController controllerGridView;
 
 
-  const  GridViewPage({super.key, required this.items,required this.child, required this.activeCheckBox, required this.isCheckedAll, this.onTapCheckBoxAll,required this.onChanged,required this.textFieldController, required this.visibleBtn, required this.visibleEdit, required this.childAspectRatio, required this.visibleBtnSms, required this.childBtnDelete, required this.controllerGridView});
+  const GridViewPage({super.key, required this.items,required this.child, required this.activeCheckBox, required this.isCheckedAll, this.onTapCheckBoxAll,required this.onChanged,required this.textFieldController, required this.visibleBtn, required this.visibleEdit, required this.childAspectRatio, required this.visibleBtnSms, required this.childBtnDelete, required this.controllerGridView});
 
 
   @override
@@ -71,7 +71,7 @@ class GridViewPage extends StatelessWidget {
                 visibleBtn: visibleBtn,
                 visibleEdit: visibleEdit,
                 visibleBtnSms: visibleBtnSms,
-                onPressDownloadFile: (){print('object');},
+                onPressDownloadFile: (){},
                 onPressBtnDelete: (){
                   addGroupLogic.dialogEducation(context, fetchGroupList.id);
                 },
@@ -164,9 +164,27 @@ class GridViewPage extends StatelessWidget {
                   );
                 },
                 onPressBtnSms: (){
+                  final group = items[index].group;
+                  final hallId = items[index].hallId;
+                  final mainGroup = items[index].mainGroup;
+                  final manufacturer = items[index].manufacturer;
+                  final subGroup = items[index].subGroup;
+                  final startData = Jalali.now().toDateTime().toString().obs;
+                  final endDate = Jalali.now().toDateTime().toString().obs;
+
+                  startData.value = Jalali.now().toDateTime().toString();
+                  Jalali oneMonthLater = Jalali.now().addDays(2);
+                  endDate.value = oneMonthLater.toDateTime().toString();
+
                   if(fetchGroupList.userCount != 0){
                     Alert(txt: 'لطفا صبر کنید', color: ColorManager.black, backgroundColor: ColorManager.yellow).showSnackBar(context);
-                    homeLogic.sendSMS(fetchGroupList.id,context);
+                    // homeLogic.sendSMS(fetchGroupList.id,context);
+                    homeLogic.filterDataOffer(
+                      id: fetchGroupList.id,
+                      context: context,
+                      data: 'start_date=${startData.value.replaceAll('00:00:00.000', '')}&end_date=${endDate.value.replaceAll(' 00:00:00.000', '')}&main=${mainGroup.toString()}&group=${group.toString()}&sub=${subGroup.toString()}&hall=${hallId.toString()}&page=1&manufacturer=${manufacturer.toString()}&search=',
+                    );
+
                   }else{
                     Alert(txt: 'هیچ کاربری به گروه اضافه نشده است', color: ColorManager.white, backgroundColor: ColorManager.red).showSnackBar(context);
                   }

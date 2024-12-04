@@ -112,6 +112,7 @@ class AddMemberLogic extends GetxController  with StateMixin<List<dynamic>>{
         txtNameUser.clear();
         txtFamilyUser.clear();
         txtPhoneUser.clear();
+        pageUserGroup.value = 1;
         getUserList(context);
       }
     } on DioException catch (e){
@@ -267,7 +268,7 @@ class AddMemberLogic extends GetxController  with StateMixin<List<dynamic>>{
           txtName: 'نام نام خانوادگی',
           txtPhoneEmail: 'شماره موبایل',
           hintTextName: hintTextName,
-          hintTextCompany: 'نام شرکت را وارد کنید',
+          hintTextCompany: hintTextCompany,
           hintTextPhone: hintTextPhone,
           buttonColorBtn1: ColorManager.gray1,
           buttonColorBtn: ColorManager.yellow,

@@ -9,7 +9,7 @@ class AppUrl {
   // connectTimeout
   static const int connectionTimeout = 15000;
 
-  static const String panelRoom = '$baseUrl/panel/api/v1/rooms';
+  static const String panelRoom = '$baseUrl/panel/api/v1/rooms/';
   static const String userGroupList = '$baseUrl/panel/api/v1/user-groups';
   static const String addUserGroup = '$baseUrl/panel/api/v1/gorups';
 

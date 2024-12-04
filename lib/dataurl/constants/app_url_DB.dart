@@ -16,4 +16,7 @@ class AppUrlDB {
   static const String subGroup = '/bourse/group/sub-group';
   static const String tradingHallMenuSubGroup = '/bourse/trading-hall/menu-sub-group';
   static const String manufacturerUrl = '/bourse/manufacturers/';
+
+  static const String offer = '/bourse/offer/filter';
+
 }

@@ -9,9 +9,9 @@ class WidgetDialogList extends StatelessWidget {
 
   final column;
   final width;
-  final height;
+  // final height;
   const WidgetDialogList({
-    super.key, required this.column,required this.width,required this.height
+    super.key, required this.column,required this.width
   });
 
   @override
@@ -27,7 +27,7 @@ class WidgetDialogList extends StatelessWidget {
       ),
       child: Container(
         width: width,
-          height: height,
+          // height: height,
           margin: const EdgeInsets.symmetric(
             horizontal: AppMargin.m16,
             vertical: AppMargin.m16,

@@ -38,17 +38,30 @@ class AddGroupLogic extends GetxController {
   final AppApiPanel apiServicePanel = AppApiPanel();
   final txtNameUser = TextEditingController();
   final txtSearchUser = TextEditingController();
+  final mainTextFieldController = TextEditingController();
+  final groupTextFieldController = TextEditingController();
+  final subGroupTextFieldController = TextEditingController();
+  final companyTextFieldController = TextEditingController();
 
   final ScrollController scrollController = ScrollController();
   final ScrollController scrollControllerListView = ScrollController();
   final ScrollController scrollControllerListView2 = ScrollController();
   final ScrollController scrollControllerUserList = ScrollController();
+  final ScrollController scrollControllerMainGroup = ScrollController();
+  final ScrollController scrollControllerGroup = ScrollController();
+  final ScrollController scrollControllerSubGroup = ScrollController();
+  final ScrollController scrollControllerCompany = ScrollController();
 
   final mainCategoryList = <MainGroup>[].obs;
+  final mainCategoryListSearch = <MainGroup>[].obs;
   final categoryList = <Group>[].obs;
+  final categoryListSearch = <Group>[].obs;
   final subTradingList = <TradingHall>[].obs;
   final subCategoryList = <SubGroup>[].obs;
+  final subCategoryListSearch = <SubGroup>[].obs;
   final companyList = <Company>[].obs;
+  final companyListSearch = <Company>[].obs;
+
   final nameMainCategoryList = 'انتخاب کنید'.obs;
   final nameCategoryList = 'انتخاب کنید'.obs;
   final nameSubCategoryListEdite = 'انتخاب کنید'.obs;
@@ -377,49 +390,68 @@ class AddGroupLogic extends GetxController {
       context: context,
       builder: (context) {
         return WidgetDialogList(
-          width: MediaQuery
-              .of(context)
-              .size
-              .height / 2,
-          height: MediaQuery
-              .of(context)
-              .size
-              .height / 4,
-          column: Obx(() {
-            return ListView.builder(
-              itemCount: list.length,
-              itemBuilder: (context, index) {
-                return InkWell(
-                  onTap: () {
-                    idMainCategoryList.value = mainCategoryList[index].id;
-                    nameMainCategoryList.value =
-                        mainCategoryList[index].persianName;
-                    nameCategoryList.value = 'انتخاب کنید';
-                    nameSubCategoryList.value = [];
-                    nameSubCategoryListString.value = 'انتخاب کنید';
-                    idCategoryList.value = 0;
-                    idSubCategoryList.value = [];
+          width: MediaQuery.of(context).size.height / 2,
+          column: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              SearchWidget(
+                textFieldBorderSearch: BorderSide(
+                    width: AppSize.s0, color: ColorManager.white),
+                textFieldColor: ColorManager.gray1,
+                textInputType: TextInputType.text,
+                textFieldActive: false,
+                prefixIcon: SvgPicture.asset(fit: BoxFit.scaleDown,ImageAssets.search,width: AppSize.s16,height: AppSize.s16,),
+                textFieldHint: 'جست و جو',
+                textFieldController: mainTextFieldController,
+                onChanged: (q){
+                  searchMainGroup(q);
+                },
+              ),
+              const SizedBox(height: AppSize.s16),
+              Obx(() {
+                return SizedBox(
+                  height: MediaQuery.of(context).size.height / 2.5,
+                  child: ScrollBarWidget(
+                    controllerScrollBar: scrollControllerMainGroup,
+                    childUi: ListView.builder(
+                      controller: scrollControllerMainGroup,
+                      itemCount: list.length,
+                      itemBuilder: (context, index) {
+                        return InkWell(
+                          onTap: () {
+                            idMainCategoryList.value = mainCategoryList[index].id;
+                            nameMainCategoryList.value =
+                                mainCategoryList[index].persianName;
+                            nameCategoryList.value = 'انتخاب کنید';
+                            nameSubCategoryList.value = [];
+                            nameSubCategoryListString.value = 'انتخاب کنید';
+                            idCategoryList.value = 0;
+                            idSubCategoryList.value = [];
 
-                    // nameCompanyList.value = [];
-                    // nameCompanyListString.value = 'انتخاب کنید';
-                    // idCompanyList.value = [];
+                            // nameCompanyList.value = [];
+                            // nameCompanyListString.value = 'انتخاب کنید';
+                            // idCompanyList.value = [];
 
-                    GoRouter.of(context).pop();
-                  },
-                  child: SizedBox(
-                    height: AppSize.s40,
-                    child: Align(
-                      alignment: Alignment.center,
-                      child: Text(list[index].persianName,
-                        style: getMediumStyle(
-                            color: ColorManager.black, fontSize: AppSize.s14),
-                      ),
+                            GoRouter.of(context).pop();
+                          },
+                          child: SizedBox(
+                            height: AppSize.s40,
+                            child: Align(
+                              alignment: Alignment.center,
+                              child: Text(list[index].persianName,
+                                style: getMediumStyle(
+                                    color: ColorManager.black, fontSize: AppSize.s14),
+                              ),
+                            ),
+                          ),
+                        );
+                      },
                     ),
                   ),
                 );
-              },
-            );
-          }),
+              }),
+            ],
+          ),
         );
       },
     );
@@ -429,45 +461,64 @@ class AddGroupLogic extends GetxController {
       context: context,
       builder: (context) {
         return WidgetDialogList(
-          width: MediaQuery
-              .of(context)
-              .size
-              .height / 2,
-          height: MediaQuery
-              .of(context)
-              .size
-              .height / 4,
-          column: Obx(() {
-            return ListView.builder(
-              itemCount: list.length,
-              itemBuilder: (context, index) {
-                return InkWell(
-                  onTap: () {
-                    idCategoryList.value = categoryList[index].id;
-                    nameCategoryList.value = categoryList[index].persianName;
-                    nameSubCategoryList.value = [];
-                    nameSubCategoryListString.value = 'انتخاب کنید';
-                    idSubCategoryList.value = [];
+          width: MediaQuery.of(context).size.height / 2,
+          column: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              SearchWidget(
+                textFieldBorderSearch: BorderSide(
+                    width: AppSize.s0, color: ColorManager.white),
+                textFieldColor: ColorManager.gray1,
+                textInputType: TextInputType.text,
+                textFieldActive: false,
+                prefixIcon: SvgPicture.asset(fit: BoxFit.scaleDown,ImageAssets.search,width: AppSize.s16,height: AppSize.s16,),
+                textFieldHint: 'جست و جو',
+                textFieldController: groupTextFieldController,
+                onChanged: (q){
+                  searchGroup(q);
+                },
+              ),
+              const SizedBox(height: AppSize.s16),
+              Obx(() {
+                return SizedBox(
+                  height: MediaQuery.of(context).size.height / 2.5,
+                  child: ScrollBarWidget(
+                    controllerScrollBar: scrollControllerCompany,
+                    childUi: ListView.builder(
+                      controller: scrollControllerCompany,
+                      itemCount: list.length,
+                      itemBuilder: (context, index) {
+                        return InkWell(
+                          onTap: () {
+                            idCategoryList.value = categoryList[index].id;
+                            nameCategoryList.value = categoryList[index].persianName;
+                            nameSubCategoryList.value = [];
+                            nameSubCategoryListString.value = 'انتخاب کنید';
+                            idSubCategoryList.value = [];
 
-                    // nameCompanyList.value = [];
-                    // nameCompanyListString.value = 'انتخاب کنید';
-                    // idCompanyList.value = [];
-                    GoRouter.of(context).pop();
-                  },
-                  child: SizedBox(
-                    height: AppSize.s40,
-                    child: Align(
-                      alignment: Alignment.center,
-                      child: Text(list[index].persianName,
-                        style: getMediumStyle(
-                            color: ColorManager.black, fontSize: AppSize.s14),
-                      ),
+                            // nameCompanyList.value = [];
+                            // nameCompanyListString.value = 'انتخاب کنید';
+                            // idCompanyList.value = [];
+                            GoRouter.of(context).pop();
+                          },
+                          child: SizedBox(
+                            height: AppSize.s40,
+                            child: Align(
+                              alignment: Alignment.center,
+                              child: Text(list[index].persianName,
+                                style: getMediumStyle(
+                                    color: ColorManager.black, fontSize: AppSize.s14),
+                              ),
+                            ),
+                          ),
+                        );
+                      },
                     ),
                   ),
                 );
-              },
-            );
-          }),
+              }),
+            ],
+          ),
         );
       },
     );
@@ -477,51 +528,66 @@ class AddGroupLogic extends GetxController {
       context: context,
       builder: (context) {
         return WidgetDialogList(
-            width: MediaQuery
-                .of(context)
-                .size
-                .height / 2,
-            height: MediaQuery
-                .of(context)
-                .size
-                .height / 2,
+            width: MediaQuery.of(context).size.height / 2,
             column: Column(
+              mainAxisSize: MainAxisSize.min,
               children: [
+                SearchWidget(
+                  textFieldBorderSearch: BorderSide(
+                      width: AppSize.s0, color: ColorManager.white),
+                  textFieldColor: ColorManager.gray1,
+                  textInputType: TextInputType.text,
+                  textFieldActive: false,
+                  prefixIcon: SvgPicture.asset(fit: BoxFit.scaleDown,ImageAssets.search,width: AppSize.s16,height: AppSize.s16,),
+                  textFieldHint: 'جست و جو',
+                  textFieldController: subGroupTextFieldController,
+                  onChanged: (q){
+                    searchSubGroup(q);
+                  },
+                ),
+                const SizedBox(height: AppSize.s16),
                 Obx(() {
-                  return Expanded(child: ListView.builder(
-                    itemCount: list.length,
-                    itemBuilder: (context, index) {
-                      SubGroup item = list[index];
-                      final isSelected = false.obs;
-                      isSelected.value = item.id != item.id;
-                      isSelected.value = containsIdInList(idSubCategoryList, item.id);
-                      return Obx(() {
-                        return Padding(
-                          padding: const EdgeInsets.all(AppSize.s8),
-                          child: ItemListSubCategury(
-                            onTapCheckBoxAll: () {
-                              isSelected.value = !isSelected.value;
-                              if (isSelected.value) {
-                                idSubCategoryList.add(subCategoryList[index].id.toString());
-                                nameSubCategoryList.add(subCategoryList[index].persianName);
-                              } else {
-                                idSubCategoryList.remove(subCategoryList[index].id.toString());
-                                nameSubCategoryList.remove(subCategoryList[index].persianName);
-                              }
+                  return SizedBox(
+                    height: MediaQuery.of(context).size.height / 2.5,
+                    child: ScrollBarWidget(
+                      controllerScrollBar: scrollControllerSubGroup,
+                      childUi: ListView.builder(
+                        controller: scrollControllerSubGroup,
+                        itemCount: list.length,
+                        itemBuilder: (context, index) {
+                          SubGroup item = list[index];
+                          final isSelected = false.obs;
+                          isSelected.value = item.id != item.id;
+                          isSelected.value = containsIdInList(idSubCategoryList, item.id);
+                          return Obx(() {
+                            return Padding(
+                              padding: const EdgeInsets.all(AppSize.s8),
+                              child: ItemListSubCategury(
+                                onTapCheckBoxAll: () {
+                                  isSelected.value = !isSelected.value;
+                                  if (isSelected.value) {
+                                    idSubCategoryList.add(subCategoryList[index].id.toString());
+                                    nameSubCategoryList.add(subCategoryList[index].persianName);
+                                  } else {
+                                    idSubCategoryList.remove(subCategoryList[index].id.toString());
+                                    nameSubCategoryList.remove(subCategoryList[index].persianName);
+                                  }
 
-                              // if(isSelected.value == true){
-                              //   idUser.add(item.id);
-                              // }else{
-                              //   idUser.remove(item.id);
-                              // }
-                            },
-                            name: list[index].persianName,
-                            itemsActive: isSelected.value,
-                          ),
-                        );
-                      });
-                    },
-                  ));
+                                  // if(isSelected.value == true){
+                                  //   idUser.add(item.id);
+                                  // }else{
+                                  //   idUser.remove(item.id);
+                                  // }
+                                },
+                                name: list[index].persianName,
+                                itemsActive: isSelected.value,
+                              ),
+                            );
+                          });
+                        },
+                      ),
+                    ),
+                  );
                 }),
                 const SizedBox(height: AppSize.s24),
                 Btn(
@@ -537,7 +603,7 @@ class AddGroupLogic extends GetxController {
                   borderSideColorBtn: ColorManager.yellow,
                 ),
               ],
-            )
+            ),
         );
       },
     );
@@ -547,66 +613,81 @@ class AddGroupLogic extends GetxController {
       context: context,
       builder: (context) {
         return WidgetDialogList(
-            width: MediaQuery
-                .of(context)
-                .size
-                .height / 2,
-            height: MediaQuery
-                .of(context)
-                .size
-                .height / 2,
-            column: Column(
-              children: [
-                Obx(() {
-                  return Expanded(child: ListView.builder(
-                    itemCount: list.length,
-                    itemBuilder: (context, index) {
-                      Company item = list[index];
-                      final isSelected = false.obs;
-                      isSelected.value = item.id != item.id;
-                      isSelected.value = containsIdInList(idCompanyList, item.id);
-                      return Obx(() {
-                        return Padding(
-                          padding: const EdgeInsets.all(AppSize.s8),
-                          child: ItemListSubCategury(
-                            onTapCheckBoxAll: () {
-                              isSelected.value = !isSelected.value;
-                              if (isSelected.value) {
-                                idCompanyList.add(companyList[index].id.toString());
-                                nameCompanyList.add(companyList[index].persianName);
-                              } else {
-                                idCompanyList.remove(companyList[index].id.toString());
-                                nameCompanyList.remove(companyList[index].persianName);
-                              }
-                              // if(isSelected.value == true){
-                              //   idUser.add(item.id);
-                              // }else{
-                              //   idUser.remove(item.id);
-                              // }
-                            },
-                            name: list[index].persianName,
-                            itemsActive: isSelected.value,
-                          ),
-                        );
-                      });
-                    },
-                  ));
-                }),
-                const SizedBox(height: AppSize.s24),
-                Btn(
-                  buttonColorBtn: ColorManager.yellow,
-                  onPress: () {
-                    nameCompanyListString.value = nameCompanyList.join(', ');
-                    GoRouter.of(context).pop();
-                  },
-                  text: 'افزودن',
-                  heightBtn: AppSize.s48,
-                  borderRadiusBtn: AppSize.s8,
-                  buttonTextColorBtn: ColorManager.black,
-                  borderSideColorBtn: ColorManager.yellow,
-                ),
-              ],
-            )
+          width: MediaQuery.of(context).size.height / 2,
+          column: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              SearchWidget(
+                textFieldBorderSearch: BorderSide(
+                    width: AppSize.s0, color: ColorManager.white),
+                textFieldColor: ColorManager.gray1,
+                textInputType: TextInputType.text,
+                textFieldActive: false,
+                prefixIcon: SvgPicture.asset(fit: BoxFit.scaleDown,ImageAssets.search,width: AppSize.s16,height: AppSize.s16,),
+                textFieldHint: 'جست و جو',
+                textFieldController: companyTextFieldController,
+                onChanged: (q){
+                  searchCompany(q);
+                },
+              ),
+              const SizedBox(height: AppSize.s16),
+              Obx(() {
+                return SizedBox(
+                  height: MediaQuery.of(context).size.height / 2.5,
+                    child: ScrollBarWidget(
+                      controllerScrollBar: scrollControllerCompany,
+                      childUi: ListView.builder(
+                        controller: scrollControllerCompany,
+                        itemCount: list.length,
+                        itemBuilder: (context, index) {
+                          Company item = list[index];
+                          final isSelected = false.obs;
+                          isSelected.value = item.id != item.id;
+                          isSelected.value = containsIdInList(idCompanyList, item.id);
+                          return Obx(() {
+                            return Padding(
+                              padding: const EdgeInsets.all(AppSize.s8),
+                              child: ItemListSubCategury(
+                                onTapCheckBoxAll: () {
+                                  isSelected.value = !isSelected.value;
+                                  if (isSelected.value) {
+                                    idCompanyList.add(companyList[index].id.toString());
+                                    nameCompanyList.add(companyList[index].persianName);
+                                  } else {
+                                    idCompanyList.remove(companyList[index].id.toString());
+                                    nameCompanyList.remove(companyList[index].persianName);
+                                  }
+                                  // if(isSelected.value == true){
+                                  //   idUser.add(item.id);
+                                  // }else{
+                                  //   idUser.remove(item.id);
+                                  // }
+                                },
+                                name: list[index].persianName,
+                                itemsActive: isSelected.value,
+                              ),
+                            );
+                          });
+                        },
+                      ),
+                    ),
+                );
+              }),
+              const SizedBox(height: AppSize.s24),
+              Btn(
+                buttonColorBtn: ColorManager.yellow,
+                onPress: () {
+                  nameCompanyListString.value = nameCompanyList.join(', ');
+                  GoRouter.of(context).pop();
+                },
+                text: 'افزودن',
+                heightBtn: AppSize.s48,
+                borderRadiusBtn: AppSize.s8,
+                buttonTextColorBtn: ColorManager.black,
+                borderSideColorBtn: ColorManager.yellow,
+              ),
+            ],
+          ),
         );
       },
     );
@@ -621,6 +702,7 @@ class AddGroupLogic extends GetxController {
     final mainGroupList = mainGroup.map((item) => MainGroup.fromJson(item))
         .toList();
     mainCategoryList.assignAll(mainGroupList);
+    mainCategoryListSearch.assignAll(mainGroupList);
     // mainCategoryList.add(MainGroup(
     //     icon: null, description: '', id: 0, persianName: AppString.all));
     mainCategoryList.sort((a, b) => a.id.compareTo(b.id));
@@ -636,6 +718,7 @@ class AddGroupLogic extends GetxController {
         .toList();
     final groupList = group.map((item) => Group.fromJson(item)).toList();
     categoryList.assignAll(groupList);
+    categoryListSearch.assignAll(groupList);
     // categoryList.add(
     //     Group(description: '', id: 0, persianName: AppString.all, parentId: 0));
     categoryList.sort((a, b) => a.id.compareTo(b.id));
@@ -650,6 +733,7 @@ class AddGroupLogic extends GetxController {
     final subGroup = MyPreferences.getSubGroup().values.toList();
     final subGroupList = subGroup.map((item) => SubGroup.fromJson(item)).toList();
     subCategoryList.assignAll(subGroupList);
+    subCategoryListSearch.assignAll(subGroupList);
     // subCategoryList.add(SubGroup(description: '', id: 0, persianName: AppString.all, parentId: 0));
     subCategoryList.sort((a, b) => a.id.compareTo(b.id));
 
@@ -684,6 +768,7 @@ class AddGroupLogic extends GetxController {
     final subGroup = MyPreferences.getCompany().values.toList();
     final subGroupList = subGroup.map((item) => Company.fromJson(item)).toList();
     companyList.assignAll(subGroupList);
+    companyListSearch.assignAll(subGroupList);
     // subCategoryList.add(SubGroup(description: '', id: 0, persianName: AppString.all, parentId: 0));
     companyList.sort((a, b) => a.id.compareTo(b.id));
 
@@ -710,6 +795,7 @@ class AddGroupLogic extends GetxController {
     final mainGroupList = mainGroup.map((item) => MainGroup.fromJson(item))
         .toList();
     mainCategoryList.assignAll(mainGroupList);
+    mainCategoryListSearch.assignAll(mainGroupList);
     // mainCategoryList.add(MainGroup(
     //     icon: null, description: '', id: 0, persianName: AppString.all));
     mainCategoryList.sort((a, b) => a.id.compareTo(b.id));
@@ -720,8 +806,8 @@ class AddGroupLogic extends GetxController {
         .values
         .toList();
     final groupList = group.map((item) => Group.fromJson(item)).toList();
-    categoryList.assignAll(
-        groupList.where((item) => item.parentId == mainCategoryId).toList());
+    categoryList.assignAll(groupList.where((item) => item.parentId == mainCategoryId).toList());
+    categoryListSearch.assignAll(groupList.where((item) => item.parentId == mainCategoryId).toList());
     // categoryList.add(
     //     Group(parentId: 0, description: '', id: 0, persianName: AppString.all));
     categoryList.sort((a, b) => a.id.compareTo(b.id));
@@ -731,6 +817,7 @@ class AddGroupLogic extends GetxController {
     final subGroupList = subGroup.map((item) => SubGroup.fromJson(item))
         .toList();
     subCategoryList.assignAll(subGroupList.where((item) => item.parentId == subCategoryId).toList());
+    subCategoryListSearch.assignAll(subGroupList.where((item) => item.parentId == subCategoryId).toList());
     // subCategoryList.add(SubGroup(
     //     parentId: 0, description: '', id: 0, persianName: AppString.all));
     subCategoryList.sort((a, b) => a.id.compareTo(b.id));
@@ -749,6 +836,7 @@ class AddGroupLogic extends GetxController {
     final companyGroup = MyPreferences.getCompany().values.toList();
     final companyGroupList = companyGroup.map((item) => Company.fromJson(item)).toList();
     companyList.assignAll(companyGroupList);
+    companyListSearch.assignAll(companyGroupList);
     // mainCategoryList.add(MainGroup(
     //     icon: null, description: '', id: 0, persianName: AppString.all));
     // companyList.sort((a, b) => a.id.compareTo(b.id));
@@ -769,6 +857,7 @@ class AddGroupLogic extends GetxController {
     final subGroup = MyPreferences.getSubGroup().values.toList();
     final subGroupList = subGroup.map((item) => SubGroup.fromJson(item)).toList();
     subCategoryList.assignAll(subGroupList);
+    subCategoryListSearch.assignAll(subGroupList);
     // subCategoryList.add(SubGroup(description: '', id: 0, persianName: AppString.all, parentId: 0));
     subCategoryList.sort((a, b) => a.id.compareTo(b.id));
 
@@ -788,6 +877,7 @@ class AddGroupLogic extends GetxController {
     final subGroup = MyPreferences.getCompany().values.toList();
     final subGroupList = subGroup.map((item) => Company.fromJson(item)).toList();
     companyList.assignAll(subGroupList);
+    companyListSearch.assignAll(subGroupList);
     // subCategoryList.add(SubGroup(description: '', id: 0, persianName: AppString.all, parentId: 0));
     companyList.sort((a, b) => a.id.compareTo(b.id));
 
@@ -810,10 +900,10 @@ class AddGroupLogic extends GetxController {
                 .of(context)
                 .size
                 .width / 2,
-            height: MediaQuery
-                .of(context)
-                .size
-                .height / 1.2,
+            // height: MediaQuery
+            //     .of(context)
+            //     .size
+            //     .height / 1.2,
             column: Column(
               children: [
                 Row(
@@ -981,6 +1071,62 @@ class AddGroupLogic extends GetxController {
       addMemberLogic.listUser.addAll(addMemberLogic.listUserSearch);
     }
   }
+  void searchMainGroup(String query) {
+    final input = query.toLowerCase();
+    if (input.isNotEmpty) {
+      final suggestions = mainCategoryListSearch.where((all) {
+        final persianName = all.persianName.toLowerCase();
+        return persianName.contains(input);
+      }).toList();
+      mainCategoryList.clear();
+      mainCategoryList.addAll(suggestions);
+    } else {
+      mainCategoryList.clear();
+      mainCategoryList.addAll(mainCategoryListSearch);
+    }
+  }
+  void searchGroup(String query) {
+    final input = query.toLowerCase();
+    if (input.isNotEmpty) {
+      final suggestions = categoryListSearch.where((all) {
+        final persianName = all.persianName.toLowerCase();
+        return persianName.contains(input);
+      }).toList();
+      categoryList.clear();
+      categoryList.addAll(suggestions);
+    } else {
+      categoryList.clear();
+      categoryList.addAll(categoryListSearch);
+    }
+  }
+  void searchSubGroup(String query) {
+    final input = query.toLowerCase();
+    if (input.isNotEmpty) {
+      final suggestions = subCategoryListSearch.where((all) {
+        final persianName = all.persianName.toLowerCase();
+        return persianName.contains(input);
+      }).toList();
+      subCategoryList.clear();
+      subCategoryList.addAll(suggestions);
+    } else {
+      subCategoryList.clear();
+      subCategoryList.addAll(subCategoryListSearch);
+    }
+  }
+  void searchCompany(String query) {
+    final input = query.toLowerCase();
+    if (input.isNotEmpty) {
+      final suggestions = companyListSearch.where((all) {
+        final persianName = all.persianName.toLowerCase();
+        return persianName.contains(input);
+      }).toList();
+      companyList.clear();
+      companyList.addAll(suggestions);
+    } else {
+      companyList.clear();
+      companyList.addAll(companyListSearch);
+    }
+  }
 
   void showAutoDismissDialog(BuildContext context) {
     showDialog(
@@ -991,7 +1137,7 @@ class AddGroupLogic extends GetxController {
         });
         return WidgetDialogList(
             width: MediaQuery.of(context).size.width / 4,
-            height: AppSize.s64,
+            // height: AppSize.s64,
             column: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
