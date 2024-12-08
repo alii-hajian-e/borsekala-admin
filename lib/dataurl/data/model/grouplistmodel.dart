@@ -9,6 +9,8 @@ class GroupList {
     this.hallId,
     this.createdAt,
     this.manufacturer,
+    this.cronJobTime,
+    this.cronJobFutureDays,
   });
 
   GroupList.fromJson(Map<String, dynamic> json) {
@@ -21,6 +23,8 @@ class GroupList {
     hallId = json['hall_id'] ?? 0;
     createdAt = json['created_at'] ?? '';
     manufacturer = json['manufacturer'] ?? '';
+    cronJobTime = json['cron_job_time'] ?? '';
+    cronJobFutureDays = json['cron_job_future_days'] ?? '';
 
   }
 
@@ -33,6 +37,8 @@ class GroupList {
   int? hallId;
   String? createdAt;
   String? manufacturer;
+  int? cronJobTime;
+  int? cronJobFutureDays;
 
 
   Map<String, dynamic> toJson() {
@@ -46,6 +52,8 @@ class GroupList {
     data['hall_id'] = hallId;
     data['created_at'] = createdAt;
     data['manufacturer'] = manufacturer;
+    data['cron_job_time'] = cronJobTime;
+    data['cron_job_future_days'] = cronJobFutureDays;
 
     return data;
   }

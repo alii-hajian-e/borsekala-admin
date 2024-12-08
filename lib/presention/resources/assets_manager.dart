@@ -24,4 +24,6 @@ class ImageAssets{
   static const String password = "$IMAGE_PATH/Password.svg";
   static const String engin = "$IMAGE_PATH/engin.svg";
   static const String download = "$IMAGE_PATH/Download.svg";
+  static const String calendar = "$IMAGE_PATH/Calendar.svg";
+  static const String timeCircle = "$IMAGE_PATH/Time Circle.svg";
 }

@@ -23,6 +23,7 @@ class NavbarSettingLogic extends GetxController {
   final selectedIndex1 = false.obs;
   final selectedIndex2 = false.obs;
   final selectedIndex3 = false.obs;
+  final selectedIndex4 = false.obs;
   ScrollController scrollController = ScrollController();
   final homeSettingLogic = Get.put(HomeSettingLogic());
   final AppApiPanel apiServicePanelSetting = AppApiPanel();

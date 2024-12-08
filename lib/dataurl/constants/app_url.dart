@@ -21,4 +21,5 @@ class AppUrl {
 
   static const String adminList = '$baseUrl/account/api/v1/users/';
   static const String profileAdmin = '$baseUrl/account/api/v1/profile/';
+  static const String downloadFile = '$baseUrl/generator/generate-file/';
 }

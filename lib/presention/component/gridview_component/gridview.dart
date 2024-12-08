@@ -67,11 +67,20 @@ class GridViewPage extends StatelessWidget {
               TradingHall findTradingHallById = GetDateGroupApi().findTradingHallById(fetchGroupList.hallId);
               DateTime dateTime = DateTime.parse(fetchGroupList.createdAt.toString());
               Jalali jalaliDate = Jalali.fromDateTime(dateTime);
+
               return ItemListCategory(
                 visibleBtn: visibleBtn,
                 visibleEdit: visibleEdit,
                 visibleBtnSms: visibleBtnSms,
-                onPressDownloadFile: (){},
+                onPressDownloadFile: (){
+                  filterData(index: index, id: fetchGroupList.id.toString(), context: context, validDownload: true);
+                  // homeLogic.validDownload.value = true;
+                  // homeLogic.filterDataOffer(
+                  //   id: fetchGroupList.id,
+                  //   context: context,
+                  //   data: 'start_date=${startData2.value.replaceAll('00:00:00.000', '')}&end_date=${endDate2.value.replaceAll(' 00:00:00.000', '')}&main=${mainGroup2.toString()}&group=${group2.toString()}&sub=${subGroup2.toString()}&hall=${hallId2.toString()}&page=1&manufacturer=${manufacturer2.toString()}&search=',
+                  // );
+                },
                 onPressBtnDelete: (){
                   addGroupLogic.dialogEducation(context, fetchGroupList.id);
                 },
@@ -164,27 +173,10 @@ class GridViewPage extends StatelessWidget {
                   );
                 },
                 onPressBtnSms: (){
-                  final group = items[index].group;
-                  final hallId = items[index].hallId;
-                  final mainGroup = items[index].mainGroup;
-                  final manufacturer = items[index].manufacturer;
-                  final subGroup = items[index].subGroup;
-                  final startData = Jalali.now().toDateTime().toString().obs;
-                  final endDate = Jalali.now().toDateTime().toString().obs;
-
-                  startData.value = Jalali.now().toDateTime().toString();
-                  Jalali oneMonthLater = Jalali.now().addDays(2);
-                  endDate.value = oneMonthLater.toDateTime().toString();
-
                   if(fetchGroupList.userCount != 0){
                     Alert(txt: 'لطفا صبر کنید', color: ColorManager.black, backgroundColor: ColorManager.yellow).showSnackBar(context);
                     // homeLogic.sendSMS(fetchGroupList.id,context);
-                    homeLogic.filterDataOffer(
-                      id: fetchGroupList.id,
-                      context: context,
-                      data: 'start_date=${startData.value.replaceAll('00:00:00.000', '')}&end_date=${endDate.value.replaceAll(' 00:00:00.000', '')}&main=${mainGroup.toString()}&group=${group.toString()}&sub=${subGroup.toString()}&hall=${hallId.toString()}&page=1&manufacturer=${manufacturer.toString()}&search=',
-                    );
-
+                    filterData(index: index, id: fetchGroupList.id.toString(), context: context, validDownload: false);
                   }else{
                     Alert(txt: 'هیچ کاربری به گروه اضافه نشده است', color: ColorManager.white, backgroundColor: ColorManager.red).showSnackBar(context);
                   }
@@ -222,6 +214,26 @@ class GridViewPage extends StatelessWidget {
       default:
         return addGroupLogic.fetchCompanyEdit(fetchGroupList);
     }
+  }
+  void filterData({required int index , required String id,required context , required bool validDownload}){
+    final group2 = items[index].group;
+    final hallId2 = items[index].hallId;
+    final mainGroup2 = items[index].mainGroup;
+    final manufacturer2 = items[index].manufacturer;
+    final subGroup2 = items[index].subGroup;
+    final startData2 = Jalali.now().toDateTime().toString().obs;
+    final endDate2 = Jalali.now().toDateTime().toString().obs;
+
+    startData2.value = Jalali.now().toDateTime().toString();
+    Jalali oneMonthLater2 = Jalali.now().addDays(2);
+    endDate2.value = oneMonthLater2.toDateTime().toString();
+    homeLogic.validDownload.value = validDownload;
+
+    homeLogic.filterDataOffer(
+      id: id,
+      context: context,
+      data: 'start_date=${startData2.value.replaceAll('00:00:00.000', '')}&end_date=${endDate2.value.replaceAll(' 00:00:00.000', '')}&main=${mainGroup2.toString()}&group=${group2.toString()}&sub=${subGroup2.toString()}&hall=${hallId2.toString()}&page=1&manufacturer=${manufacturer2.toString()}&search=',
+    );
   }
   void dialogEducation(
       {context, name, grouping, mainCategory, nameGroup, number, subset, company, visibleBtnUser, onPressAddUser}){

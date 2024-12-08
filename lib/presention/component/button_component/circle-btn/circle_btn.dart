@@ -15,7 +15,7 @@ class CircleButton extends WidgetButtonCircle {
   final double heightCircle;
   final double appSize;
 
-  const CircleButton({super.key,required this.appSize,required this.widthCircle, required this.heightCircle, required this.buttonColorCircle, required this.onPress, required this.icons, required this.colors , required this.bordersSide , required this.borderSideColors})
+  const CircleButton({super.key,required this.colors,required this.appSize,required this.widthCircle, required this.heightCircle, required this.buttonColorCircle, required this.onPress, required this.icons , required this.bordersSide , required this.borderSideColors})
       : super(
     // width: widthCircle,
     // height: heightCircle,

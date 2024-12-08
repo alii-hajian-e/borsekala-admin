@@ -9,6 +9,8 @@ import '../../../component/item_drow_component/iteme-drow-component.dart';
 import '../../../resources/assets_manager.dart';
 import '../../../resources/color_manager.dart';
 import '../../../resources/value_manager.dart';
+import '../dayGroup/view.dart';
+import '../timeGroup/view.dart';
 import '../transaction/view.dart';
 import 'logic.dart';
 
@@ -21,6 +23,8 @@ class NavbarSettingPage extends StatelessWidget {
     HomeSettingPage(),
     TransactionPage(),
     AdminPage(),
+    DayGroupPage(),
+    TimeGroupPage(),
   ];
 
   @override
@@ -47,6 +51,7 @@ class NavbarSettingPage extends StatelessWidget {
                       logic.selectedIndex1.value = false;
                       logic.selectedIndex2.value = false;
                       logic.selectedIndex3.value = false;
+                      logic.selectedIndex4.value = false;
                     },
                     selected: logic.selectedIndex.value,
                   );
@@ -66,6 +71,7 @@ class NavbarSettingPage extends StatelessWidget {
                       logic.selectedIndex1.value = true;
                       logic.selectedIndex2.value = false;
                       logic.selectedIndex3.value = false;
+                      logic.selectedIndex4.value = false;
                     },
                     selected: logic.selectedIndex1.value,
                   );
@@ -85,8 +91,49 @@ class NavbarSettingPage extends StatelessWidget {
                       logic.selectedIndex1.value = false;
                       logic.selectedIndex2.value = true;
                       logic.selectedIndex3.value = false;
+                      logic.selectedIndex4.value = false;
                     },
                     selected: logic.selectedIndex2.value,
+                  );
+                }),
+                const SizedBox(height: AppSize.s8),
+                Obx(() {
+                  return DrawerNavigationItem(
+                    colorTxt: ColorManager.black,
+                    iconData: SvgPicture.asset(fit: BoxFit.scaleDown,
+                        ImageAssets.calendar,
+                        width: AppSize.s24,
+                        height: AppSize.s24),
+                    title: "مدیریت جست و جو",
+                    onTap: () {
+                      logic.changeIndex(3);
+                      logic.selectedIndex.value = false;
+                      logic.selectedIndex1.value = false;
+                      logic.selectedIndex2.value = false;
+                      logic.selectedIndex3.value = true;
+                      logic.selectedIndex4.value = false;
+                    },
+                    selected: logic.selectedIndex3.value,
+                  );
+                }),
+                const SizedBox(height: AppSize.s8),
+                Obx(() {
+                  return DrawerNavigationItem(
+                    colorTxt: ColorManager.black,
+                    iconData: SvgPicture.asset(fit: BoxFit.scaleDown,
+                        ImageAssets.timeCircle,
+                        width: AppSize.s24,
+                        height: AppSize.s24),
+                    title: "مدیریت ارسال پیامک",
+                    onTap: () {
+                      logic.changeIndex(4);
+                      logic.selectedIndex.value = false;
+                      logic.selectedIndex1.value = false;
+                      logic.selectedIndex2.value = false;
+                      logic.selectedIndex3.value = false;
+                      logic.selectedIndex4.value = true;
+                    },
+                    selected: logic.selectedIndex4.value,
                   );
                 }),
               ],

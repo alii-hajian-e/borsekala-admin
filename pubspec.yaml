@@ -45,6 +45,8 @@ dependencies:
   pdf: ^3.11.1
   syncfusion_flutter_xlsio: ^27.2.4
   persian_datetime_picker: ^2.7.0
+  url_launcher: ^6.3.1
+
 
 dev_dependencies:
   flutter_test:
@@ -89,6 +91,8 @@ flutter:
     - assets/image/Password.svg
     - assets/image/engin.svg
     - assets/image/Download.svg
+    - assets/image/Calendar.svg
+    - assets/image/Time Circle.svg
 
   fonts:
     - family: IranSans
