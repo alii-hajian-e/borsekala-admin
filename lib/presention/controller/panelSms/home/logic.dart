@@ -1,5 +1,6 @@
-// ignore_for_file: avoid_web_libraries_in_flutter, deprecated_member_use
+// ignore_for_file: avoid_web_libraries_in_flutter, deprecated_member_use, use_build_context_synchronously
 
+import 'dart:convert';
 import 'dart:js';
 import 'package:bors_web_admin_sms/presention/component/button_component/btn/_btn.dart';
 import 'package:bors_web_admin_sms/presention/component/error/error_overlay.dart';
@@ -38,12 +39,9 @@ class HomeLogic extends GetxController with StateMixin<dynamic> {
   final List results = [];
 
   final selectedType = "pdf".obs;
-  // final selectedType = "پی دی اف".obs;
-  final selectedTheme = "Minimal".obs;
-  // final selectedTheme = "مینیمال".obs;
+  // final selectedTheme = "Minimal".obs;
 
-  final List<String> availableThemes = ["Minimal", "Colorful", "Advanced"].obs;
-  // final List<String> availableThemes = ["مینیمال", "رنگارنگ", "پیشرفته"].obs;
+  // final List<String> availableThemes = ["Minimal", "Colorful", "Advanced"].obs;
   final List<String> availableColumns = [
     "id",
     "commodityId_text",
@@ -86,47 +84,6 @@ class HomeLogic extends GetxController with StateMixin<dynamic> {
     "tradeStatus",
     "description"
   ].obs;
-  // final List<String> availableColumns = [
-  //   "شناسه کالا",
-  //   "تالار معامله",
-  //   "روش خرید",
-  //   "کارگزار",
-  //   "نوع قرارداد",
-  //   "واحد پول",
-  //   "محل تحویل",
-  //   "قیمت پایه",
-  //   "حجم پایه",
-  //   "اندازه هر بسته",
-  //   "تولیدکننده",
-  //   "حداکثر قیمت پایه",
-  //   "حداکثر افزایش حجم پیشنهاد",
-  //   "حداکثر حجم سفارش",
-  //   "حداکثر قیمت پیشنهاد",
-  //   "واحد اندازه‌گیری",
-  //   "حداقل تخصیص حجم",
-  //   "حداقل حجم پیشنهاد",
-  //   "حداقل قیمت پایه",
-  //   "حداقل حجم سفارش",
-  //   "حداقل قیمت پیشنهاد",
-  //   "حالت پیشنهاد",
-  //   "نوع پیشنهاد",
-  //   "حجم پیشنهاد",
-  //   "نوع بسته‌بندی",
-  //   "خطای مجاز",
-  //   "حداقل حجم سفارش کشف قیمت",
-  //   "درصد پیش‌پرداخت",
-  //   "نوع اوراق بهادار",
-  //   "نوع تسویه",
-  //   "تأمین‌کننده",
-  //   "واحد تغییر قیمت",
-  //   "وزن کالا",
-  //   "تاریخ تحویل",
-  //   "تاریخ پیشنهاد",
-  //   "تالار عرضه",
-  //   "نماد پیشنهاد",
-  //   "وضعیت معامله",
-  //   "شرح محصول"
-  // ].obs;
 
   final downloadUrl = ''.obs;
   final selectedColumns = [].obs;
@@ -290,37 +247,48 @@ class HomeLogic extends GetxController with StateMixin<dynamic> {
         textColor: ColorManager.white,
       );
     }
-    final fileData = {
+    final fileData = jsonEncode({
       "type": selectedType.value,
       "columns": selectedColumns,
-      "theme": selectedTheme.value,
+      // "theme": selectedTheme.value, // ارسال تم
       "data": jsonData,
-    };
+    });
     await fileDownload(data: fileData, context: context);
   }
-
-  Future<void> fileDownload({Map<String, dynamic>? data, context}) async {
+  Future<void> fileDownload({
+    required String data,
+    required BuildContext context,
+  }) async {
     try {
-      final response = await apiServicePanel.post(
-        url: AppUrl.downloadFile,
+      final response = await Dio().post(
+        AppUrl.downloadFile,
         data: data,
-        options: Options(headers: {"Content-Type": "application/json"}),
+        options: Options(
+          headers: {
+            "Content-Type": "application/json",
+          },
+        ),
       );
 
       if (response.statusCode == 200) {
         final filePath = response.data["file_path"];
-        downloadUrl.value = "https://panel.ibrokers.ir/generator/download-file/?file_path=$filePath";
+        downloadUrl.value =
+        "https://panel.ibrokers.ir/generator/download-file/?file_path=$filePath";
+      } else {
+        Alert(
+          txt: 'خطا در تولید فایل: ${response.statusMessage}',
+          color: ColorManager.white,
+          backgroundColor: ColorManager.red,
+        ).showSnackBar(context);
       }
     } on DioException catch (e) {
       Alert(
-        txt: 'اطلاعات وارد شده اشتباه است',
+        txt: 'خطا در ارسال اطلاعات: ${e.message}',
         color: ColorManager.white,
         backgroundColor: ColorManager.red,
       ).showSnackBar(context);
     }
   }
-
-  //dialog pdf and excel file
   void showDownloadFileDialog(BuildContext context) {
     showDialog(
       context: context,
@@ -406,35 +374,35 @@ class HomeLogic extends GetxController with StateMixin<dynamic> {
                                   .toList(),
                             ),
                           ),
-                          const SizedBox(width: AppSize.s32),
-                          Text("انتخاب تم فایل:", style: getMediumStyle(
-                              color: ColorManager.black.withOpacity(0.6),
-                              fontSize: AppSize.s14),),
-                          const SizedBox(width: AppSize.s16),
-                          Container(
-                            height: AppSize.s40,
-                            padding: const EdgeInsets.symmetric(horizontal: AppPadding.p16),
-                            decoration: BoxDecoration(
-                              border: Border.all(color: ColorManager.black.withOpacity(0.4),width: AppSize.s1),
-                              borderRadius: const BorderRadius.all(Radius.circular(AppSize.s8)),
-                            ),
-                            child: DropdownButton<String>(
-                              underline: const SizedBox(),
-                              value: selectedTheme.value,
-                              onChanged: (value) {
-                                selectedTheme.value = value!;
-                              },
-                              items: availableThemes
-                                  .map((theme) =>
-                                  DropdownMenuItem(
-                                    value: theme,
-                                    child: Text(theme, style: getMediumStyle(
-                                        color: ColorManager.black,
-                                        fontSize: AppSize.s14),),
-                                  ))
-                                  .toList(),
-                            ),
-                          ),
+                          // const SizedBox(width: AppSize.s32),
+                          // Text("انتخاب تم فایل:", style: getMediumStyle(
+                          //     color: ColorManager.black.withOpacity(0.6),
+                          //     fontSize: AppSize.s14),),
+                          // const SizedBox(width: AppSize.s16),
+                          // Container(
+                          //   height: AppSize.s40,
+                          //   padding: const EdgeInsets.symmetric(horizontal: AppPadding.p16),
+                          //   decoration: BoxDecoration(
+                          //     border: Border.all(color: ColorManager.black.withOpacity(0.4),width: AppSize.s1),
+                          //     borderRadius: const BorderRadius.all(Radius.circular(AppSize.s8)),
+                          //   ),
+                          //   child: DropdownButton<String>(
+                          //     underline: const SizedBox(),
+                          //     value: selectedTheme.value,
+                          //     onChanged: (value) {
+                          //       selectedTheme.value = value!;
+                          //     },
+                          //     items: availableThemes
+                          //         .map((theme) =>
+                          //         DropdownMenuItem(
+                          //           value: theme,
+                          //           child: Text(theme, style: getMediumStyle(
+                          //               color: ColorManager.black,
+                          //               fontSize: AppSize.s14),),
+                          //         ))
+                          //         .toList(),
+                          //   ),
+                          // ),
                         ],
                       ),
                       Row(
@@ -442,17 +410,17 @@ class HomeLogic extends GetxController with StateMixin<dynamic> {
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: [
                           if(selectedColumns.isNotEmpty)
-                          Btn(
-                            buttonColorBtn: downloadUrl.value.isEmpty ? ColorManager.yellow : ColorManager.gray,
-                            onPress: () => downloadUrl.value.isEmpty ? generateFile(context: context) : null,
-                            text: "ایجاد فایل",
-                            heightBtn: AppSize.s40,
-                            borderRadiusBtn: AppSize.s8,
-                            buttonTextColorBtn: downloadUrl.value.isEmpty ? ColorManager.black : ColorManager.black.withOpacity(0.6),
-                            borderSideColorBtn: downloadUrl.value.isEmpty ? ColorManager.yellow : ColorManager.gray,
-                          ),
+                            Btn(
+                              buttonColorBtn: downloadUrl.value.isEmpty ? ColorManager.yellow : ColorManager.gray,
+                              onPress: () => downloadUrl.value.isEmpty ? generateFile(context: context) : null,
+                              text: "ایجاد فایل",
+                              heightBtn: AppSize.s40,
+                              borderRadiusBtn: AppSize.s8,
+                              buttonTextColorBtn: downloadUrl.value.isEmpty ? ColorManager.black : ColorManager.black.withOpacity(0.6),
+                              borderSideColorBtn: downloadUrl.value.isEmpty ? ColorManager.yellow : ColorManager.gray,
+                            ),
                           if (downloadUrl.value.isNotEmpty)
-                          const SizedBox(width: AppSize.s24),
+                            const SizedBox(width: AppSize.s24),
                           if (downloadUrl.value.isNotEmpty)
                             Btn(
                               buttonColorBtn: ColorManager.yellow,
@@ -515,226 +483,28 @@ class HomeLogic extends GetxController with StateMixin<dynamic> {
       },
     );
   }
+  // Future<void> fileDownload({Map<String, dynamic>? data, context}) async {
+  //   try {
+  //     final response = await apiServicePanel.post(
+  //       url: AppUrl.downloadFile,
+  //       data: data,
+  //       options: Options(headers: {"Content-Type": "application/json"}),
+  //     );
+  //
+  //     if (response.statusCode == 200) {
+  //       final filePath = response.data["file_path"];
+  //       downloadUrl.value = "https://panel.ibrokers.ir/generator/download-file/?file_path=$filePath";
+  //     }
+  //   } on DioException catch (e) {
+  //     Alert(
+  //       txt: 'اطلاعات وارد شده اشتباه است',
+  //       color: ColorManager.white,
+  //       backgroundColor: ColorManager.red,
+  //     ).showSnackBar(context);
+  //   }
+  // }
 
-// // create pdf and excel file or download
-// Future<void> createPdfForWeb(BuildContext context) async {
-//   isGenerating.value = true;
-//
-//   final pdf = await _generatePdf();
-//   final bytes = await pdf.save();
-//
-//   final blob = html.Blob([bytes], 'application/pdf');
-//   final url = html.Url.createObjectUrlFromBlob(blob);
-//
-//   fileUrl.value = url;
-//   isGenerating.value = false;
-//   isReady.value = true;
-//   isReady2.value = false;
-// }
-//
-// void createExcelForWeb() async {
-//   final xls.Workbook workbook = xls.Workbook();
-//   final xls.Worksheet sheet = workbook.worksheets[0];
-//
-//   int rowIndex = 1;
-//
-//   for (var item in jsonData) {
-//     sheet.getRangeByIndex(rowIndex, 1, rowIndex, 2).merge();
-//     sheet.getRangeByIndex(rowIndex, 1).setText('آیتم ${rowIndex ~/ 2 + 1}');
-//     sheet
-//         .getRangeByIndex(rowIndex, 1)
-//         .cellStyle
-//         .bold = true;
-//     sheet
-//         .getRangeByIndex(rowIndex, 1)
-//         .cellStyle
-//         .fontSize = 14;
-//     rowIndex++;
-//
-//     item.forEach((key, value) {
-//       String persianKey = _convertToPersianKey(key);
-//       sheet.getRangeByIndex(rowIndex, 1).setText(persianKey);
-//       sheet.getRangeByIndex(rowIndex, 2).setText(value.toString());
-//       sheet
-//           .getRangeByIndex(rowIndex, 1)
-//           .cellStyle
-//           .hAlign = xls.HAlignType.right;
-//       sheet
-//           .getRangeByIndex(rowIndex, 2)
-//           .cellStyle
-//           .hAlign = xls.HAlignType.right;
-//       rowIndex++;
-//     });
-//   }
-//
-//   // Adjust column widths and save the file
-//   sheet
-//       .getRangeByIndex(1, 1)
-//       .columnWidth = 30;
-//   sheet
-//       .getRangeByIndex(1, 2)
-//       .columnWidth = 50;
-//
-//   List<int> bytes = workbook.saveAsStream();
-//   workbook.dispose();
-//
-//   final blob = html.Blob([Uint8List.fromList(bytes)],
-//       'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
-//   final url = html.Url.createObjectUrlFromBlob(blob);
-//
-//   final anchor = html.AnchorElement(href: url)
-//     ..target = 'blank'
-//     ..download = "گزارش_داده‌ها.xlsx";
-//   anchor.click();
-//
-//   html.Url.revokeObjectUrl(url);
-// }
-//
-// String _convertToPersianKey(String key) {
-//   Map<String, String> keyMappings = {
-//     'id': 'شناسه',
-//     'commodityId_text': 'نام کالا',
-//     'tradingHallId_text': 'نام تالار',
-//     'buyMethodId': 'روش خرید',
-//     'brokerId': 'کارگزار',
-//     'contractTypeId': 'نوع قرارداد',
-//     'currencyId': 'واحد پول',
-//     'deliveryPlaceId': 'محل تحویل',
-//     'initPrice': 'قیمت پایه',
-//     'initVolume': 'حجم اولیه',
-//     'lotSize': 'اندازه هر بسته',
-//     'manufacturerId': 'تولید کننده',
-//     'maxInitPrice': 'حداکثر قیمت',
-//     'maxOrderVol': 'حداکثر حجم سفارش',
-//     'minInitPrice': 'حداقل قیمت',
-//     'description': 'توضیحات',
-//     'deliveryDate': 'تاریخ تحویل',
-//     'offerModeId': 'حالت عرضه',
-//     'offerTypeId': 'نوع عرضه',
-//     'minOfferVol': 'حداقل حجم عرضه',
-//     'prepaymentPercent': 'درصد پیش پرداخت'
-//   };
-//
-//   return keyMappings[key] ?? key;
-// }
-//
-// void downloadFile() {
-//   final anchor = html.AnchorElement(href: fileUrl.value)
-//     ..target = 'blank'
-//     ..download = 'گزارش.${isReady2.value == false ? "pdf" : "xlsx"}'
-//     ..click();
-//
-//   // Revoke the URL after the download has been triggered
-//   html.Url.revokeObjectUrl(fileUrl.value);
-//   isReady.value = false;
-// }
-//
-// Future<pw.Document> _generatePdf() async {
-//   final fontData = await rootBundle.load(
-//       'assets/fonts/IRANSansWeb_Medium.ttf');
-//   final ttf = pw.Font.ttf(fontData);
-//
-//   final pdf = pw.Document();
-//
-//   pdf.addPage(
-//     pw.MultiPage(
-//       pageFormat: PdfPageFormat.a4,
-//       textDirection: pw.TextDirection.rtl,
-//       build: (pw.Context context) {
-//         return [
-//           pw.Text(
-//             "گزارش اطلاعات کالا",
-//             style: pw.TextStyle(
-//               font: ttf,
-//               fontSize: 20,
-//               fontWeight: pw.FontWeight.bold,
-//             ),
-//           ),
-//           pw.SizedBox(height: 10),
-//           pw.Text(
-//             "تاریخ گزارش: ${DateTime.now()}",
-//             style: pw.TextStyle(font: ttf, fontSize: 12),
-//           ),
-//           pw.SizedBox(height: 20),
-//           pw.ListView.builder(
-//             itemCount: jsonData.length,
-//             itemBuilder: (context, index) {
-//               return pw.Column(
-//                 crossAxisAlignment: pw.CrossAxisAlignment.start,
-//                 children: [
-//                   pw.Text(
-//                     "آیتم ${index + 1}",
-//                     style: pw.TextStyle(
-//                       font: ttf,
-//                       fontSize: 16,
-//                       fontWeight: pw.FontWeight.bold,
-//                     ),
-//                   ),
-//                   pw.SizedBox(height: 10),
-//                   pw.Table.fromTextArray(
-//                     headers: ["مقدار", "ویژگی"],
-//                     data: _convertJsonToData(jsonData[index]),
-//                     headerStyle: pw.TextStyle(
-//                       font: ttf,
-//                       fontSize: 12,
-//                       color: PdfColors.white,
-//                     ),
-//                     headerDecoration: const pw.BoxDecoration(
-//                         color: PdfColors.blue),
-//                     rowDecoration: const pw.BoxDecoration(
-//                       color: PdfColors.grey100,
-//                     ),
-//                     cellStyle: pw.TextStyle(
-//                       font: ttf,
-//                       fontSize: 10,
-//                     ),
-//                     border: pw.TableBorder.all(
-//                         width: 0.5, color: PdfColors.grey),
-//                   ),
-//                   pw.SizedBox(height: 20),
-//                 ],
-//               );
-//             },
-//           ),
-//         ];
-//       },
-//     ),
-//   );
-//
-//   return pdf;
-// }
-//
-// List<List<String>> _convertJsonToData(Map<String, dynamic> item) {
-//   final translatedKeys = {
-//     "id": "شناسه",
-//     "commodityId_text": "نام کالا",
-//     "tradingHallId_text": "تالار",
-//     "buyMethodId": "روش خرید",
-//     "brokerId": "کارگزار",
-//     "contractTypeId": "نوع قرارداد",
-//     "currencyId": "واحد پول",
-//     "deliveryPlaceId": "محل تحویل",
-//     "initPrice": "قیمت اولیه",
-//     "initVolume": "حجم اولیه",
-//     "lotSize": "اندازه لات",
-//     "manufacturerId": "تولیدکننده",
-//     "maxInitPrice": "بیشینه قیمت اولیه",
-//     "maxOrderVol": "بیشینه حجم سفارش",
-//     "minInitPrice": "کمینه قیمت اولیه",
-//     "description": "توضیحات",
-//     "deliveryDate": "تاریخ تحویل",
-//     "offerModeId": "حالت عرضه",
-//     "offerTypeId": "نوع عرضه",
-//     "minOfferVol": "کمینه حجم عرضه",
-//     "prepaymentPercent": "درصد پیش‌پرداخت",
-//   };
-//
-//   return item.entries
-//       .map((entry) =>
-//   [
-//     entry.value.toString(),
-//     translatedKeys[entry.key] ?? entry.key,
-//   ])
-//       .toList();
-// }
+  //dialog pdf and excel file
+
+
 }
