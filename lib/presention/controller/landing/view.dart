@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:go_router/go_router.dart';
+import 'dart:js' as js;
 import '../../component/item_landing_component/item_landing_component.dart';
 import '../../resources/assets_manager.dart';
 import '../../resources/color_manager.dart';

@@ -93,101 +93,101 @@ class AddGroupPage extends StatelessWidget {
             ),
             const SizedBox(height: AppSize.s24),
             GridViewPage(
-                controllerGridView: logic.scrollController,
-                childAspectRatio: 0.95,
-                visibleEdit: true,
-                visibleBtnSms: false,
-                visibleBtn: true,
-                items: logic.homeLogic.groupList,
-                activeCheckBox: false,
-                isCheckedAll: false,
-                onTapCheckBoxAll: false,
-                textFieldController: logic.homeLogic.txtSearchUser,
-                onChanged: (val) {
-                  if (logic.navbarLogic.selected.value == 0) {
-                    logic.homeLogic.searchUser(val);
-                  } else {
-                    logic.addMemberLogic.searchUser(val);
-                  }
-                },
-                childBtnDelete: Obx(() {
-                  return Visibility(
-                    visible: logic.visibleDeleteUserGroup.value,
-                    child: WhiteBtn(
-                      onPress: () {
-                        logic.dialogDeleteUserGroup(context);
+              controllerGridView: logic.scrollController,
+              childAspectRatio: 0.95,
+              visibleEdit: true,
+              visibleBtnSms: false,
+              visibleBtn: true,
+              items: logic.homeLogic.groupList,
+              activeCheckBox: false,
+              isCheckedAll: false,
+              onTapCheckBoxAll: false,
+              textFieldController: logic.homeLogic.txtSearchUser,
+              onChanged: (val) {
+                if (logic.navbarLogic.selected.value == 0) {
+                  logic.homeLogic.searchUser(val);
+                } else {
+                  logic.addMemberLogic.searchUser(val);
+                }
+              },
+              childBtnDelete: Obx(() {
+                return Visibility(
+                  visible: logic.visibleDeleteUserGroup.value,
+                  child: WhiteBtn(
+                    onPress: () {
+                      logic.dialogDeleteUserGroup(context);
+                    },
+                    text: 'حذف کاربران',
+                    buttonTextColorWhite: ColorManager.red,
+                  ),
+                );
+              }),
+              child: logic.navbarLogic.selected.value != 0 ?
+              Expanded(
+                child: Obx(() {
+                  return ScrollBarWidget(
+                    controllerScrollBar: logic.scrollControllerListView,
+                    childUi: ListView.builder(
+                      controller: logic.scrollControllerListView,
+                      itemCount: logic.homeLogic.isCheckedList.length,
+                      itemBuilder: (context, index) {
+                        return ItemListUser(
+                          hiddenVerifyUser: false,
+                          verifyUser: false,
+                          btnActive: false,
+                          activeCheckBox: false,
+                          itemsActive: false,
+                          activeEditItem: false,
+                          itemsUserName: logic.addMemberLogic.listUser[index].name ?? '',
+                          itemsUserCompany: logic.addMemberLogic.listUser[index].company ?? '',
+                          itemsUserPhone: logic.addMemberLogic.listUser[index].phone ?? '',
+                          itemsIndex: index,
+                        );
                       },
-                      text: 'حذف کاربران',
-                      buttonTextColorWhite: ColorManager.red,
                     ),
                   );
                 }),
-                child: logic.navbarLogic.selected.value != 0 ?
-                Expanded(
-                  child: Obx(() {
-                    return ScrollBarWidget(
-                      controllerScrollBar: logic.scrollControllerListView,
-                      childUi: ListView.builder(
-                        controller: logic.scrollControllerListView,
-                        itemCount: logic.homeLogic.isCheckedList.length,
-                        itemBuilder: (context, index) {
+              ) :
+              Expanded(
+                child: Obx(() {
+                  return ScrollBarWidget(
+                    controllerScrollBar: logic.scrollControllerListView2,
+                    childUi: ListView.builder(
+                      controller: logic.scrollControllerListView2,
+                      itemCount: logic.homeLogic.isCheckedList.length,
+                      itemBuilder: (context, index) {
+                        final isSelected = false.obs;
+                        Model item = logic.homeLogic.isCheckedList[index];
+                        isSelected.value = item.user.id != item.user.id;
+                        return Obx(() {
                           return ItemListUser(
                             hiddenVerifyUser: false,
                             verifyUser: false,
                             btnActive: false,
-                            activeCheckBox: false,
-                            itemsActive: false,
+                            activeCheckBox: true,
+                            itemsActive: isSelected.value,
                             activeEditItem: false,
-                            itemsUserName: logic.addMemberLogic.listUser[index].name,
-                            itemsUserCompany: logic.addMemberLogic.listUser[index].company ?? '',
-                            itemsUserPhone: logic.addMemberLogic.listUser[index].phone,
+                            itemsUserName: logic.homeLogic.isCheckedList[index].user.name,
+                            itemsUserCompany: logic.homeLogic.isCheckedList[index].user.company ?? '',
+                            itemsUserPhone: logic.homeLogic.isCheckedList[index].user.phone,
                             itemsIndex: index,
+                            onTap: () {
+                              // idTradingList.value = item.id;
+                              isSelected.value = !isSelected.value;
+                              if (isSelected.value == true) {
+                                logic.idUser.add(item.user.id);
+                              } else {
+                                logic.idUser.remove(item.user.id);
+                              }
+                              logic.idUser.isEmpty == true ? logic.visibleDeleteUserGroup.value = false : logic.visibleDeleteUserGroup.value = true;
+                            },
                           );
-                        },
-                      ),
-                    );
-                  }),
-                ) :
-                Expanded(
-                  child: Obx(() {
-                    return ScrollBarWidget(
-                      controllerScrollBar: logic.scrollControllerListView2,
-                      childUi: ListView.builder(
-                        controller: logic.scrollControllerListView2,
-                        itemCount: logic.homeLogic.isCheckedList.length,
-                        itemBuilder: (context, index) {
-                          final isSelected = false.obs;
-                          Model item = logic.homeLogic.isCheckedList[index];
-                          isSelected.value = item.user.id != item.user.id;
-                          return Obx(() {
-                            return ItemListUser(
-                              hiddenVerifyUser: false,
-                              verifyUser: false,
-                              btnActive: false,
-                              activeCheckBox: true,
-                              itemsActive: isSelected.value,
-                              activeEditItem: false,
-                              itemsUserName: logic.homeLogic.isCheckedList[index].user.name,
-                              itemsUserCompany: logic.homeLogic.isCheckedList[index].user.company ?? '',
-                              itemsUserPhone: logic.homeLogic.isCheckedList[index].user.phone,
-                              itemsIndex: index,
-                              onTap: () {
-                                // idTradingList.value = item.id;
-                                isSelected.value = !isSelected.value;
-                                if (isSelected.value == true) {
-                                  logic.idUser.add(item.user.id);
-                                } else {
-                                  logic.idUser.remove(item.user.id);
-                                }
-                                logic.idUser.isEmpty == true ? logic.visibleDeleteUserGroup.value = false : logic.visibleDeleteUserGroup.value = true;
-                              },
-                            );
-                          });
-                        },
-                      ),
-                    );
-                  }),
-                )
+                        });
+                      },
+                    ),
+                  );
+                }),
+              ),
             ),
             const SizedBox(height: AppSize.s24),
           ],

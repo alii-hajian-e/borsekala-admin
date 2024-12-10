@@ -195,8 +195,8 @@ class AddMemberLogic extends GetxController  with StateMixin<List<dynamic>>{
     final input = query.toLowerCase();
     if (input.isNotEmpty) {
       final suggestions = listUserSearch.where((all) {
-        final name = all.name.toLowerCase();
-        final phone = all.phone.toLowerCase();
+        final name = all.name!.toLowerCase();
+        final phone = all.phone!.toLowerCase();
         return name.contains(input) || phone.contains(input);
       }).toList();
       listUser.clear();
@@ -226,7 +226,12 @@ class AddMemberLogic extends GetxController  with StateMixin<List<dynamic>>{
       },
     );
   }
-  void dialogAddUser(context,String txtAlert,String txtBtn,String txtBtn1){
+  void dialogAddUser(
+      {required BuildContext context,
+        required String txtAlert,
+        required String txtBtn,
+        required String txtBtn1,
+      }){
     showDialog(
       context: context,
       builder: (context) {
@@ -259,7 +264,19 @@ class AddMemberLogic extends GetxController  with StateMixin<List<dynamic>>{
       },
     );
   }
-  void dialogEditeUser({context, hintTextName, hintTextCompany, hintTextPhone, txtAlert, txtBtn, txtBtn1, id, company ,name ,phone}){
+  void dialogEditeUser({
+    required BuildContext context,
+    required String hintTextName,
+    required String hintTextCompany,
+    required String hintTextPhone,
+    required String txtAlert,
+    required String company ,
+    required String name ,
+    required String phone,
+    required String txtBtn,
+    required String txtBtn1,
+    required String id,
+  }){
     showDialog(
       context: context,
       builder: (context) {

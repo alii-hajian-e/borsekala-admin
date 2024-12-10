@@ -95,6 +95,8 @@ class GridViewPage extends StatelessWidget {
                   addGroupLogic.fetchGroupEdit(fetchGroupList.group);
                   addGroupLogic.fetchSubCategoryEdit(fetchGroupList.subGroup);
                   addGroupLogic.fetchTradingHallEdit(fetchGroupList.hallId);
+                  addGroupLogic.numberDay.value = fetchGroupList.cronJobFutureDays ?? 0;
+                  addGroupLogic.numberTime.value = fetchGroupList.cronJobTime ?? 0;
                   fetchDataCompanyEdite(fetchGroupList.manufacturer);
                   addGroupLogic.txtNameUser.text = fetchGroupList.name.toString();
                   int index = addGroupLogic.getIndexById(addGroupLogic.subTradingList, addGroupLogic. idTradingList.value);

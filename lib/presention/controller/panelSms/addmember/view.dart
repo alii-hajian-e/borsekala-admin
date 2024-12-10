@@ -38,10 +38,10 @@ class AddMemberPage extends StatelessWidget {
             nameBtn: 'افزودن کاربر',
             onPress: (){
               logic.dialogAddUser(
-                context,
-                'اضافه کردن کاربر',
-                'ثبت',
-                'انصراف',
+                context: context,
+                txtAlert: 'اضافه کردن کاربر',
+                txtBtn1: 'ثبت',
+                txtBtn: 'انصراف',
               );
             },
             onChanged: (val) {
@@ -93,9 +93,9 @@ class AddMemberPage extends StatelessWidget {
                           activeCheckBox: false,
                           itemsActive: true,
                           activeEditItem: true,
-                          itemsUserName: logic.listUser[index].name,
+                          itemsUserName: logic.listUser[index].name ?? '',
                           itemsUserCompany: logic.listUser[index].company ?? '',
-                          itemsUserPhone: logic.listUser[index].phone,
+                          itemsUserPhone: logic.listUser[index].phone ?? '',
                           itemsIndex: index,
                           btnActive: false,
                           onPressDeleteItem: (){
@@ -103,14 +103,14 @@ class AddMemberPage extends StatelessWidget {
                           },
                           onPressEditeItem: (){
                             logic.dialogEditeUser(
-                              phone: logic.listUser[index].phone,
-                              name: logic.listUser[index].name,
-                              company: logic.listUser[index].company,
-                              id: logic.listUser[index].id,
+                              phone: logic.listUser[index].phone ?? '',
+                              name: logic.listUser[index].name ?? '',
+                              company: logic.listUser[index].company ?? '',
+                              id: logic.listUser[index].id.toString(),
                               context: context,
-                              hintTextCompany: logic.listUser[index].company,
-                              hintTextName: logic.listUser[index].name,
-                              hintTextPhone: logic.listUser[index].phone,
+                              hintTextCompany: logic.listUser[index].company ?? '',
+                              hintTextName: logic.listUser[index].name ?? '',
+                              hintTextPhone: logic.listUser[index].phone ?? '',
                               txtAlert: 'ویرایش کاربر',
                               txtBtn1: 'انصراف' ,
                               txtBtn: 'ذخیره',

@@ -14,6 +14,7 @@ import '../../../../dataurl/data/model/sub-group-model.dart';
 import '../../../../dataurl/data/model/trading-hall-model.dart';
 import '../../../../dataurl/data/model/user-list-model.dart';
 import '../../../../dataurl/data/network/api/app_api_panel.dart';
+import '../../../../widget/dayselctor.dart';
 import '../../../../widget/scrollBar.dart';
 import '../../../component/alert/alert.dart';
 import '../../../component/button_component/circle-btn/circle_btn.dart';
@@ -86,6 +87,9 @@ class AddGroupLogic extends GetxController {
   final addIdUser = [].obs;
 
   final id = ''.obs;
+
+  final numberDay = 1.obs;
+  final numberTime = 1.obs;
 
 
   @override
@@ -326,58 +330,110 @@ class AddGroupLogic extends GetxController {
           onPress1: () {
             GoRouter.of(context).pop();
           },
-          child: Expanded(
-            // height: AppSize.s140,
-            child: Obx(() {
-              return GridView.builder(
-                // physics: const NeverScrollableScrollPhysics(),
-                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 3,
-                  crossAxisSpacing: AppSize.s16,
-                  mainAxisSpacing: AppSize.s16,
-                  childAspectRatio: 5,
-                ),
-                itemCount: subTradingList.length,
-                itemBuilder: (BuildContext context, int index) {
-                  return Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      Obx(() {
-                        return SizedBox(
-                          width: AppSize.s32,
-                          height: AppSize.s32,
-                          child: Radio(
-                            value: index,
-                            activeColor: ColorManager.yellow,
-                            groupValue: idSelectList.value,
-                            onChanged: (int? value) {
-                              idSelectList.value = value!;
-                              idTradingList.value = subTradingList[index].id;
-                            },
-                          ),
-                        );
-                      }),
-                      const SizedBox(width: AppSize.s16),
-                      Column(
+          child: Column(
+            children: [
+              SizedBox(
+                height: AppSize.s140,
+                child: Obx(() {
+                  return GridView.builder(
+                    // physics: const NeverScrollableScrollPhysics(),
+                    gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 3,
+                      crossAxisSpacing: AppSize.s16,
+                      mainAxisSpacing: AppSize.s16,
+                      childAspectRatio: 5,
+                    ),
+                    itemCount: subTradingList.length,
+                    itemBuilder: (BuildContext context, int index) {
+                      return Row(
                         mainAxisAlignment: MainAxisAlignment.start,
-                        crossAxisAlignment: CrossAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
-                          Text(subTradingList[index].persianName,
-                              style: getMediumStyle(
-                                  color: ColorManager.black,
-                                  fontSize: AppSize.s12)),
-                          Text(
-                              subTradingList[index].name, style: getMediumStyle(
-                              color: ColorManager.black.withOpacity(0.8),
-                              fontSize: AppSize.s10)),
+                          Obx(() {
+                            return SizedBox(
+                              width: AppSize.s32,
+                              height: AppSize.s32,
+                              child: Radio(
+                                value: index,
+                                activeColor: ColorManager.yellow,
+                                groupValue: idSelectList.value,
+                                onChanged: (int? value) {
+                                  idSelectList.value = value!;
+                                  idTradingList.value = subTradingList[index].id;
+                                },
+                              ),
+                            );
+                          }),
+                          const SizedBox(width: AppSize.s16),
+                          Column(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(subTradingList[index].persianName,
+                                  style: getMediumStyle(
+                                      color: ColorManager.black,
+                                      fontSize: AppSize.s12)),
+                              Text(
+                                  subTradingList[index].name, style: getMediumStyle(
+                                  color: ColorManager.black.withOpacity(0.8),
+                                  fontSize: AppSize.s10)),
+                            ],
+                          )
                         ],
-                      )
-                    ],
+                      );
+                    },
                   );
-                },
-              );
-            }),
+                }),
+              ),
+              const SizedBox(height: AppSize.s32),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Text('هنگام جستجو، چند روز آینده را بررسی کند ؟', style: getMediumStyle(
+                      color: ColorManager.black.withOpacity(0.6), fontSize: AppSize.s14)),
+                  Obx(() {
+                    return DaySelector(
+                      numbers: '${numberDay.toString()} روز بعد ',
+                      onPressPlus: (){
+                        if(numberDay.value <= 30){
+                          numberDay.value++;
+                        }
+                      },
+                      onPressNegative: (){
+                        if (numberDay.value != 1) {
+                          numberDay.value--;
+                        }
+                      },
+                    );
+                  }),
+                ],
+              ),
+              const SizedBox(height: AppSize.s32),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Text('زمان ارسال پیامک چه ساعتی باشد ؟', style: getMediumStyle(
+                      color: ColorManager.black.withOpacity(0.6), fontSize: AppSize.s14)),
+                  Obx(() {
+                    return DaySelector(
+                      numbers: '00 : ${numberTime.toString()}',
+                      onPressPlus: (){
+                        if(numberTime.value <= 23){
+                          numberTime.value++;
+                        }
+                      },
+                      onPressNegative: (){
+                        if (numberTime.value != 1) {
+                          numberTime.value--;
+                        }
+                      },
+                    );
+                  }),
+                ],
+              ),
+            ],
           ),
         );
       },
@@ -983,12 +1039,10 @@ class AddGroupLogic extends GetxController {
                               activeCheckBox: true,
                               itemsActive: isAddSelected.value,
                               activeEditItem: false,
-                              itemsUserName: addMemberLogic.listUser[index].name,
+                              itemsUserName: addMemberLogic.listUser[index].name ?? '',
                               itemsUserCompany: addMemberLogic.listUser[index].company ?? '',
-                              itemsUserPhone: addMemberLogic.listUser[index].phone,
+                              itemsUserPhone: addMemberLogic.listUser[index].phone ?? '',
                               itemsIndex: index,
-                              onPressDeleteItem: null,
-                              onPressEditeItem: null,
                               onTap: () {
                                 // idTradingList.value = item.id;
                                 if(addMemberLogic.listUser[index].isActive == false){
@@ -1061,7 +1115,7 @@ class AddGroupLogic extends GetxController {
     final input = query.toLowerCase();
     if (input.isNotEmpty) {
       final suggestions = addMemberLogic.listUserSearch.where((all) {
-        final name = all.name.toLowerCase();
+        final name = all.name!.toLowerCase();
         return name.contains(input);
       }).toList();
       addMemberLogic.listUser.clear();

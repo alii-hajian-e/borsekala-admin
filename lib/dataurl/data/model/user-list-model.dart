@@ -2,9 +2,9 @@
 
 class ModelUser {
   final int id;
-  final String name;
+  final String? name;
   // final String family;
-  final String phone;
+  final String? phone;
   final String createdAt;
   final String? company;
   final bool isActive;
@@ -22,12 +22,12 @@ class ModelUser {
   factory ModelUser.fromJson(Map<String, dynamic> json) {
     return ModelUser(
       id: json['id'],
-      name: json['name'],
+      name: json['name'] ?? '',
       // family: json['family'],
-      phone: json['phone'],
+      phone: json['phone'] ?? '',
       createdAt: json['created_at'],
-      company: json['company'],
-      isActive: json['is_active'],
+      company: json['company'] ?? '',
+      isActive: json['is_active'] ?? '',
     );
   }
 }

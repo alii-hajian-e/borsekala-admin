@@ -26,27 +26,32 @@ class TimeGroupPage extends StatelessWidget {
                 Obx(() {
                   final navbarSettingLogic = Get.put(NavbarSettingLogic());
                   return Header(
-                      txtHeader: '${navbarSettingLogic.nameAdmin.value} ${navbarSettingLogic.familyAdmin.value}');
+                      txtHeader: '${navbarSettingLogic.nameAdmin
+                          .value} ${navbarSettingLogic.familyAdmin.value}');
                 }),
                 const SizedBox(height: AppSize.s24),
                 Expanded(
-                  child: ListView.builder(
-                    itemCount: logic.homeLogic.groupList.length,
-                    itemBuilder: (context, index) {
-                      final group = logic.homeLogic.groupList[index];
-                      final tradingHall = GetDateGroupApi().findTradingHallById(group.hallId);
-                      return GroupListItem(
-                        active: true,
-                        index: index,
-                        tradingHall: tradingHall,
-                        group: group,
-                        onPressUpdate: () {
-                          logic.numbers.value = group.cronJobTime!;
-                          logic.showSMSTImeChangeDialog(context: context, id: logic.homeLogic.groupList[index].id);
-                        },
-                      );
-                    },
-                  ),
+                  child: Obx(() {
+                    return ListView.builder(
+                      itemCount: logic.homeLogic.groupList.length,
+                      itemBuilder: (context, index) {
+                        final group = logic.homeLogic.groupList[index];
+                        final tradingHall = GetDateGroupApi()
+                            .findTradingHallById(group.hallId);
+                        return GroupListItem(
+                          active: true,
+                          index: index,
+                          tradingHall: tradingHall,
+                          group: group,
+                          onPressUpdate: () {
+                            logic.numbers.value = group.cronJobTime!;
+                            logic.showSMSTImeChangeDialog(context: context,
+                                id: logic.homeLogic.groupList[index].id);
+                          },
+                        );
+                      },
+                    );
+                  }),
                 ),
               ],
             ),

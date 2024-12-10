@@ -84,12 +84,54 @@ class HomeLogic extends GetxController with StateMixin<dynamic> {
     "tradeStatus",
     "description"
   ].obs;
+  final Map<String, String> columnTranslations = {
+    "id": "شناسه",
+    "commodityId_text": "نام کالا",
+    "tradingHallId_text": "تالار معاملاتی",
+    "buyMethodId": "روش خرید",
+    "brokerId": "کارگزار",
+    "contractTypeId": "نوع قرارداد",
+    "currencyId": "نوع ارز",
+    "deliveryPlaceId": "محل تحویل",
+    "initPrice": "قیمت پایه",
+    "initVolume": "حجم اولیه",
+    "lotSize": "اندازه لات",
+    "manufacturerId": "تولیدکننده",
+    "maxInitPrice": "حداکثر قیمت پایه",
+    "maxIncOfferVol": "حداکثر افزایش حجم عرضه",
+    "maxOrderVol": "حداکثر حجم سفارش",
+    "maxOfferPrice": "حداکثر قیمت پیشنهادی",
+    "measureUnitId": "واحد اندازه‌گیری",
+    "minAllocationVol": "حداقل حجم تخصیص",
+    "minOfferVol": "حداقل حجم عرضه",
+    "minInitPrice": "حداقل قیمت پایه",
+    "minOrderVol": "حداقل حجم سفارش",
+    "minOfferPrice": "حداقل قیمت پیشنهادی",
+    "offerModeId": "نوع عرضه",
+    "offerTypeId": "نوع پیشنهاد",
+    "offerVol": "حجم عرضه",
+    "packagingTypeId": "نوع بسته‌بندی",
+    "permissibleError": "خطای مجاز",
+    "priceDiscoveryMinOrderVol": "حداقل حجم سفارش کشف قیمت",
+    "prepaymentPercent": "درصد پیش‌پرداخت",
+    "securityTypeId": "نوع تضمین",
+    "settlementTypeId": "نوع تسویه",
+    "supplierId": "تامین‌کننده",
+    "tickSize": "اندازه تیک",
+    "weightFactor": "ضریب وزنی",
+    "deliveryDate": "تاریخ تحویل",
+    "offerDate": "تاریخ عرضه",
+    "offerRing": "حلقه عرضه",
+    "offerSymbol": "نماد عرضه",
+    "tradeStatus": "وضعیت معامله",
+    "description": "توضیحات"
+  };
 
   final downloadUrl = ''.obs;
   final selectedColumns = [].obs;
   final jsonData = [].obs;
   final validDownload = false.obs;
-
+  final validDownloadFile = false.obs;
 
   @override
   void onInit() {
@@ -227,7 +269,13 @@ class HomeLogic extends GetxController with StateMixin<dynamic> {
           final List<dynamic> responseData = response.data['results'] as List<dynamic>;
           final List<Map<String, dynamic>> mappedData = responseData.map((item) => Map<String, dynamic>.from(item)).toList();
           jsonData.addAll(mappedData);
-          showDownloadFileDialog(context);
+          if (jsonData.isEmpty) {
+            Alert(txt: 'هیچ عرضه ای برای ساخت فایل یافت نشد',
+                color: ColorManager.white,
+                backgroundColor: ColorManager.red).showSnackBar(context);
+          } else {
+            showDownloadFileDialog(context);
+          }
         }
       }
     } on DioException catch (e) {
@@ -238,6 +286,7 @@ class HomeLogic extends GetxController with StateMixin<dynamic> {
   }
 
   Future<void> generateFile({required context}) async {
+    validDownloadFile.value = true;
     if (selectedColumns.isEmpty) {
       CustomOverlayMessage.show(
         context,
@@ -271,6 +320,7 @@ class HomeLogic extends GetxController with StateMixin<dynamic> {
       );
 
       if (response.statusCode == 200) {
+        validDownloadFile.value = false;
         final filePath = response.data["file_path"];
         downloadUrl.value =
         "https://panel.ibrokers.ir/generator/download-file/?file_path=$filePath";
@@ -410,6 +460,7 @@ class HomeLogic extends GetxController with StateMixin<dynamic> {
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: [
                           if(selectedColumns.isNotEmpty)
+                            !validDownloadFile.value ?
                             Btn(
                               buttonColorBtn: downloadUrl.value.isEmpty ? ColorManager.yellow : ColorManager.gray,
                               onPress: () => downloadUrl.value.isEmpty ? generateFile(context: context) : null,
@@ -418,7 +469,17 @@ class HomeLogic extends GetxController with StateMixin<dynamic> {
                               borderRadiusBtn: AppSize.s8,
                               buttonTextColorBtn: downloadUrl.value.isEmpty ? ColorManager.black : ColorManager.black.withOpacity(0.6),
                               borderSideColorBtn: downloadUrl.value.isEmpty ? ColorManager.yellow : ColorManager.gray,
+                            ) :
+                            Center(
+                              child: SizedBox(
+                                width: AppSize.s24,
+                                height: AppSize.s24,
+                                child: CircularProgressIndicator(
+                                  color: ColorManager.black, //<-- SEE HERE
+                                ),
+                              ),
                             ),
+
                           if (downloadUrl.value.isNotEmpty)
                             const SizedBox(width: AppSize.s24),
                           if (downloadUrl.value.isNotEmpty)
@@ -450,14 +511,18 @@ class HomeLogic extends GetxController with StateMixin<dynamic> {
                       children: availableColumns.map((column) {
                         return CheckboxListTile(
                           activeColor: ColorManager.black,
-                          title: Text(column, style: getBoldStyle(
-                              color: ColorManager.black,
-                              fontSize: AppSize.s14),),
+                          title: Text(
+                            columnTranslations[column] ?? column, // استفاده از معادل فارسی یا خود کلید اگر ترجمه موجود نبود
+                            style: getBoldStyle(
+                                color: ColorManager.black,
+                                fontSize: AppSize.s14
+                            ),
+                          ),
                           value: selectedColumns.contains(column),
                           onChanged: (bool? value) {
                             if (value == true) {
                               if (selectedColumns.length < 8) {
-                                selectedColumns.add(column);
+                                selectedColumns.add(column); // همچنان مقدار انگلیسی ذخیره می‌شود
                               } else {
                                 CustomOverlayMessage.show(
                                   context,
