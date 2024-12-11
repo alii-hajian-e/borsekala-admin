@@ -131,6 +131,8 @@ class GridViewPage extends StatelessWidget {
                     homeLogic.listUser(fetchGroupList.id.toString() , context);
                     dialogEducation(
                       context: context,
+                      numberTime: fetchGroupList.cronJobTime.toString(),
+                      numberDay: fetchGroupList.cronJobFutureDays.toString(),
                       name: fetchGroupList.name.toString(),
                       grouping: group.persianName.toString(),
                       company: addGroupLogic.nameCompanyListString.value,
@@ -158,6 +160,8 @@ class GridViewPage extends StatelessWidget {
 
                   dialogEducation(
                     context: context,
+                    numberTime: fetchGroupList.cronJobTime.toString(),
+                    numberDay: fetchGroupList.cronJobFutureDays.toString(),
                     name: fetchGroupList.name.toString(),
                     grouping: group.persianName.toString(),
                     company: addGroupLogic.nameCompanyListString.value,
@@ -238,7 +242,7 @@ class GridViewPage extends StatelessWidget {
     );
   }
   void dialogEducation(
-      {context, name, grouping, mainCategory, nameGroup, number, subset, company, visibleBtnUser, onPressAddUser}){
+      {context, name, grouping, mainCategory, nameGroup, number, subset, company, visibleBtnUser, onPressAddUser,required numberDay,required numberTime}){
     showDialog(
       context: context,
       builder: (context) {
@@ -253,6 +257,9 @@ class GridViewPage extends StatelessWidget {
           num: number,
           subset: subset,
           company: company,
+
+          numberDay: numberDay.toString(),
+          numberTime: numberTime.toString(),
 
           isCheckedAll: isCheckedAll,
           activeCheckBox: activeCheckBox,

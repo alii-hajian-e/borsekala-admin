@@ -36,6 +36,7 @@ class AddGroupLogic extends GetxController {
   final homeLogic = Get.put(HomeLogic());
   final addMemberLogic = Get.put(AddMemberLogic());
   final navbarLogic = Get.put(NavbarPanelLogic());
+
   final AppApiPanel apiServicePanel = AppApiPanel();
   final txtNameUser = TextEditingController();
   final txtSearchUser = TextEditingController();
@@ -175,7 +176,8 @@ class AddGroupLogic extends GetxController {
             ? '0'
             : idCompanyListString,
         'hall_id': idTradingList.value == 0 ? 0 : idTradingList.value,
-
+        'cron_job_future_days': numberDay.value,
+        'cron_job_time': numberTime.value,
       });
     } else {
       Alert(txt: 'اطلاعات تکمیل نیس',
@@ -221,7 +223,8 @@ class AddGroupLogic extends GetxController {
         'sub_group': idSubCategoryListString,
         'manufacturer': idCompanyListString,
         'hall_id': idTradingList.value,
-
+        'cron_job_future_days': numberDay.value,
+        'cron_job_time': numberTime.value,
       });
     } else {
       Alert(txt: 'اطلاعات تکمیل نیس',

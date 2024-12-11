@@ -175,19 +175,6 @@ class ItemListCategory extends StatelessWidget {
                 ],
               ),
               const SizedBox(height: AppSize.s8),
-              // Row(
-              //   children: [
-              //     Padding(
-              //       padding: const EdgeInsets.fromLTRB(AppPadding.p8, AppPadding.p0, AppPadding.p0, AppPadding.p0),
-              //       child: Text('زیر دسته بندی:',style: getBoldStyle(color: ColorManager.black.withOpacity(0.4),fontSize: AppSize.s12)),
-              //     ),
-              //     Expanded(child: Divider(height: AppSize.s1,color: ColorManager.black.withOpacity(0.4))),
-              //     Padding(
-              //       padding: const EdgeInsets.fromLTRB(AppPadding.p0, AppPadding.p0, AppPadding.p8, AppPadding.p0),
-              //       child: Text(subset,style: getBoldStyle(color: ColorManager.black,fontSize: AppSize.s14),overflow: TextOverflow.clip,textAlign: TextAlign.left),
-              //     ),
-              //   ],
-              // ),
               Row(
                 children: [
                   Padding(

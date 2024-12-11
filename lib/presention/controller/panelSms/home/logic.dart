@@ -43,92 +43,93 @@ class HomeLogic extends GetxController with StateMixin<dynamic> {
 
   // final List<String> availableThemes = ["Minimal", "Colorful", "Advanced"].obs;
   final List<String> availableColumns = [
-    "id",
-    "commodityId_text",
-    "tradingHallId_text",
-    "buyMethodId",
     "brokerId",
-    "contractTypeId",
-    "currencyId",
-    "deliveryPlaceId",
-    "initPrice",
-    "initVolume",
-    "lotSize",
-    "manufacturerId",
-    "maxInitPrice",
-    "maxIncOfferVol",
-    "maxOrderVol",
-    "maxOfferPrice",
-    "measureUnitId",
-    "minAllocationVol",
-    "minOfferVol",
-    "minInitPrice",
-    "minOrderVol",
-    "minOfferPrice",
-    "offerModeId",
-    "offerTypeId",
-    "offerVol",
-    "packagingTypeId",
-    "permissibleError",
-    "priceDiscoveryMinOrderVol",
-    "prepaymentPercent",
-    "securityTypeId",
-    "settlementTypeId",
-    "supplierId",
-    "tickSize",
-    "weightFactor",
-    "deliveryDate",
     "offerDate",
-    "offerRing",
+    "commodityId_text",
     "offerSymbol",
-    "tradeStatus",
-    "description"
+    "offerRing",
+    "packagingTypeId",
+    "description",
+    "manufacturerId",
+    "supplierId",
+    "offerVol",
+    "minOfferVol",
+    "initPrice",
+    "prepaymentPercent",
+    "deliveryPlaceId",
+    "contractTypeId",
+    "deliveryDate",
+    "maxIncOfferVol",
+    "lotSize",
+    "minOrderVol",
+    "priceDiscoveryMinOrderVol",
+    "maxOrderVol",
+    "minOfferPrice",
+    "maxOfferPrice",
+    "permissibleError",
+    "settlementTypeId",
+    "tickSize",
+    "offerModeId",
+    "buyMethodId",
+    "currencyId",
+    "measureUnitId",
+    "id"
   ].obs;
+
   final Map<String, String> columnTranslations = {
-    "id": "شناسه",
-    "commodityId_text": "نام کالا",
-    "tradingHallId_text": "تالار معاملاتی",
-    "buyMethodId": "روش خرید",
     "brokerId": "کارگزار",
-    "contractTypeId": "نوع قرارداد",
-    "currencyId": "نوع ارز",
-    "deliveryPlaceId": "محل تحویل",
-    "initPrice": "قیمت پایه",
-    "initVolume": "حجم اولیه",
-    "lotSize": "اندازه لات",
-    "manufacturerId": "تولیدکننده",
-    "maxInitPrice": "حداکثر قیمت پایه",
-    "maxIncOfferVol": "حداکثر افزایش حجم عرضه",
-    "maxOrderVol": "حداکثر حجم سفارش",
-    "maxOfferPrice": "حداکثر قیمت پیشنهادی",
-    "measureUnitId": "واحد اندازه‌گیری",
-    "minAllocationVol": "حداقل حجم تخصیص",
-    "minOfferVol": "حداقل حجم عرضه",
-    "minInitPrice": "حداقل قیمت پایه",
-    "minOrderVol": "حداقل حجم سفارش",
-    "minOfferPrice": "حداقل قیمت پیشنهادی",
-    "offerModeId": "نوع عرضه",
-    "offerTypeId": "نوع پیشنهاد",
-    "offerVol": "حجم عرضه",
-    "packagingTypeId": "نوع بسته‌بندی",
-    "permissibleError": "خطای مجاز",
-    "priceDiscoveryMinOrderVol": "حداقل حجم سفارش کشف قیمت",
-    "prepaymentPercent": "درصد پیش‌پرداخت",
-    "securityTypeId": "نوع تضمین",
-    "settlementTypeId": "نوع تسویه",
-    "supplierId": "تامین‌کننده",
-    "tickSize": "اندازه تیک",
-    "weightFactor": "ضریب وزنی",
-    "deliveryDate": "تاریخ تحویل",
     "offerDate": "تاریخ عرضه",
-    "offerRing": "حلقه عرضه",
-    "offerSymbol": "نماد عرضه",
-    "tradeStatus": "وضعیت معامله",
-    "description": "توضیحات"
+    "commodityId_text": "نام کالا",
+    "offerSymbol": "نماد",
+    "offerRing": "تالار",
+    "packagingTypeId": "نوع بسته‌بندی",
+    "description": "مشخصات کالای قابل عرضه",
+    "manufacturerId": "تولیدکننده",
+    "supplierId": "عرضه‌کننده",
+    "offerVol": "حجم کالای قابل عرضه",
+    "minOfferVol": "حداقل عرضه",
+    "initPrice": "قیمت پایه",
+    "prepaymentPercent": "درصد پیش‌پرداخت سفارش خرید",
+    "deliveryPlaceId": "محل تحویل",
+    "contractTypeId": "نوع قرارداد",
+    "deliveryDate": "تاریخ تحویل",
+    "maxIncOfferVol": "حداکثر افزایش عرضه",
+    "lotSize": "واحد پایه تخصیص",
+    "minOrderVol": "حداقل خرید",
+    "priceDiscoveryMinOrderVol": "حداقل خرید جهت کشف نرخ",
+    "maxOrderVol": "حداکثر خرید در صورت وجود",
+    "minOfferPrice": "حداقل قیمت مجاز",
+    "maxOfferPrice": "حداکثر قیمت مجاز",
+    "permissibleError": "خطای مجاز تحویل",
+    "settlementTypeId": "نوع تسویه",
+    "tickSize": "حداقل تغییر قیمت سفارش",
+    "offerModeId": "نحوه عرضه",
+    "buyMethodId": "روش خرید",
+    "currencyId": "نوع ارز",
+    "measureUnitId": "واحد",
+    "id": "کد عرضه",
   };
+  final selectedColumns = [
+    "brokerId",
+    "offerDate",
+    "commodityId_text",
+    "offerSymbol",
+    "offerRing",
+    "manufacturerId",
+    "supplierId",
+    "offerVol",
+    "minOfferVol",
+    "initPrice",
+    "prepaymentPercent",
+    "deliveryPlaceId",
+    "currencyId",
+    "measureUnitId",
+    "description",
+  ].obs;
+
+
 
   final downloadUrl = ''.obs;
-  final selectedColumns = [].obs;
   final jsonData = [].obs;
   final validDownload = false.obs;
   final validDownloadFile = false.obs;
@@ -256,6 +257,8 @@ class HomeLogic extends GetxController with StateMixin<dynamic> {
 
       }));
       if (response.statusCode == 200) {
+        results.clear();
+        jsonData.clear();
         if (validDownload.value == false) {
           results.addAll(response.data['results']);
           if (results.isEmpty) {
@@ -269,13 +272,13 @@ class HomeLogic extends GetxController with StateMixin<dynamic> {
           final List<dynamic> responseData = response.data['results'] as List<dynamic>;
           final List<Map<String, dynamic>> mappedData = responseData.map((item) => Map<String, dynamic>.from(item)).toList();
           jsonData.addAll(mappedData);
-          if (jsonData.isEmpty) {
-            Alert(txt: 'هیچ عرضه ای برای ساخت فایل یافت نشد',
-                color: ColorManager.white,
-                backgroundColor: ColorManager.red).showSnackBar(context);
-          } else {
+          // if (jsonData.isEmpty) {
+          //   Alert(txt: 'هیچ عرضه ای برای ساخت فایل یافت نشد',
+          //       color: ColorManager.white,
+          //       backgroundColor: ColorManager.red).showSnackBar(context);
+          // } else {
             showDownloadFileDialog(context);
-          }
+          // }
         }
       }
     } on DioException catch (e) {
@@ -502,35 +505,46 @@ class HomeLogic extends GetxController with StateMixin<dynamic> {
                   const SizedBox(height: AppSize.s24),
                   Divider(height: AppSize.s1,color: ColorManager.black.withOpacity(0.4)),
                   const SizedBox(height: AppSize.s24),
-                  Text("انتخاب ستون‌ها:", style: getMediumStyle(
-                      color: ColorManager.black.withOpacity(0.8),
-                      fontSize: AppSize.s14),),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Text("انتخاب ستون‌ها:", style: getMediumStyle(
+                          color: ColorManager.black.withOpacity(0.8),
+                          fontSize: AppSize.s14),),
+                      Text(selectedColumns.length.toString(), style: getMediumStyle(
+                          color: ColorManager.black,
+                          fontSize: AppSize.s14),),
+                    ],
+                  ),
                   const SizedBox(height: AppSize.s8),
                   Expanded(
                     child: ListView(
                       children: availableColumns.map((column) {
                         return CheckboxListTile(
-                          activeColor: ColorManager.black,
+                          activeColor: Colors.black,
                           title: Text(
-                            columnTranslations[column] ?? column, // استفاده از معادل فارسی یا خود کلید اگر ترجمه موجود نبود
-                            style: getBoldStyle(
-                                color: ColorManager.black,
-                                fontSize: AppSize.s14
+                            columnTranslations[column] ?? column,
+                            style: const TextStyle(
+                              fontWeight: FontWeight.bold,
+                              fontSize: 14,
                             ),
                           ),
                           value: selectedColumns.contains(column),
                           onChanged: (bool? value) {
                             if (value == true) {
-                              if (selectedColumns.length < 8) {
-                                selectedColumns.add(column); // همچنان مقدار انگلیسی ذخیره می‌شود
-                              } else {
-                                CustomOverlayMessage.show(
-                                  context,
-                                  message: "شما می‌توانید حداکثر 8 ستون انتخاب کنید.",
-                                  duration: const Duration(seconds: 2),
-                                  backgroundColor: ColorManager.black,
-                                  textColor: ColorManager.white,
-                                );
+                              if (!selectedColumns.contains(column)) {
+                                if (selectedColumns.length <= 15) {
+                                  selectedColumns.add(column);
+                                } else {
+                                  CustomOverlayMessage.show(
+                                    context,
+                                    message: "شما می‌توانید حداکثر ۱۵ ستون انتخاب کنید.",
+                                    duration: const Duration(seconds: 2),
+                                    backgroundColor: ColorManager.black,
+                                    textColor: ColorManager.white,
+                                  );
+                                }
                               }
                             } else {
                               selectedColumns.remove(column);
@@ -540,6 +554,41 @@ class HomeLogic extends GetxController with StateMixin<dynamic> {
                       }).toList(),
                     ),
                   ),
+                  // Expanded(
+                  //   child: ListView(
+                  //     children: availableColumns.map((column) {
+                  //       return CheckboxListTile(
+                  //         activeColor: ColorManager.black,
+                  //         title: Text(
+                  //           columnTranslations[column] ?? column,
+                  //           style: getBoldStyle(
+                  //               color: ColorManager.black,
+                  //               fontSize: AppSize.s14
+                  //           ),
+                  //         ),
+                  //         value: selectedColumns.contains(column),
+                  //         onChanged: (bool? value) {
+                  //           print(value);
+                  //           if (value == true) {
+                  //             if (selectedColumns.length < 14) {
+                  //               selectedColumns.add(column);
+                  //             } else {
+                  //               CustomOverlayMessage.show(
+                  //                 context,
+                  //                 message: "شما می‌توانید حداکثر ۱۴ ستون انتخاب کنید.",
+                  //                 duration: const Duration(seconds: 2),
+                  //                 backgroundColor: ColorManager.black,
+                  //                 textColor: ColorManager.white,
+                  //               );
+                  //             }
+                  //           } else {
+                  //             selectedColumns.remove(column);
+                  //           }
+                  //         },
+                  //       );
+                  //     }).toList(),
+                  //   ),
+                  // ),
                 ],
               ),
             );
@@ -548,28 +597,5 @@ class HomeLogic extends GetxController with StateMixin<dynamic> {
       },
     );
   }
-  // Future<void> fileDownload({Map<String, dynamic>? data, context}) async {
-  //   try {
-  //     final response = await apiServicePanel.post(
-  //       url: AppUrl.downloadFile,
-  //       data: data,
-  //       options: Options(headers: {"Content-Type": "application/json"}),
-  //     );
-  //
-  //     if (response.statusCode == 200) {
-  //       final filePath = response.data["file_path"];
-  //       downloadUrl.value = "https://panel.ibrokers.ir/generator/download-file/?file_path=$filePath";
-  //     }
-  //   } on DioException catch (e) {
-  //     Alert(
-  //       txt: 'اطلاعات وارد شده اشتباه است',
-  //       color: ColorManager.white,
-  //       backgroundColor: ColorManager.red,
-  //     ).showSnackBar(context);
-  //   }
-  // }
-
-  //dialog pdf and excel file
-
 
 }

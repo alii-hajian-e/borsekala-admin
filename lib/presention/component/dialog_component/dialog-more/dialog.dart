@@ -20,6 +20,8 @@ class WidgetDialog extends StatelessWidget {
   final String subset;
   final String company;
   final String nameGroup;
+  final String numberDay;
+  final String numberTime;
   final int num;
 
   final bool activeCheckBox;
@@ -34,7 +36,7 @@ class WidgetDialog extends StatelessWidget {
   final dynamic childBtnDelete;
 
   const WidgetDialog({
-    super.key, required this.name, required this.mainCategory, required this.grouping, required this.subset, required this.nameGroup, required this.num,required this.child, required this.activeCheckBox, required this.isCheckedAll, this.onTapCheckBoxAll, this.textFieldController, this.onChanged,required this.visibleBtnUser,required this.onPressAddUser, required this.childBtnDelete, required this.company
+    super.key, required this.name, required this.mainCategory, required this.grouping, required this.subset, required this.nameGroup, required this.num,required this.child, required this.activeCheckBox, required this.isCheckedAll, this.onTapCheckBoxAll, this.textFieldController, this.onChanged,required this.visibleBtnUser,required this.onPressAddUser, required this.childBtnDelete, required this.company, required this.numberDay, required this.numberTime
   });
 
   @override
@@ -84,6 +86,7 @@ class WidgetDialog extends StatelessWidget {
                     children: [
                       Text('نام گروه : $name',style: getBoldStyle(color: ColorManager.black,fontSize: AppSize.s14)),
                       Text('دسته بندی اصلی : $mainCategory',style: getBoldStyle(color: ColorManager.black,fontSize: AppSize.s14)),
+                      Text('ارسال پیامک روزانه : ساعت 00 : $numberDay'.toString(),style: getBoldStyle(color: ColorManager.black,fontSize: AppSize.s14)),
                     ],
                   ),),
                   const SizedBox(width: AppSize.s32),
@@ -94,6 +97,7 @@ class WidgetDialog extends StatelessWidget {
                       children: [
                         Text('تعداد کاربر : $num'.toString(),style: getBoldStyle(color: ColorManager.black,fontSize: AppSize.s14)),
                         Text('دسته بندی : $grouping',style: getBoldStyle(color: ColorManager.black,fontSize: AppSize.s14)),
+                        Text('جست و جو عرضه ها : $numberTime روز بعد ',style: getBoldStyle(color: ColorManager.black,fontSize: AppSize.s14)),
                       ],
                     ),
                   ),
