@@ -7,6 +7,7 @@ import '../controller/login/view.dart';
 import '../controller/panelSetting/dayGroup/view.dart';
 import '../controller/panelSetting/timeGroup/view.dart';
 import '../controller/panelSms/navbarPanel/view.dart';
+import '../controller/panelSms/ticketPanel/ticket_detail_screen/view.dart';
 
 
 class RouteGenerator {
@@ -35,6 +36,10 @@ class RouteGenerator {
       GoRoute(
           path: '/dayGroupPage',
           builder : (context, state) => DayGroupPage()
+      ),
+      GoRoute(
+          path: '/ticketDetailScreenPage',
+          builder : (context, state) => TicketDetailScreenPage()
       ),
     ],
     errorBuilder: (context, state) => const ErrorPage()

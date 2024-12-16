@@ -16,10 +16,12 @@ class AppUrl {
   static const String login = '$baseUrl/account/api/v1/login/';
   static const String userList = '$baseUrl/panel/api/v1/users/';
   static const String sendSms = '$baseUrl/panel/api/v1/test/';
-  static const String chatList = '$baseUrl/chat/api/v1/';
   static const String otp = '$baseUrl/panel/api/v1/otp/';
 
   static const String adminList = '$baseUrl/account/api/v1/users/';
   static const String profileAdmin = '$baseUrl/account/api/v1/profile/';
   static const String downloadFile = '$baseUrl/generator/generate-file/';
+
+  static const String tickets = '$baseUrl/ticket/api/v1/tickets/';
+  static const String category = '$baseUrl/ticket/api/v1/category/';
 }

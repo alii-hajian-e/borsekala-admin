@@ -975,7 +975,10 @@ class AddGroupLogic extends GetxController {
                           color: ColorManager.black, fontSize: AppSize.s18),
                     ),
                     InkWell(
-                      onTap: ()=> Navigator.of(context).pop(),
+                      onTap: (){
+                        searchUser('');
+                        Navigator.of(context).pop();
+                      },
                       child: Row(
                         children: [
                           Container(
@@ -1101,6 +1104,7 @@ class AddGroupLogic extends GetxController {
         homeLogic.getPanelRoom(context);
         homeLogic.listUser(id , context);
         addIdUser.clear();
+        searchUser('');
         GoRouter.of(context).pop();
       }else if(response.statusCode == 404){
         Alert(txt: 'کاربر تکراری است', color: ColorManager.white, backgroundColor: ColorManager.red).showSnackBar(context);

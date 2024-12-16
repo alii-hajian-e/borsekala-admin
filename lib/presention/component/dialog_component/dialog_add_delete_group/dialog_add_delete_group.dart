@@ -111,6 +111,7 @@ class DialogAdd_DeleteGroup extends StatelessWidget {
                             height: AppSize.s48,
                             child: DefaultTextField(
                               obscureText: false,
+                              maxLinesTextFormField: 1,
 
                               textFieldColor: ColorManager.gray,
                               textInputType: TextInputType.text,

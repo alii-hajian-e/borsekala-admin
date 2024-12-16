@@ -89,6 +89,7 @@ class LoginPage extends StatelessWidget {
                           SizedBox(
                             width: AppSize.s300,
                             child: DefaultTextField(
+                              maxLinesTextFormField: 1,
                               obscureText: false,
                               textFieldColor: ColorManager.white,
                               textInputType: TextInputType.text,
@@ -119,6 +120,7 @@ class LoginPage extends StatelessWidget {
                                 Expanded(
                                   child: Obx(() {
                                     return DefaultTextField(
+                                      maxLinesTextFormField: 1,
                                       obscureText: logic.eye.value,
                                       textFieldColor: ColorManager.white,
                                       textInputType: TextInputType.text,

@@ -147,8 +147,8 @@ class DayGroupLogic extends GetxController {
       final response = await apiServicePanel.patch(url: '${AppUrl.panelRoom}$id/',data: data ,
           options: Options(headers:{'Content-Type': 'application/x-www-form-urlencoded'}));
       if(response.statusCode == 200){
-        GoRouter.of(context).pop();
         homeLogic.getPanelRoom(context);
+        GoRouter.of(context).pop();
       }
     } on DioException catch (e){
       Alert(txt: 'اطلاعات وارد شده اشتباه است', color: ColorManager.white, backgroundColor: ColorManager.red).showSnackBar(context);

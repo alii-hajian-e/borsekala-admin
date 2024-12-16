@@ -104,11 +104,7 @@ class AddGroupPage extends StatelessWidget {
               onTapCheckBoxAll: false,
               textFieldController: logic.homeLogic.txtSearchUser,
               onChanged: (val) {
-                if (logic.navbarLogic.selected.value == 0) {
-                  logic.homeLogic.searchUser(val);
-                } else {
-                  logic.addMemberLogic.searchUser(val);
-                }
+                logic.homeLogic.searchUser(val);
               },
               childBtnDelete: Obx(() {
                 return Visibility(

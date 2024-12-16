@@ -89,6 +89,7 @@ class LandingPage extends StatelessWidget {
                         ItemLanding(
                             img: ImageAssets.sms, txt: 'پنل پیامکی', onTap: () {
                           logic.homeLogic.getPanelRoom(context);
+                          // logic.ticketLogic.listChatUser(context: context);
                           // logic.addMemberLogic.getUserList(context);
                           // js.context.callMethod(
                           //     'open', ['https://panel.ibrokers.ir/navbarPanelPage']);

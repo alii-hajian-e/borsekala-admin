@@ -70,6 +70,7 @@ class DialogAdd_DeleteUser extends StatelessWidget {
                           SizedBox(
                             height: AppSize.s48,
                             child: DefaultTextField(
+                              maxLinesTextFormField: 1,
                               obscureText: false,
                               textFieldColor: ColorManager.white,
                               textInputType: TextInputType.text,
@@ -103,6 +104,7 @@ class DialogAdd_DeleteUser extends StatelessWidget {
                           SizedBox(
                             height: AppSize.s48,
                             child: DefaultTextField(
+                              maxLinesTextFormField: 1,
                               obscureText: false,
                               textFieldColor: ColorManager.white,
                               textInputType: TextInputType.number,
@@ -135,6 +137,7 @@ class DialogAdd_DeleteUser extends StatelessWidget {
                 SizedBox(
                   height: AppSize.s48,
                   child: DefaultTextField(
+                    maxLinesTextFormField: 1,
                     inputFormattersTxt: [
                       FilteringTextInputFormatter.digitsOnly,
                       LengthLimitingTextInputFormatter(11),

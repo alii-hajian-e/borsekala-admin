@@ -58,7 +58,7 @@ class AdminLogic extends GetxController {
                 height: AppSize.s48,
                 child: DefaultTextField(
                   obscureText: false,
-
+                  maxLinesTextFormField: 1,
                   textFieldColor: ColorManager.white,
                   textInputType: TextInputType.text,
                   borderSideWidth: AppSize.s2,

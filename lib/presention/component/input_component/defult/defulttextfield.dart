@@ -13,6 +13,7 @@ class DefaultTextField extends BaseInput {
   final Color borderSideColor;
   final hintStyle;
   final String hintText;
+  final int maxLinesTextFormField;
   final dynamic obscureText;
   final dynamic inputFormattersTxt;
 
@@ -32,6 +33,7 @@ class DefaultTextField extends BaseInput {
     required this.obscureText,
     required super.textFieldActive,
     this.inputFormattersTxt,
+    required this.maxLinesTextFormField,
   });
 
   @override
@@ -41,6 +43,7 @@ class DefaultTextField extends BaseInput {
         borderRadius: BorderRadius.circular(AppSize.s12),
       ),
       child: TextFormField(
+        maxLines: maxLinesTextFormField,
         inputFormatters: inputFormattersTxt,
         obscureText: obscureText,
         obscuringCharacter: '*',
