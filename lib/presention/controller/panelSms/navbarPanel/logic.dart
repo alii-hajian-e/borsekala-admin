@@ -1,11 +1,9 @@
 
-import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 
 class NavbarPanelLogic extends GetxController {
 
-  // final GlobalKey<ScaffoldState> scaffoldPanelKey = GlobalKey<ScaffoldState>();
   final selected = 0.obs;
   final selectedIndex = true.obs;
   final selectedIndex1 = false.obs;

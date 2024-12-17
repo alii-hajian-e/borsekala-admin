@@ -23,5 +23,6 @@ class AppUrl {
   static const String downloadFile = '$baseUrl/generator/generate-file/';
 
   static const String tickets = '$baseUrl/ticket/api/v1/tickets/';
+  static const String ticket = '$baseUrl/ticket/api/v1/ticket/';
   static const String category = '$baseUrl/ticket/api/v1/category/';
 }

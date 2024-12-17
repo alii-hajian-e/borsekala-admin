@@ -91,11 +91,11 @@ class LandingPage extends StatelessWidget {
                           logic.homeLogic.getPanelRoom(context);
                           // logic.ticketLogic.listChatUser(context: context);
                           // logic.addMemberLogic.getUserList(context);
-                          // js.context.callMethod(
-                          //     'open', ['https://panel.ibrokers.ir/navbarPanelPage']);
+                          js.context.callMethod(
+                              'open', ['https://panel.ibrokers.ir/navbarPanelPage']);
                           // js.context.callMethod(
                           //     'open', ['http://localhost:8080/navbarPanelPage']);
-                          GoRouter.of(context).go('/navbarPanelPage');
+                          // GoRouter.of(context).go('/navbarPanelPage');
                           // Get.toNamed(Routes.navbarPage);
                         }) :
                         SizedBox(
@@ -116,11 +116,11 @@ class LandingPage extends StatelessWidget {
                       Obx(() => isAdmin.value ?
                       ItemLanding(
                           img: ImageAssets.setting, txt: 'تنظیمات', onTap: () {
-                        // js.context.callMethod(
-                        //     'open', ['https://panel.ibrokers.ir/navbarSettingPage']);
+                        js.context.callMethod(
+                            'open', ['https://panel.ibrokers.ir/navbarSettingPage']);
                         // js.context.callMethod(
                         //     'open', ['http://localhost:8080/navbarSettingPage']);
-                        GoRouter.of(context).go('/navbarSettingPage');
+                        // GoRouter.of(context).go('/navbarSettingPage');
                         // Get.toNamed(Routes.navbarPage);
                       }) : Container()),
                     ],
