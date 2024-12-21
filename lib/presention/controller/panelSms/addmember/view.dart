@@ -40,8 +40,8 @@ class AddMemberPage extends StatelessWidget {
               logic.dialogAddUser(
                 context: context,
                 txtAlert: 'اضافه کردن کاربر',
-                txtBtn1: 'ثبت',
-                txtBtn: 'انصراف',
+                txtBtn1: 'انصراف',
+                txtBtn: 'ثبت',
               );
             },
             onChanged: (val) {
@@ -117,8 +117,8 @@ class AddMemberPage extends StatelessWidget {
                             );
                           },
                           onPressVerifyUser: () {
-                            logic.accountCodeDialog(context: context,idUser: logic.listUser[index].id);
-                            logic.otpUser(context: context,idUser: logic.listUser[index].id);
+                            logic.otpUser(context: context, idUser: logic.listUser[index].id);
+                            logic.accountCodeDialog(context: context, idUser: logic.listUser[index].id);
                           },
                         );
                       },

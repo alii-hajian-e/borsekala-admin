@@ -183,6 +183,7 @@ class AddMemberLogic extends GetxController  with StateMixin<List<dynamic>>{
       }));
       if(response.statusCode == 200){
         pageUserGroup.value = 1;
+        txtCodeUser.clear();
         getUserList(context);
         GoRouter.of(context).pop();
       }
@@ -388,7 +389,7 @@ class AddMemberLogic extends GetxController  with StateMixin<List<dynamic>>{
                           height: AppSize.s48,
                           buttonTextColor: ColorManager.black,
                           buttonColor: ColorManager.yellow,
-                          buttonText: 'ارسال کد',
+                          buttonText: 'تایید کد',
                           buttonOnPressed: () {
                             addOtpUser(context: context,code: txtCodeUser.text,idUser: idUser);
                           },
