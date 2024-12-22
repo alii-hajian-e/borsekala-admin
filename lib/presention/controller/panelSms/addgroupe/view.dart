@@ -88,7 +88,7 @@ class AddGroupPage extends StatelessWidget {
                 );
               },
               onChanged: (val) {
-                logic.homeLogic.search(val);
+                logic.search(val);
               },
             ),
             const SizedBox(height: AppSize.s24),
@@ -98,7 +98,7 @@ class AddGroupPage extends StatelessWidget {
               visibleEdit: true,
               visibleBtnSms: false,
               visibleBtn: true,
-              items: logic.homeLogic.groupList,
+              items: logic.homeLogic.groupListPlus,
               activeCheckBox: false,
               isCheckedAll: false,
               onTapCheckBoxAll: false,

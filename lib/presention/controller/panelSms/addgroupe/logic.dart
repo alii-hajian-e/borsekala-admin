@@ -203,6 +203,7 @@ class AddGroupLogic extends GetxController {
         GoRouter.of(context).pop();
         homeLogic.getPanelRoom(context);
         homeLogic.groupList.refresh();
+        homeLogic.groupListPlus.refresh();
       }
     } on DioException catch (e) {
       load.value = false;
@@ -248,6 +249,7 @@ class AddGroupLogic extends GetxController {
         idSelectList.value = 0;
         homeLogic.getPanelRoom(context);
         homeLogic.groupList.refresh();
+        homeLogic.groupListPlus.refresh();
         GoRouter.of(context).pop();
         // homeLogic.groupList.refresh();
       }
@@ -269,6 +271,7 @@ class AddGroupLogic extends GetxController {
         GoRouter.of(context).pop();
         homeLogic.getPanelRoom(context);
         homeLogic.groupList.refresh();
+        homeLogic.groupListPlus.refresh();
       }
     } on DioException catch (e){
       addIdUser.clear();
@@ -339,7 +342,6 @@ class AddGroupLogic extends GetxController {
                 height: AppSize.s140,
                 child: Obx(() {
                   return GridView.builder(
-                    // physics: const NeverScrollableScrollPhysics(),
                     gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                       crossAxisCount: 3,
                       crossAxisSpacing: AppSize.s16,
@@ -360,7 +362,7 @@ class AddGroupLogic extends GetxController {
                                 value: index,
                                 activeColor: ColorManager.yellow,
                                 groupValue: idSelectList.value,
-                                onChanged: (int? value) {
+                                onChanged: index == 3 ? null : (int? value) {
                                   idSelectList.value = value!;
                                   idTradingList.value = subTradingList[index].id;
                                 },
@@ -372,14 +374,20 @@ class AddGroupLogic extends GetxController {
                             mainAxisAlignment: MainAxisAlignment.start,
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Text(subTradingList[index].persianName,
-                                  style: getMediumStyle(
-                                      color: ColorManager.black,
-                                      fontSize: AppSize.s12)),
                               Text(
-                                  subTradingList[index].name, style: getMediumStyle(
-                                  color: ColorManager.black.withOpacity(0.8),
-                                  fontSize: AppSize.s10)),
+                                  subTradingList[index].persianName,
+                                  style: getMediumStyle(
+                                      color: index == 3 ? ColorManager.black.withOpacity(0.5) : ColorManager.black,
+                                      fontSize: AppSize.s12
+                                  )
+                              ),
+                              Text(
+                                  subTradingList[index].name,
+                                  style: getMediumStyle(
+                                      color: index == 3 ? ColorManager.black.withOpacity(0.4) : ColorManager.black.withOpacity(0.8),
+                                      fontSize: AppSize.s10
+                                  )
+                              ),
                             ],
                           )
                         ],
@@ -387,6 +395,57 @@ class AddGroupLogic extends GetxController {
                     },
                   );
                 }),
+
+                // Obx(() {
+                //   return GridView.builder(
+                //     // physics: const NeverScrollableScrollPhysics(),
+                //     gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                //       crossAxisCount: 3,
+                //       crossAxisSpacing: AppSize.s16,
+                //       mainAxisSpacing: AppSize.s16,
+                //       childAspectRatio: 5,
+                //     ),
+                //     itemCount: subTradingList.length,
+                //     itemBuilder: (BuildContext context, int index) {
+                //       return Row(
+                //         mainAxisAlignment: MainAxisAlignment.start,
+                //         crossAxisAlignment: CrossAxisAlignment.center,
+                //         children: [
+                //           Obx(() {
+                //             return SizedBox(
+                //               width: AppSize.s32,
+                //               height: AppSize.s32,
+                //               child: Radio(
+                //                 value: index,
+                //                 activeColor: ColorManager.yellow,
+                //                 groupValue: idSelectList.value,
+                //                 onChanged: (int? value) {
+                //                   idSelectList.value = value!;
+                //                   idTradingList.value = subTradingList[index].id;
+                //                 },
+                //               ),
+                //             );
+                //           }),
+                //           const SizedBox(width: AppSize.s16),
+                //           Column(
+                //             mainAxisAlignment: MainAxisAlignment.start,
+                //             crossAxisAlignment: CrossAxisAlignment.start,
+                //             children: [
+                //               Text(subTradingList[index].persianName,
+                //                   style: getMediumStyle(
+                //                       color: ColorManager.black,
+                //                       fontSize: AppSize.s12)),
+                //               Text(
+                //                   subTradingList[index].name, style: getMediumStyle(
+                //                   color: ColorManager.black.withOpacity(0.8),
+                //                   fontSize: AppSize.s10)),
+                //             ],
+                //           )
+                //         ],
+                //       );
+                //     },
+                //   );
+                // }),
               ),
               const SizedBox(height: AppSize.s32),
               Row(
@@ -1217,6 +1276,21 @@ class AddGroupLogic extends GetxController {
         );
       },
     );
+  }
+
+  void search(String query) {
+    final input = query.toLowerCase();
+    if (input.isNotEmpty) {
+      final suggestions = homeLogic.groupListPlusSearch.where((all) {
+        final name = all.name!.toLowerCase();
+        return name.contains(input);
+      }).toList();
+      homeLogic.groupListPlus.clear();
+      homeLogic.groupListPlus.addAll(suggestions);
+    } else {
+      homeLogic.groupListPlus.clear();
+      homeLogic.groupListPlus.addAll(homeLogic.groupListPlusSearch);
+    }
   }
 }
 

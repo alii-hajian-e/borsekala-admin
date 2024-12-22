@@ -27,6 +27,8 @@ class HomeLogic extends GetxController with StateMixin<dynamic> {
 
   final groupList = <GroupList>[].obs;
   final groupListSearch = <GroupList>[].obs;
+  final groupListPlus = <GroupList>[].obs;
+  final groupListPlusSearch = <GroupList>[].obs;
   final txtSearch = TextEditingController();
   final txtSearchUser = TextEditingController();
   final ScrollController scrollController = ScrollController();
@@ -159,11 +161,15 @@ class HomeLogic extends GetxController with StateMixin<dynamic> {
         // dynamic decodedJson = jsonDecode(utf8.decode(jsonString.runes.toList()));
         groupList.clear();
         groupListSearch.clear();
-        groupList.value = (response.data['results']).map<GroupList>((json) =>
-            GroupList.fromJson(json)).toList();
-        groupListSearch.value =
-            (response.data['results']).map<GroupList>((json) =>
-                GroupList.fromJson(json)).toList();
+
+        groupListPlus.clear();
+        groupListPlusSearch.clear();
+
+        groupList.value = (response.data['results']).map<GroupList>((json) => GroupList.fromJson(json)).toList();
+        groupListSearch.value = (response.data['results']).map<GroupList>((json) => GroupList.fromJson(json)).toList();
+
+        groupListPlus.value = (response.data['results']).map<GroupList>((json) => GroupList.fromJson(json)).toList();
+        groupListPlusSearch.value = (response.data['results']).map<GroupList>((json) => GroupList.fromJson(json)).toList();
       }
     } on DioException catch (e) {
       Alert(txt: 'خطا در اطلاعات دربافتی',
