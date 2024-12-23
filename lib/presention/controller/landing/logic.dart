@@ -3,6 +3,7 @@
 
 
 import 'package:get/get.dart';
+import 'package:url_launcher/url_launcher.dart';
 import '../login/logic.dart';
 import '../panelSms/addmember/logic.dart';
 import '../panelSms/home/logic.dart';
@@ -13,4 +14,12 @@ class LandingLogic extends GetxController {
   final addMemberLogic = Get.put(AddMemberLogic());
   final loginLogic = Get.put(LoginLogic());
   final ticketLogic = Get.put(TicketLogic());
+
+  Future<void> launchURL(String url) async {
+    final Uri uri = Uri.parse(url);
+    if (await canLaunchUrl(uri)) {
+      await launchUrl(uri, mode: LaunchMode.externalApplication);
+    }
+  }
+
 }

@@ -2,7 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'dart:js' as js;
+// import 'dart:js' as js;
 import '../../component/item_landing_component/item_landing_component.dart';
 import '../../resources/assets_manager.dart';
 import '../../resources/color_manager.dart';
@@ -88,10 +88,11 @@ class LandingPage extends StatelessWidget {
                         ItemLanding(
                             img: ImageAssets.sms, txt: 'پنل پیامکی', onTap: () {
                           logic.homeLogic.getPanelRoom(context);
+                          logic.launchURL('https://panel.ibrokers.ir/navbarPanelPage');
                           // logic.ticketLogic.listChatUser(context: context);
                           // logic.addMemberLogic.getUserList(context);
-                          js.context.callMethod(
-                              'open', ['https://panel.ibrokers.ir/navbarPanelPage']);
+                          // js.context.callMethod(
+                          //     'open', ['https://panel.ibrokers.ir/navbarPanelPage']);
                           // js.context.callMethod(
                           //     'open', ['http://localhost:8080/navbarPanelPage']);
                           // GoRouter.of(context).go('/navbarPanelPage');
@@ -115,8 +116,10 @@ class LandingPage extends StatelessWidget {
                       Obx(() => isAdmin.value ?
                       ItemLanding(
                           img: ImageAssets.setting, txt: 'تنظیمات', onTap: () {
-                        js.context.callMethod(
-                            'open', ['https://panel.ibrokers.ir/navbarSettingPage']);
+                        logic.launchURL('https://panel.ibrokers.ir/navbarSettingPage');
+
+                        // js.context.callMethod(
+                        //     'open', ['https://panel.ibrokers.ir/navbarSettingPage']);
                         // js.context.callMethod(
                         //     'open', ['http://localhost:8080/navbarSettingPage']);
                         // GoRouter.of(context).go('/navbarSettingPage');
