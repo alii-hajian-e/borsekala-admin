@@ -2,6 +2,7 @@ class AppUrl {
 
   // base url
   static const String baseUrl = "https://panel.ibrokers.ir";
+  // static const String baseUrl = "https://testpanel.ibrokers.ir";
 
   // receiveTimeout
   static const int receiveTimeout = 15000;

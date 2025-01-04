@@ -487,7 +487,7 @@ class AddGroupLogic extends GetxController {
                         }
                       },
                       onPressNegative: (){
-                        if (numberTime.value != 1) {
+                        if (numberTime.value != 15) {
                           numberTime.value--;
                         }
                       },

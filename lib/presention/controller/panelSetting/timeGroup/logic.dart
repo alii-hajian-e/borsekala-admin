@@ -85,7 +85,7 @@ class TimeGroupLogic extends GetxController {
                         heightCircle: AppSize.s40,
                         buttonColorCircle: ColorManager.black,
                         onPress: () {
-                          if (numbers.value != 0) {
+                          if (numbers.value != 15) {
                             numbers.value--;
                           }
                         },
