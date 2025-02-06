@@ -39,7 +39,7 @@ class TransactionPage extends StatelessWidget {
                   height: AppSize.s300
               ),
               const SizedBox(height: AppSize.s32),
-              Text('در حال بروز رسانی هستیم',style: getBoldStyle(color: ColorManager.black.withOpacity(0.7),fontSize: AppSize.s24),)
+              Text('در حال بروز رسانی هستیم',style: getBoldStyle(color: ColorManager.black.withValues(alpha: 0.7),fontSize: AppSize.s24),)
             ],
           ),
         )

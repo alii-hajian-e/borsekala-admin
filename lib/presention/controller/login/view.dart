@@ -73,7 +73,7 @@ class LoginPage extends StatelessWidget {
                               child: Text(
                                   'برای ورود نام کاربری و رمزعبور خود را وارد کنید',
                                   style: getBoldStyle(color: ColorManager.black
-                                      .withOpacity(0.4), fontSize: AppSize.s14)),
+                                      .withValues(alpha: 0.4), fontSize: AppSize.s14)),
                             ),
                           ),
                           const SizedBox(height: AppSize.s24),

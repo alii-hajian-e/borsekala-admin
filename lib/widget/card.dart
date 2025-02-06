@@ -22,7 +22,7 @@ class CardView extends StatelessWidget {
       decoration: BoxDecoration(
         color: ColorManager.gray,
         borderRadius: const BorderRadius.all(Radius.circular(AppSize.s16)),
-        border: Border.all(color: ColorManager.black.withOpacity(0.4),width: AppSize.s1),
+        border: Border.all(color: ColorManager.black.withValues(alpha: 0.4),width: AppSize.s1),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
@@ -36,9 +36,9 @@ class CardView extends StatelessWidget {
             colorFilter: ColorFilter.mode(ColorManager.black, BlendMode.srcIn),
           ),
           const SizedBox(height: AppSize.s8),
-          Text(txtTitle ?? '',style: getMediumStyle(color: ColorManager.black.withOpacity(0.6),fontSize: AppSize.s14),textAlign: TextAlign.center),
+          Text(txtTitle ?? '',style: getMediumStyle(color: ColorManager.black.withValues(alpha: 0.6),fontSize: AppSize.s14),textAlign: TextAlign.center),
           const SizedBox(height: AppSize.s16),
-          Text(txtCount ?? '',style: getBoldStyle(color: ColorManager.black.withOpacity(0.6),fontSize: AppSize.s18),textAlign: TextAlign.center),
+          Text(txtCount ?? '',style: getBoldStyle(color: ColorManager.black.withValues(alpha: 0.6),fontSize: AppSize.s18),textAlign: TextAlign.center),
         ],
       ),
     );

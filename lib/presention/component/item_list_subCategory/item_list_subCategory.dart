@@ -29,7 +29,7 @@ class ItemListSubCategury extends StatelessWidget {
               width: AppSize.s24,
               height: AppSize.s24,
               decoration: BoxDecoration(
-                color: itemsActive ? ColorManager.yellow.withOpacity(0.2) : ColorManager.gray,
+                color: itemsActive ? ColorManager.yellow.withValues(alpha: 0.2) : ColorManager.gray,
                 borderRadius: BorderRadius.circular(AppSize.s8),
                 border: Border.all(
                   color: itemsActive ? ColorManager.yellow : ColorManager.gray1,

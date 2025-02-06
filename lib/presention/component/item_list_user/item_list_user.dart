@@ -49,7 +49,7 @@ class ItemListUser extends StatelessWidget {
                   width: AppSize.s24,
                   height: AppSize.s24,
                   decoration: BoxDecoration(
-                    color: itemsActive ? ColorManager.yellow.withOpacity(0.2) : ColorManager.gray,
+                    color: itemsActive ? ColorManager.yellow.withValues(alpha: 0.2) : ColorManager.gray,
                     borderRadius: BorderRadius.circular(AppSize.s8),
                     border: Border.all(
                       color: itemsActive ? ColorManager.yellow : ColorManager.gray1,
@@ -82,13 +82,13 @@ class ItemListUser extends StatelessWidget {
               hiddenVerifyUser ?
                 !verifyUser ?
                 Btn(
-                  buttonColorBtn: ColorManager.red.withOpacity(0.1),
+                  buttonColorBtn: ColorManager.red.withValues(alpha: 0.1),
                   onPress: onPressVerifyUser,
                   text: 'تایید نشده',
                   heightBtn: AppSize.s32,
                   borderRadiusBtn: AppSize.s8,
                   buttonTextColorBtn: ColorManager.red,
-                  borderSideColorBtn: ColorManager.black.withOpacity(0),
+                  borderSideColorBtn: ColorManager.black.withValues(alpha: 0.0),
                 ) :
                 Text('تایید شده',style: getMediumStyle(color: ColorManager.green ,fontSize: AppSize.s14))
               : Container(),
@@ -108,7 +108,7 @@ class ItemListUser extends StatelessWidget {
                     borderColor: ColorManager.white,
                     radius: AppSize.s0,
                     heightBtn: AppSize.s48,
-                    colorTextSelect: ColorManager.black.withOpacity(0.6),
+                    colorTextSelect: ColorManager.black.withValues(alpha: 0.6),
                     backgroundColorSelect: ColorManager.white,
                   ),
                   const SizedBox(width: AppSize.s16),
@@ -142,7 +142,7 @@ class ItemListUser extends StatelessWidget {
                   heightBtn: AppSize.s48,
                   borderRadiusBtn: AppSize.s8,
                   buttonTextColorBtn: colorTextBtnActiveAdmin ?? ColorManager.black,
-                  borderSideColorBtn: ColorManager.black.withOpacity(0),
+                  borderSideColorBtn: ColorManager.black.withValues(alpha: 0.0),
                 ),
               ) :
               Container()

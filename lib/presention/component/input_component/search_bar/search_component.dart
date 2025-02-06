@@ -41,7 +41,7 @@ class SearchWidget extends BaseInput {
             fillColor: textFieldColor,
             contentPadding: textFieldPadding,
             hintText: '$textFieldHint',
-            hintStyle: getMediumStyle(color: ColorManager.black.withOpacity(0.4),fontSize: AppSize.s14),
+            hintStyle: getMediumStyle(color: ColorManager.black.withValues(alpha: 0.4),fontSize: AppSize.s14),
             enabledBorder: OutlineInputBorder(
               borderSide: textFieldBorderSearch,
               borderRadius: BorderRadius.circular(AppSize.s12),

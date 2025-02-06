@@ -19,19 +19,19 @@ class DropDown extends StatelessWidget {
         hoverColor: ColorManager.white,
         contentPadding: const EdgeInsets.symmetric(horizontal: AppPadding.p16),
         enabledBorder: OutlineInputBorder(
-          borderSide: BorderSide(width: AppSize.s2,color: ColorManager.black.withOpacity(0.3)),
+          borderSide: BorderSide(width: AppSize.s2,color: ColorManager.black.withValues(alpha: 0.3)),
           borderRadius: BorderRadius.circular(AppSize.s12),
         ),
         focusedBorder: OutlineInputBorder(
-          borderSide: BorderSide(width: AppSize.s2,color: ColorManager.black.withOpacity(0.3)),
+          borderSide: BorderSide(width: AppSize.s2,color: ColorManager.black.withValues(alpha: 0.3)),
           borderRadius: BorderRadius.circular(AppSize.s12),
         ),
         disabledBorder: OutlineInputBorder(
-          borderSide: BorderSide(width: AppSize.s2,color: ColorManager.black.withOpacity(0.3)),
+          borderSide: BorderSide(width: AppSize.s2,color: ColorManager.black.withValues(alpha: 0.3)),
           borderRadius: BorderRadius.circular(AppSize.s12),
         ),
         border: OutlineInputBorder(
-          borderSide: BorderSide(width: AppSize.s2,color: ColorManager.black.withOpacity(0.3)),
+          borderSide: BorderSide(width: AppSize.s2,color: ColorManager.black.withValues(alpha: 0.3)),
           borderRadius: BorderRadius.circular(AppSize.s12),
         ),
       ),

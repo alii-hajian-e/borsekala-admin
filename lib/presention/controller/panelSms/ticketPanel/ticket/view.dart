@@ -59,8 +59,7 @@ class TicketPage extends StatelessWidget {
                                 appSize: AppSize.s8,
                                 widthCircle: AppSize.s32,
                                 heightCircle: AppSize.s32,
-                                buttonColorCircle: ColorManager.gray
-                                    .withOpacity(0.0),
+                                buttonColorCircle: ColorManager.gray.withValues(alpha: 0.0),
                                 onPress: null,
                                 icons: const Icon(
                                     Icons.clear, size: AppSize.s18),
@@ -123,7 +122,7 @@ class TicketPage extends StatelessWidget {
                                   horizontal: AppMargin.m8),
                               decoration: BoxDecoration(
                                 color: response.sender == 2 ? Colors
-                                    .yellow : Colors.grey.withOpacity(0.3),
+                                    .yellow : Colors.grey.withValues(alpha: 0.0),
                                 borderRadius: BorderRadius.circular(AppSize.s8),
                               ),
                               child: Column(
@@ -190,8 +189,7 @@ class TicketPage extends StatelessWidget {
                           appSize: AppSize.s8,
                           widthCircle: AppSize.s16,
                           heightCircle: AppSize.s16,
-                          buttonColorCircle: ColorManager.yellow.withOpacity(
-                              0.0),
+                          buttonColorCircle: ColorManager.yellow.withValues(alpha: 0.0),
                           onPress: () {
                             logic.scrollController.animateTo(
                               logic.scrollController.position.maxScrollExtent,
@@ -216,7 +214,7 @@ class TicketPage extends StatelessWidget {
                           borderSideWidth: AppSize.s2,
                           borderSideColor: ColorManager.gray,
                           hintStyle: getMediumStyle(color: ColorManager.black
-                              .withOpacity(0.6), fontSize: AppSize.s14),
+                              .withValues(alpha: 0.6), fontSize: AppSize.s14),
                           hintText: 'چه کمکی از ما بر می آید؟',
                           textFieldActive: false,
                           textFieldController: logic.txtChatTicket,
@@ -301,8 +299,7 @@ class TicketPage extends StatelessWidget {
                                 crossAxisAlignment: CrossAxisAlignment.center,
                                 children: [
                                   Text('${index + 1}', style: getMediumStyle(
-                                      color: ColorManager.black.withOpacity(
-                                          0.6), fontSize: AppSize.s14),
+                                      color: ColorManager.black.withValues(alpha: 0.6), fontSize: AppSize.s14),
                                     textAlign: TextAlign.start,),
                                   const SizedBox(width: AppSize.s16),
                                   Expanded(child: Text(
@@ -325,8 +322,7 @@ class TicketPage extends StatelessWidget {
                                     'تاریخ : ${jalaliDate.year}/${jalaliDate
                                         .month}/${jalaliDate.day}',
                                     style: getMediumStyle(
-                                        color: ColorManager.black.withOpacity(
-                                            0.6), fontSize: AppSize.s14),
+                                        color: ColorManager.black.withValues(alpha: 0.6), fontSize: AppSize.s14),
                                     textAlign: TextAlign.start,),),
                                   const SizedBox(width: AppSize.s16),
                                   !ticket.isResolved ?

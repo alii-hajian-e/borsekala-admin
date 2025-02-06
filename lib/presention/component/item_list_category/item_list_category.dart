@@ -36,7 +36,7 @@ class ItemListCategory extends StatelessWidget {
       child: Container(
           padding: const EdgeInsets.all(AppPadding.p24),
           decoration: BoxDecoration(
-            color: ColorManager.gray.withOpacity(0.7),
+            color: ColorManager.gray.withValues(alpha: 0.7),
             borderRadius: BorderRadius.circular(AppSize.s16),
             border: Border.all(color: ColorManager.gray1,width: AppSize.s2)
           ),
@@ -65,7 +65,7 @@ class ItemListCategory extends StatelessWidget {
                         ],
                       ),
                       const SizedBox(height: AppSize.s8),
-                      Text(time,style: getBoldStyle(color: ColorManager.black.withOpacity(0.4),fontSize: AppSize.s12)),
+                      Text(time,style: getBoldStyle(color: ColorManager.black.withValues(alpha: 0.4),fontSize: AppSize.s12)),
                     ],
                   ),
                   visibleEdit ?
@@ -79,11 +79,11 @@ class ItemListCategory extends StatelessWidget {
                         iconSelect: SvgPicture.asset(ImageAssets.edit,width: AppSize.s24,height: AppSize.s24),
                         onPress: onPressBtnEdit,
                         text: 'ویرایش',
-                        borderColor: ColorManager.white.withOpacity(0),
+                        borderColor: ColorManager.white.withValues(alpha: 0.0),
                         radius: AppSize.s0,
                         heightBtn: AppSize.s24,
-                        colorTextSelect:  ColorManager.black.withOpacity(0.4),
-                        backgroundColorSelect: ColorManager.white.withOpacity(0),
+                        colorTextSelect:  ColorManager.black.withValues(alpha: 0.4),
+                        backgroundColorSelect: ColorManager.white.withValues(alpha: 0.0),
                       ),
                       const SizedBox(width: AppSize.s16),
                       SelectBtn(
@@ -94,11 +94,11 @@ class ItemListCategory extends StatelessWidget {
                         iconSelect: SvgPicture.asset(ImageAssets.trash,width: AppSize.s24,height: AppSize.s24),
                         onPress: onPressBtnDelete,
                         text: 'حذف',
-                        borderColor: ColorManager.white.withOpacity(0),
+                        borderColor: ColorManager.white.withValues(alpha: 0.0),
                         radius: AppSize.s0,
                         heightBtn: AppSize.s24,
                         colorTextSelect: ColorManager.red,
-                        backgroundColorSelect: ColorManager.white.withOpacity(0),
+                        backgroundColorSelect: ColorManager.white.withValues(alpha: 0.0),
                       ),
                     ],
                   ) :
@@ -110,11 +110,11 @@ class ItemListCategory extends StatelessWidget {
                     iconSelect: SvgPicture.asset(ImageAssets.download,width: AppSize.s24,height: AppSize.s24),
                     onPress: onPressDownloadFile,
                     text: 'دانلود فایل',
-                    borderColor: ColorManager.white.withOpacity(0),
+                    borderColor: ColorManager.white.withValues(alpha: 0.0),
                     radius: AppSize.s0,
                     heightBtn: AppSize.s24,
                     colorTextSelect:  ColorManager.black,
-                    backgroundColorSelect: ColorManager.white.withOpacity(0),
+                    backgroundColorSelect: ColorManager.white.withValues(alpha: 0.0),
                   ),
                 ],
               ),
@@ -123,9 +123,9 @@ class ItemListCategory extends StatelessWidget {
                 children: [
                   Padding(
                     padding: const EdgeInsets.fromLTRB(AppPadding.p8, AppPadding.p0, AppPadding.p0, AppPadding.p0),
-                    child: Text('نام:',style: getBoldStyle(color: ColorManager.black.withOpacity(0.4),fontSize: AppSize.s12)),
+                    child: Text('نام:',style: getBoldStyle(color: ColorManager.black.withValues(alpha: 0.4),fontSize: AppSize.s12)),
                   ),
-                  Expanded(child: Divider(height: AppSize.s1,color: ColorManager.black.withOpacity(0.4))),
+                  Expanded(child: Divider(height: AppSize.s1,color: ColorManager.black.withValues(alpha: 0.4))),
                   Padding(
                     padding: const EdgeInsets.fromLTRB(AppPadding.p0, AppPadding.p0, AppPadding.p8, AppPadding.p0),
                     child: Text(name,style: getBoldStyle(color: ColorManager.black,fontSize: AppSize.s14)),
@@ -137,9 +137,9 @@ class ItemListCategory extends StatelessWidget {
                 children: [
                   Padding(
                     padding: const EdgeInsets.fromLTRB(AppPadding.p8, AppPadding.p0, AppPadding.p0, AppPadding.p0),
-                    child: Text('تعداد کاربر ها:',style: getBoldStyle(color: ColorManager.black.withOpacity(0.4),fontSize: AppSize.s12)),
+                    child: Text('تعداد کاربر ها:',style: getBoldStyle(color: ColorManager.black.withValues(alpha: 0.4),fontSize: AppSize.s12)),
                   ),
-                  Expanded(child: Divider(height: AppSize.s1,color: ColorManager.black.withOpacity(0.4))),
+                  Expanded(child: Divider(height: AppSize.s1,color: ColorManager.black.withValues(alpha: 0.4))),
                   Padding(
                     padding: const EdgeInsets.fromLTRB(AppPadding.p0, AppPadding.p0, AppPadding.p8, AppPadding.p0),
                     child: Text(num,style: getBoldStyle(color: ColorManager.black,fontSize: AppSize.s14)),
@@ -151,9 +151,9 @@ class ItemListCategory extends StatelessWidget {
                 children: [
                   Padding(
                     padding: const EdgeInsets.fromLTRB(AppPadding.p8, AppPadding.p0, AppPadding.p0, AppPadding.p0),
-                    child: Text('دسته بندی اصلی:',style: getBoldStyle(color: ColorManager.black.withOpacity(0.4),fontSize: AppSize.s12)),
+                    child: Text('دسته بندی اصلی:',style: getBoldStyle(color: ColorManager.black.withValues(alpha: 0.4),fontSize: AppSize.s12)),
                   ),
-                  Expanded(child: Divider(height: AppSize.s1,color: ColorManager.black.withOpacity(0.4))),
+                  Expanded(child: Divider(height: AppSize.s1,color: ColorManager.black.withValues(alpha: 0.4))),
                   Padding(
                     padding: const EdgeInsets.fromLTRB(AppPadding.p0, AppPadding.p0, AppPadding.p8, AppPadding.p0),
                     child: Text(mainCategory,style: getBoldStyle(color: ColorManager.black,fontSize: AppSize.s14)),
@@ -165,9 +165,9 @@ class ItemListCategory extends StatelessWidget {
                 children: [
                   Padding(
                     padding: const EdgeInsets.fromLTRB(AppPadding.p8, AppPadding.p0, AppPadding.p0, AppPadding.p0),
-                    child: Text('دسته بندی:',style: getBoldStyle(color: ColorManager.black.withOpacity(0.4),fontSize: AppSize.s12)),
+                    child: Text('دسته بندی:',style: getBoldStyle(color: ColorManager.black.withValues(alpha: 0.4),fontSize: AppSize.s12)),
                   ),
-                  Expanded(child: Divider(height: AppSize.s1,color: ColorManager.black.withOpacity(0.4))),
+                  Expanded(child: Divider(height: AppSize.s1,color: ColorManager.black.withValues(alpha: 0.4))),
                   Padding(
                     padding: const EdgeInsets.fromLTRB(AppPadding.p0, AppPadding.p0, AppPadding.p8, AppPadding.p0),
                     child: Text(grouping,style: getBoldStyle(color: ColorManager.black,fontSize: AppSize.s14)),
@@ -181,13 +181,13 @@ class ItemListCategory extends StatelessWidget {
                     padding: const EdgeInsets.fromLTRB(AppPadding.p8, AppPadding.p0, AppPadding.p0, AppPadding.p0),
                     child: Text(
                       'زیر دسته بندی:',
-                      style: getBoldStyle(color: ColorManager.black.withOpacity(0.4), fontSize: AppSize.s12),
+                      style: getBoldStyle(color: ColorManager.black.withValues(alpha: 0.4), fontSize: AppSize.s12),
                     ),
                   ),
                   Expanded(
                     child: Divider(
                       height: AppSize.s1,
-                      color: ColorManager.black.withOpacity(0.4),
+                      color: ColorManager.black.withValues(alpha: 0.4),
                     ),
                   ),
                   const SizedBox(width: AppSize.s8),
@@ -212,13 +212,13 @@ class ItemListCategory extends StatelessWidget {
                     padding: const EdgeInsets.fromLTRB(AppPadding.p8, AppPadding.p0, AppPadding.p0, AppPadding.p0),
                     child: Text(
                       'شرکت :',
-                      style: getBoldStyle(color: ColorManager.black.withOpacity(0.4), fontSize: AppSize.s12),
+                      style: getBoldStyle(color: ColorManager.black.withValues(alpha: 0.4), fontSize: AppSize.s12),
                     ),
                   ),
                   Expanded(
                     child: Divider(
                       height: AppSize.s1,
-                      color: ColorManager.black.withOpacity(0.4),
+                      color: ColorManager.black.withValues(alpha: 0.4),
                     ),
                   ),
                   const SizedBox(width: AppSize.s8),

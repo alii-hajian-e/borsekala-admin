@@ -51,7 +51,7 @@ class AdminPage extends StatelessWidget {
                             context, 'افزودن ادمین', 'ذخیره', 'انصراف');
                       },
                       text: 'افزودن امین',
-                      borderColor: ColorManager.white.withOpacity(0),
+                      borderColor: ColorManager.white.withValues(alpha: 0.0),
                       radius: AppSize.s8,
                       heightBtn: AppSize.s48,
                       colorTextSelect: ColorManager.black,

@@ -28,7 +28,7 @@ class HeaderBar extends StatelessWidget {
       padding: const EdgeInsets.all(AppPadding.p16),
       decoration: BoxDecoration(
         borderRadius: const BorderRadius.all(Radius.circular(AppSize.s16)),
-        color: ColorManager.gray.withOpacity(0.7),
+        color: ColorManager.gray.withValues(alpha: 0.7),
       ),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -59,7 +59,7 @@ class HeaderBar extends StatelessWidget {
                   icon, color: ColorManager.black, size: AppSize.s18),
               onPress: onPress,
               text: nameBtn,
-              borderColor: ColorManager.white.withOpacity(0),
+              borderColor: ColorManager.white.withValues(alpha: 0.0),
               radius: AppSize.s8,
               heightBtn: AppSize.s48,
               colorTextSelect: ColorManager.black,

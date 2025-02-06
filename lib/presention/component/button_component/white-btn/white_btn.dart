@@ -16,7 +16,7 @@ class WhiteBtn extends WidgetButton {
     height: AppSize.s24,
     borderRadius:AppSize.s8,
     fontSize: AppSize.s12,
-    buttonColor: ColorManager.white.withOpacity(0),
+    buttonColor: ColorManager.white.withValues(alpha: 0),
    // buttonMargin:const EdgeInsets.only(left: AppMargin.m16, right: AppMargin.m16,bottom:AppMargin.m16 ),
     buttonOnPressed: onPress,
     buttonText: text,

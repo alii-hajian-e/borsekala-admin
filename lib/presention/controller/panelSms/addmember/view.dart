@@ -52,9 +52,9 @@ class AddMemberPage extends StatelessWidget {
           Container(
             padding: const EdgeInsets.symmetric(horizontal: AppPadding.p16,vertical: AppPadding.p16),
             decoration: BoxDecoration(
-              border: Border.all(width: AppSize.s1,color: ColorManager.red.withOpacity(0.3)),
+              border: Border.all(width: AppSize.s1,color: ColorManager.red.withValues(alpha: 0.3)),
               borderRadius: const BorderRadius.all(Radius.circular(AppSize.s16)),
-              color: ColorManager.red.withOpacity(0.1),
+              color: ColorManager.red.withValues(alpha: 0.1),
             ),
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.center,
@@ -67,7 +67,7 @@ class AddMemberPage extends StatelessWidget {
                   colorFilter: ColorFilter.mode(ColorManager.red, BlendMode.srcIn),
                 ),
                 const SizedBox(width: AppSize.s16),
-                Text(AppString.alert,style: getMediumStyle(color: ColorManager.red.withOpacity(0.8),fontSize: AppSize.s14),textAlign: TextAlign.start,),
+                Text(AppString.alert,style: getMediumStyle(color: ColorManager.red.withValues(alpha: 0.8),fontSize: AppSize.s14),textAlign: TextAlign.start,),
               ],
             ),
           ),

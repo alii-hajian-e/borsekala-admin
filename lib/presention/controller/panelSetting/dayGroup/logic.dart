@@ -27,7 +27,7 @@ class DayGroupLogic extends GetxController {
         final textStyle = getMediumStyle(
             color: ColorManager.black, fontSize: AppSize.s16);
         final subTextStyle = getMediumStyle(
-          color: ColorManager.black.withOpacity(0.5),
+          color: ColorManager.black.withValues(alpha: 0.5),
           fontSize: AppSize.s14,
         );
         return Dialog(

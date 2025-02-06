@@ -78,7 +78,7 @@ class AddGroupPage extends StatelessWidget {
                         heightBtn: AppSize.s48,
                         borderRadiusBtn: AppSize.s8,
                         buttonTextColorBtn: ColorManager.black,
-                        borderSideColorBtn: ColorManager.gray1.withOpacity(0),
+                        borderSideColorBtn: ColorManager.gray1.withValues(alpha: 0.0),
                       ),
                     ) :
                     CircularProgressIndicator(

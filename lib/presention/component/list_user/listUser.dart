@@ -35,7 +35,7 @@ class ListViewUser extends StatelessWidget {
                   height: AppSize.s24,
                   decoration: BoxDecoration(
                     color: isCheckedAll
-                        ? ColorManager.yellow.withOpacity(0.2)
+                        ? ColorManager.yellow.withValues(alpha: 0.2)
                         : ColorManager.gray,
                     borderRadius: BorderRadius.circular(AppSize.s8),
                     border: Border.all(
@@ -54,29 +54,29 @@ class ListViewUser extends StatelessWidget {
                 ),
               ) :
               Text("ردیف", style: getMediumStyle(
-                  color: ColorManager.black.withOpacity(0.5), fontSize: AppSize.s14)),
+                  color: ColorManager.black.withValues(alpha: 0.5), fontSize: AppSize.s14)),
               const SizedBox(width: AppSize.s40),
               SizedBox(
                 width: AppSize.s220,
                 child: Text('نام / نام خانوادگی', style: getMediumStyle(
-                    color: ColorManager.black.withOpacity(0.5), fontSize: AppSize.s14)),
+                    color: ColorManager.black.withValues(alpha: 0.5), fontSize: AppSize.s14)),
               ),
               SizedBox(
                 width: AppSize.s220,
                 child: Text('نام شرکت', style: getMediumStyle(
-                    color: ColorManager.black.withOpacity(0.5), fontSize: AppSize.s14)),
+                    color: ColorManager.black.withValues(alpha: 0.5), fontSize: AppSize.s14)),
               ),
               SizedBox(
                 width: AppSize.s220,
                 child: Text(emailTxt, style: getMediumStyle(
-                    color: ColorManager.black.withOpacity(0.5), fontSize: AppSize.s14)),
+                    color: ColorManager.black.withValues(alpha: 0.5), fontSize: AppSize.s14)),
               ),
               Expanded(child: Container()),
               childBtnDelete
             ],
           ),
           const SizedBox(height: AppSize.s8),
-          Divider(color: ColorManager.black.withOpacity(0.5), height: AppSize.s2),
+          Divider(color: ColorManager.black.withValues(alpha: 0.5), height: AppSize.s2),
           child
         ],
       ),

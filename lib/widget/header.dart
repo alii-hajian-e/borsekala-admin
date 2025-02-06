@@ -16,7 +16,7 @@ class Header extends StatelessWidget {
       children: [
         Text(txtHeader,style: getBoldStyle(color: ColorManager.black,fontSize: AppSize.s32)),
         const SizedBox(height: AppSize.s24),
-        Divider(height: AppSize.s2,color: ColorManager.black.withOpacity(0.3),endIndent: AppSize.s48),
+        Divider(height: AppSize.s2,color: ColorManager.black.withValues(alpha: 0.3),endIndent: AppSize.s48),
       ],
     );
   }

@@ -59,7 +59,7 @@ class GroupListItem extends StatelessWidget {
                     const SizedBox(width: AppSize.s8),
                     Text(
                       ' نوع بازار : ${tradingHall.persianName}',
-                      style: getMediumStyle(color: ColorManager.black.withOpacity(0.6), fontSize: AppSize.s14),
+                      style: getMediumStyle(color: ColorManager.black.withValues(alpha: 0.6), fontSize: AppSize.s14),
                     ),
                   ],
                 )
@@ -67,7 +67,7 @@ class GroupListItem extends StatelessWidget {
               Expanded(
                 child: Text(
                   'نام : ${group.name}',
-                  style: getMediumStyle(color: ColorManager.black.withOpacity(0.6), fontSize: AppSize.s14),
+                  style: getMediumStyle(color: ColorManager.black.withValues(alpha: 0.6), fontSize: AppSize.s14),
                 ),
               ),
               active ?
@@ -94,7 +94,7 @@ class GroupListItem extends StatelessWidget {
                 borderColor: ColorManager.white,
                 radius: AppSize.s0,
                 heightBtn: AppSize.s48,
-                colorTextSelect: ColorManager.black.withOpacity(0.6),
+                colorTextSelect: ColorManager.black.withValues(alpha: 0.6),
                 backgroundColorSelect: ColorManager.white,
               ),
               const SizedBox(width: AppSize.s24),

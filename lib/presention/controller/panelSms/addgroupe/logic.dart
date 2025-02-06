@@ -377,14 +377,14 @@ class AddGroupLogic extends GetxController {
                               Text(
                                   subTradingList[index].persianName,
                                   style: getMediumStyle(
-                                      color: index == 3 ? ColorManager.black.withOpacity(0.5) : ColorManager.black,
+                                      color: index == 3 ? ColorManager.black.withValues(alpha: 0.5) : ColorManager.black,
                                       fontSize: AppSize.s12
                                   )
                               ),
                               Text(
                                   subTradingList[index].name,
                                   style: getMediumStyle(
-                                      color: index == 3 ? ColorManager.black.withOpacity(0.4) : ColorManager.black.withOpacity(0.8),
+                                      color: index == 3 ? ColorManager.black.withValues(alpha: 0.4) : ColorManager.black.withValues(alpha: 0.8),
                                       fontSize: AppSize.s10
                                   )
                               ),
@@ -453,7 +453,7 @@ class AddGroupLogic extends GetxController {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   Text('هنگام جستجو، چند روز آینده را بررسی کند ؟', style: getMediumStyle(
-                      color: ColorManager.black.withOpacity(0.6), fontSize: AppSize.s14)),
+                      color: ColorManager.black.withValues(alpha: 0.6), fontSize: AppSize.s14)),
                   Obx(() {
                     return DaySelector(
                       numbers: '${numberDay.toString()} روز بعد ',
@@ -477,7 +477,7 @@ class AddGroupLogic extends GetxController {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   Text('زمان ارسال پیامک چه ساعتی باشد ؟', style: getMediumStyle(
-                      color: ColorManager.black.withOpacity(0.6), fontSize: AppSize.s14)),
+                      color: ColorManager.black.withValues(alpha: 0.6), fontSize: AppSize.s14)),
                   Obx(() {
                     return DaySelector(
                       numbers: '00 : ${numberTime.toString()}',
@@ -1051,7 +1051,7 @@ class AddGroupLogic extends GetxController {
                               appSize: AppSize.s8,
                               widthCircle: AppSize.s32,
                               heightCircle: AppSize.s32,
-                              buttonColorCircle: ColorManager.gray.withOpacity(0.0),
+                              buttonColorCircle: ColorManager.gray.withValues(alpha: 0.0),
                               onPress: null,
                               icons: const Icon(Icons.clear,size: AppSize.s18),
                               colors: ColorManager.gray,
@@ -1248,7 +1248,7 @@ class AddGroupLogic extends GetxController {
     }
   }
 
-  void showAutoDismissDialog(BuildContext context) {
+  void showAutoDismissDialog(context) {
     showDialog(
       context: context,
       builder: (context) {

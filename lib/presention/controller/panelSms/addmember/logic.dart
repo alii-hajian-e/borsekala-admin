@@ -374,7 +374,7 @@ class AddMemberLogic extends GetxController  with StateMixin<List<dynamic>>{
                         borderRadius: BorderRadius.circular(AppSize.s8),
                         fieldHeight: AppSize.s48,
                         fieldWidth: AppSize.s64,
-                        inactiveColor: ColorManager.black.withOpacity(0.4),
+                        inactiveColor: ColorManager.black.withValues(alpha: 0.4),
                         borderWidth: AppSize.s05,
                       ),
                     ),
