@@ -230,15 +230,15 @@ class GridViewPage extends StatelessWidget {
     final startData2 = Jalali.now().toDateTime().toString().obs;
     final endDate2 = Jalali.now().toDateTime().toString().obs;
 
-    startData2.value = Jalali.now().toDateTime().toString();
-    Jalali oneMonthLater2 = Jalali.now().addDays(2);
-    endDate2.value = oneMonthLater2.toDateTime().toString();
+    startData2.value = Jalali.now().toDateTime().toString().split(' ')[0];
+    Jalali oneMonthLater2 = Jalali.now().addDays(items[index].cronJobFutureDays ?? 2);
+    endDate2.value = oneMonthLater2.toDateTime().toString().split(' ')[0];
     homeLogic.validDownload.value = validDownload;
 
     homeLogic.filterDataOffer(
       id: id,
       context: context,
-      data: 'start_date=${startData2.value.replaceAll('00:00:00.000', '')}&end_date=${endDate2.value.replaceAll(' 00:00:00.000', '')}&main=${mainGroup2.toString()}&group=${group2.toString()}&sub=${subGroup2.toString()}&hall=${hallId2.toString()}&page=1&manufacturer=${manufacturer2.toString()}&search=',
+      data: 'start_date=${startData2.value}&end_date=${endDate2.value}&main=${mainGroup2.toString()}&group=${group2.toString()}&sub=${subGroup2.toString()}&hall=${hallId2.toString()}&page=1&manufacturer=${manufacturer2.toString()}&search=',
     );
   }
   void dialogEducation(
